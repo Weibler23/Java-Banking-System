@@ -3,11 +3,7 @@
 // Store all home screens throughout the program
 // Created: 4/12/22
 
-import java.text.DecimalFormat;
-
 public class homeScreen {
-	private static final DecimalFormat df = new DecimalFormat("0.00");
-
     private static void Frame (int num, boolean newLine) {
 	for (int i = 1; i <= num; i ++){
 	    System.out.print ('-');
