@@ -12,7 +12,7 @@ public class homeScreen {
     
     public void startScreen () {
 	Frame(40, true);
-	System.out.print("|                AM Bank               |\n");
+	System.out.print("|                MW Bank               |\n");
 	Frame(40, true);
 	System.out.print("|Enter (1) to open an existing profile |\n" +
 			 "|Enter (2) to create a new profile     |\n" +
