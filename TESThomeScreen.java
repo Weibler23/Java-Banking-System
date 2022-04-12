@@ -14,11 +14,14 @@ public class TESThomeScreen {
 	System.out.println();
 	
 	// Profile Home Page
-	HS.profileHP("Test Prof Home");
+	String profTempName = "Test Profile Name";
+	HS.profileHP(profTempName);
 
 	System.out.println();
 
 	// Account Home Page
-	HS.accountHP("Test Acc Home", 69.42);
+	String accTempName = "Test Account Name";
+	Double accTempBalance = 4444.44;
+	HS.accountHP(accTempName, accTempBalance);
     }
 }
