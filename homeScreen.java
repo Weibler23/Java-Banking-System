@@ -45,7 +45,5 @@ public class homeScreen {
 			 "|Enter (5) to return to profile home page  |\n");
 	Frame(44, true);
 	System.out.print("Input: ");
-
     }
- 
 }
