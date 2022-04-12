@@ -1,4 +1,4 @@
-// homeScreenMain.java
+// TESThomeScreen.java
 // Adam Weibler
 // TEST Program to run the home screens
 // Created: 4/12/22
