@@ -3,7 +3,7 @@
 // TEST Program to run the home screens
 // Created: 4/12/22
 
-public class homeScreenMain {
+public class TESThomeScreen {
     public static void main(String args[]) {
 	// Implement menu class
 	homeScreen HS = new homeScreen();
