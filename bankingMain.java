@@ -9,6 +9,10 @@ public class bankingMain {
         // Implement menu class
 	    homeScreen HS = new homeScreen();
 
+        // Implement org class
+        organization org = new organization();
+
+        org.ClearScreen();
         HS.startScreen();
         HS.getMenuInput(3,0);
         switch (HS.userInput) {
