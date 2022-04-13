@@ -12,7 +12,7 @@ public class homeScreen {
 	} if (newLine) System.out.print("\n");
     }
 
-	public static int getHSInput() {
+	public int getHSInput() {
 		// Create scanner object
 		Scanner input = new Scanner(System.in);
 		while (true) {
