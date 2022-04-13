@@ -4,6 +4,7 @@
 // Created: 4/12/22
 
 import java.util.Scanner;
+import java.util.Random;
 
 public class bankingProfile {
     private String username;
@@ -11,6 +12,7 @@ public class bankingProfile {
     private String phoneNumber;
     private String birthday;
     private double balance;
+    private int ID = 0;
 
     // Create scanner object
 	Scanner input = new Scanner(System.in);
@@ -20,6 +22,12 @@ public class bankingProfile {
 
     // Implement organization class
     organization org = new organization();
+
+    public void generateID() {
+        Random rand = new Random();
+        int UpperBound = 10000;
+        ID = rand.nextInt(UpperBound);
+    }
 
     public void openProfile() {
         System.out.print("\n|Enter your username |\n" +
@@ -62,7 +70,32 @@ public class bankingProfile {
     }
 
     public void createProfile() {
+        System.out.print("\n|Create your username |\n" +
+                           "Input: ");
+        username = input.nextLine();
+
+        System.out.print("\n|Create your password |\n" +
+                           "Input: ");
+        password = input.nextLine();
+
+        System.out.print("\n|Enter your phone number |\n" +
+                           "Input: ");
+        phoneNumber = input.nextLine();
+
+        System.out.print("\n|Enter your birthday (DD/MM/YY) |\n" +
+                           "Input: ");
+        birthday = input.nextLine();
+
+        System.out.print("\n|Enter your balance |\n" +
+                           "Input: ");
+        balance = input.nextDouble();
+        input.nextLine();
         
+        generateID();
+        System.out.println("\n* Your profile ID is: " + ID + " *\n");
+
+        System.out.println("* Enter any key to move on *");
+        String str = input.nextLine();
     }
 
     public void profile(String username, String password) {

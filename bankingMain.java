@@ -27,7 +27,7 @@ public class bankingMain {
                 bankProf.openProfile();
                 break;
                 case 2:
-                System.out.println("* User chose to create a new profile *\n");
+                //System.out.println("* User chose to create a new profile *\n");
                 bankProf.createProfile();
                 break;
                 case 3:
