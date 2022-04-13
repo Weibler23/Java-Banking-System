@@ -7,31 +7,12 @@ import java.util.*;
 import java.io.*;
 
 public class homeScreen {
-public int userInput = 0;
 
     private static void Frame (int num, boolean newLine) {
 	for (int i = 1; i <= num; i ++){
 	    System.out.print ('-');
 	} if (newLine) System.out.print("\n");
     }
-
-	public int getMenuInput(int topBound, int lowBound) {
-		// Create scanner object
-		Scanner input = new Scanner(System.in);
-		boolean failCheck = false;
-		do {
-			try {
-				userInput = input.nextInt();
-				if ((userInput > topBound) || (userInput < lowBound)) throw new IOException("Exceeds Bounds");				
-				failCheck = false;
-			} catch (Exception e) {
-				System.out.print("* ERROR: Please enter a valid input *\nInput: ");
-				input.nextLine();
-				failCheck = true;
-			}
-		} while (failCheck);
-		return 0;
-	}
     
     public void startScreen () {
 	Frame(40, true);

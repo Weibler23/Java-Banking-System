@@ -15,12 +15,15 @@ public class bankingMain {
         // Implement organization class
         organization org = new organization();
 
+        // Implement userInputs class
+        userInputs UInp = new userInputs();
+
         boolean homeScreenRepeat = true;
 
         do {
             org.ClearScreen();
             HS.startScreen();
-            HS.getMenuInput(3,1);
+            UImp.getMenuInput(3,1);
             switch (HS.userInput) {
                 case 1: 
                 ///System.out.println("* User chose to open an existing profile *\n");
