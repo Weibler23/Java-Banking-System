@@ -3,12 +3,27 @@
 // Store all home screens throughout the program
 // Created: 4/12/22
 
+import java.util.*;
+
 public class homeScreen {
     private static void Frame (int num, boolean newLine) {
 	for (int i = 1; i <= num; i ++){
 	    System.out.print ('-');
 	} if (newLine) System.out.print("\n");
     }
+
+	public static int getHSInput() {
+		// Create scanner object
+		Scanner input = new Scanner(System.in);
+		while (true) {
+			try {
+				return input.nextInt();
+			} catch (InputMismatchException e) {
+				input.next();
+				System.out.print("* ERROR: Please enter a valid input *\nInput: ");
+			}
+		}
+	}
     
     public void startScreen () {
 	Frame(40, true);
