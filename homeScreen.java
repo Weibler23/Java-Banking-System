@@ -7,6 +7,8 @@ import java.util.*;
 import java.io.*;
 
 public class homeScreen {
+public int userInput = 0;
+
     private static void Frame (int num, boolean newLine) {
 	for (int i = 1; i <= num; i ++){
 	    System.out.print ('-');
@@ -17,10 +19,9 @@ public class homeScreen {
 		// Create scanner object
 		Scanner input = new Scanner(System.in);
 		boolean failCheck = false;
-		double userInput;
 		do {
 			try {
-				userInput = input.nextDouble();
+				userInput = input.nextInt();
 				if ((userInput > topBound) || (userInput < lowBound)) throw new IOException("Exceeds Bounds");				
 				failCheck = false;
 			} catch (Exception e) {
