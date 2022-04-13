@@ -2,7 +2,7 @@
 // Adam Weibler
 // Create a program that contains the menu and new screen objects in a seperate class and use them in the main class
 // Created 1/24/22
-// Modified 1/24/22
+// Modified 2/12/22
 
 public class organization
 {
@@ -16,7 +16,7 @@ public class organization
     }
 
     //ClearScreen
-    public static void ClearScreen ()
+    public void ClearScreen ()
     {
 	for (int i = 1; i <= 100; i++)
 	    {

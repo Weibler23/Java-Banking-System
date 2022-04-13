@@ -6,21 +6,26 @@
 
 public class bankingMain {
     public static void main(String[] args) {
-        // Implement menu class
+        // Implement homeScreen class
 	    homeScreen HS = new homeScreen();
 
-        // Implement org class
+        // Implement bankingProfile class
+        bankingProfile bankProf = new bankingProfile();
+
+        // Implement organization class
         organization org = new organization();
 
         org.ClearScreen();
         HS.startScreen();
-        HS.getMenuInput(3,0);
+        HS.getMenuInput(3,1);
         switch (HS.userInput) {
             case 1: 
-            System.out.println("* User chose to open an existing profile *\n");
+            ///System.out.println("* User chose to open an existing profile *\n");
+            bankProf.openProfile();
             break;
             case 2:
             System.out.println("* User chose to create a new profile *\n");
+            bankProf.createProfile();
             break;
             case 3:
             System.out.println("* User chose to exit the program *\n");
