@@ -10,6 +10,6 @@ public class bankingMain {
 	    homeScreen HS = new homeScreen();
 
         HS.startScreen();
-        HS.getHSInput();
+        HS.getMenuInput(3,0);
     }
 }
