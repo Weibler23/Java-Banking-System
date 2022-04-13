@@ -17,7 +17,7 @@ public class bankingProfile {
 
     // Implement homeScreen class
     homeScreen HS = new homeScreen();
-    
+
     // Implement organization class
     organization org = new organization();
 
@@ -33,6 +33,32 @@ public class bankingProfile {
         org.ClearScreen();
         HS.profileHP(username);
         HS.getMenuInput(4, 1);
+        switch (HS.userInput) {
+            case 1:
+            System.out.println("* User chose to see all existing accounts *\n");
+
+            // DEBUG
+            System.exit(0);
+
+            break;
+            case 2:
+            System.out.println("* User chose to open an account *\n");
+
+            // DEBUG
+            System.exit(0);
+
+            break;
+            case 3:
+            System.out.println("* User chose to open a new account *\n");
+
+            // DEBUG
+            System.exit(0);
+
+            break;
+            case 4:
+            System.out.println("* User chose to return to home page *\n");
+            break;
+        }
     }
 
     public void createProfile() {

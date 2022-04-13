@@ -15,21 +15,26 @@ public class bankingMain {
         // Implement organization class
         organization org = new organization();
 
-        org.ClearScreen();
-        HS.startScreen();
-        HS.getMenuInput(3,1);
-        switch (HS.userInput) {
-            case 1: 
-            ///System.out.println("* User chose to open an existing profile *\n");
-            bankProf.openProfile();
-            break;
-            case 2:
-            System.out.println("* User chose to create a new profile *\n");
-            bankProf.createProfile();
-            break;
-            case 3:
-            System.out.println("* User chose to exit the program *\n");
-            break;
-        }
+        boolean homeScreenRepeat = true;
+
+        do {
+            org.ClearScreen();
+            HS.startScreen();
+            HS.getMenuInput(3,1);
+            switch (HS.userInput) {
+                case 1: 
+                ///System.out.println("* User chose to open an existing profile *\n");
+                bankProf.openProfile();
+                break;
+                case 2:
+                System.out.println("* User chose to create a new profile *\n");
+                bankProf.createProfile();
+                break;
+                case 3:
+                System.out.println("* User chose to exit the program *\n");
+                homeScreenRepeat = false;
+                break;
+           }
+        } while (homeScreenRepeat == true);        
     }
 }
