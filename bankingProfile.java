@@ -23,6 +23,9 @@ public class bankingProfile {
     // Implement organization class
     organization org = new organization();
 
+    // Implement userInputs class
+    userInputs UInp = new userInputs();
+
     public void generateID() {
         Random rand = new Random();
         int UpperBound = 10000;
@@ -40,8 +43,8 @@ public class bankingProfile {
 
         org.ClearScreen();
         HS.profileHP(username);
-        HS.getMenuInput(4, 1);
-        switch (HS.userInput) {
+        UInp.getMenuInput(4, 1);
+        switch (UInp.userInput) {
             case 1:
             System.out.println("* User chose to see all existing accounts *\n");
 
@@ -88,12 +91,12 @@ public class bankingProfile {
 
         System.out.print("\n|Enter your balance |\n" +
                            "Input: ");
-        balance = input.nextDouble();
-        input.nextLine();
+        UInp.getUserInputBalance(0);
+        //input.nextLine();
         
         generateID();
-        System.out.println("\n* Your profile ID is: " + ID + " *\n");
-
+        System.out.println("\n* Your profile ID is: " + ID + " *");
+        System.out.println("* Your balance is: $" + UInp.userInputBalance + " *");
         System.out.println("* Enter any key to move on *");
         String str = input.nextLine();
     }
