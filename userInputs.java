@@ -7,6 +7,7 @@ import java.util.*;
 import java.io.*;
 
 public class userInputs {
+    private String userSecurity;
     public int userInput = 0;
     public double userInputBalance = 0;
 
@@ -31,7 +32,7 @@ public class userInputs {
 
     public double getUserInputBalance(double lowbound) {
         boolean failCheck = false;
-        do{
+        do {
             try {
                 userInputBalance = input.nextDouble();
                 if (userInputBalance < lowbound) throw new IOException("Exceeds Bounds");
@@ -43,5 +44,22 @@ public class userInputs {
             }
         } while (failCheck);
         return 0;
+    }
+
+    public String getUserInputSecurity(String security) {
+        boolean failCheck = false;
+        System.out.println("DEBUG:: String security = " + security);
+        do {
+            try {
+                input.next();
+                userSecurity = input.nextLine();
+                if (userSecurity != security) throw new IOException ("Incorrect Input");
+            } catch (Exception e) {
+                System.out.print("* ERROR: Please enter a valid username *\nInput: ");
+                input.nextLine();
+                failCheck = true;
+            }
+        } while (failCheck);
+        return "0";
     }
 }

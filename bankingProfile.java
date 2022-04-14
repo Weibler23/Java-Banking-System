@@ -7,8 +7,8 @@ import java.util.Scanner;
 import java.util.Random;
 
 public class bankingProfile {
-    private String username;
-    private String password;
+    private String username = "Test1";
+    private String password = "T3st1";
     private String phoneNumber;
     private String birthday;
     private double balance;
@@ -29,7 +29,7 @@ public class bankingProfile {
     // Implement account class
     bankingAccounts Acc = new bankingAccounts();
 
-    public void generateID() {
+    private void generateID() {
         Random rand = new Random();
         int UpperBound = 10000;
         ID = rand.nextInt(UpperBound);
@@ -38,11 +38,11 @@ public class bankingProfile {
     public void openProfile() {
         System.out.print("\n|Enter your username |\n" +
                            "Input: ");
-        username = input.nextLine();
+        UInp.getUserInputSecurity(username);
 
         System.out.print("\n|Enter your password |\n" +
                            "Input: ");
-        password = input.nextLine();
+        UInp.getUserInputSecurity(password);
 
         org.ClearScreen();
         HS.profileHP(username);
@@ -54,7 +54,7 @@ public class bankingProfile {
             // DEBUG
             System.exit(0);
             break;
-            
+
             case 2:
             System.out.println("* User chose to open an account *\n");
 
