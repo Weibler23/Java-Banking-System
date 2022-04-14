@@ -1,6 +1,6 @@
 // bankingMain.java
 // Adam Weibler
-// 
+// Immanuel Weidman
 // Java final banking system
 // Created: 4/12/22
 

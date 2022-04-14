@@ -26,6 +26,9 @@ public class bankingProfile {
     // Implement userInputs class
     userInputs UInp = new userInputs();
 
+    // Implement account class
+    bankingAccounts Acc = new bankingAccounts();
+
     public void generateID() {
         Random rand = new Random();
         int UpperBound = 10000;
@@ -50,22 +53,21 @@ public class bankingProfile {
 
             // DEBUG
             System.exit(0);
-
             break;
+            
             case 2:
             System.out.println("* User chose to open an account *\n");
 
-            // DEBUG
-            System.exit(0);
-
+             // DEBUG
+             System.exit(0);
             break;
+
             case 3:
             System.out.println("* User chose to open a new account *\n");
-
-            // DEBUG
-            System.exit(0);
+            Acc.newAccount();
 
             break;
+
             case 4:
             System.out.println("* User chose to return to home page *\n");
             break;
