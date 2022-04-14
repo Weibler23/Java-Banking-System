@@ -23,8 +23,8 @@ public class bankingMain {
         do {
             org.ClearScreen();
             HS.startScreen();
-            UImp.getMenuInput(3,1);
-            switch (HS.userInput) {
+            UInp.getMenuInput(3,1);
+            switch (UInp.userInput) {
                 case 1: 
                 ///System.out.println("* User chose to open an existing profile *\n");
                 bankProf.openProfile();
