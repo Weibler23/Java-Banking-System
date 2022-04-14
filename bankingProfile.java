@@ -36,9 +36,14 @@ public class bankingProfile {
     }
 
     public void openProfile() {
+
+        // TESTING: Username set to Test1
+
         System.out.print("\n|Enter your username |\n" +
                            "Input: ");
         UInp.getUserInputSecurity(username);
+
+        // TESTING: Password set to T3st1
 
         System.out.print("\n|Enter your password |\n" +
                            "Input: ");
