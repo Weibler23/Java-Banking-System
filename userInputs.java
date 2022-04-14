@@ -7,7 +7,7 @@ import java.util.*;
 import java.io.*;
 
 public class userInputs {
-    private String userSecurity;
+    private String userSecurity = "Wrong";
     public int userInput = 0;
     public double userInputBalance = 0;
 
@@ -48,12 +48,10 @@ public class userInputs {
 
     public String getUserInputSecurity(String security) {
         boolean failCheck = false;
-        System.out.println("DEBUG:: String security = " + security);
         do {
             try {
-                input.next();
                 userSecurity = input.nextLine();
-                if (userSecurity != security) throw new IOException ("Incorrect Input");
+                if (Objects.equals(security, userSecurity) == false) throw new IOException ("Incorrect Input");
             } catch (Exception e) {
                 System.out.print("* ERROR: Please enter a valid username *\nInput: ");
                 input.nextLine();
