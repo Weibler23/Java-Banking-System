@@ -38,6 +38,6 @@ public class bankingMain {
                 homeScreenRepeat = false;
                 break;
            }
-        } while (homeScreenRepeat == true);        
+        } while (homeScreenRepeat);        
     }
 }

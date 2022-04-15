@@ -46,18 +46,21 @@ public class userInputs {
         return 0;
     }
 
-    public String getUserInputSecurity(String security) {
+    public String getUserInputSecurity(String securityType, String security) {
         boolean failCheck = false;
         do {
             try {
                 userSecurity = input.nextLine();
                 if (Objects.equals(security, userSecurity) == false) throw new IOException ("Incorrect Input");
+                failCheck = false;
             } catch (Exception e) {
-                System.out.print("* ERROR: Please enter a valid username *\nInput: ");
-                input.nextLine();
+                System.out.print("* ERROR: Please enter a valid " + securityType + "*\nInput: ");
+                //userSecurity = input.nextLine();
                 failCheck = true;
+                
+                //System.out.println("DEBUG:: userSecurity = |" + userSecurity + "|");
             }
         } while (failCheck);
-        return "0";
+        return "";
     }
 }

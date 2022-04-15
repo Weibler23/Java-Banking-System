@@ -41,42 +41,47 @@ public class bankingProfile {
 
         System.out.print("\n|Enter your username |\n" +
                            "Input: ");
-        UInp.getUserInputSecurity(username);
+        UInp.getUserInputSecurity("username", username);
 
         // TESTING: Password set to T3st1
 
         System.out.print("\n|Enter your password |\n" +
                            "Input: ");
-        UInp.getUserInputSecurity(password);
+        UInp.getUserInputSecurity("password", password);
 
-        org.ClearScreen();
-        HS.profileHP(username);
-        UInp.getMenuInput(4, 1);
-        switch (UInp.userInput) {
-            case 1:
-            System.out.println("* User chose to see all existing accounts *\n");
+        boolean profileHS = true;
 
-            // DEBUG
-            System.exit(0);
-            break;
+        do {
+            org.ClearScreen();
+            HS.profileHP(username);
+            UInp.getMenuInput(4, 1);
+            switch (UInp.userInput) {
+                case 1:
+                System.out.println("* User chose to see all existing accounts *\n");
 
-            case 2:
-            System.out.println("* User chose to open an account *\n");
+                // DEBUG
+                System.exit(0);
+                break;
 
-             // DEBUG
-             System.exit(0);
-            break;
+                case 2:
+                System.out.println("* User chose to open an account *\n");
 
-            case 3:
-            System.out.println("* User chose to open a new account *\n");
-            Acc.newAccount();
+                // DEBUG
+                System.exit(0);
+                break;
 
-            break;
+                case 3:
+                System.out.println("* User chose to open a new account *\n");
+                Acc.newAccount();
 
-            case 4:
-            System.out.println("* User chose to return to home page *\n");
-            break;
-        }
+                break;
+
+                case 4:
+                System.out.println("* User chose to return to home page *\n");
+                profileHS = false;
+                break;
+            }
+        } while (profileHS);
     }
 
     public void createProfile() {
