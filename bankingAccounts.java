@@ -13,9 +13,6 @@ public class bankingAccounts {
     // Implement userInputs class
     userInputs UInp = new userInputs();
 
-    // Implement bankingProfile class
-    //bankingProfile bankProf = new bankingProfile();
-
     public void newAccount() {
         HS.newAccountHP();
         UInp.getMenuInput(4,1);
@@ -23,5 +20,6 @@ public class bankingAccounts {
 
     public void openAccount() {
         HS.accountHP(account, balance);
+        UInp.getMenuInput(5, 1);
     }
 }
