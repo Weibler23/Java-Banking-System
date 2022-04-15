@@ -25,9 +25,10 @@ public class homeScreen {
 		System.out.print("Input: ");
     }
 
-    public void profileHP (String profName) {
+    public void profileHP (String profName, int profID) {
 		Frame(40, true); 
 		System.out.format("|%-38s|%n", profName);
+		System.out.format("|Profile ID: %-26s|%n", profID);
 		Frame(40, true);
 		System.out.print("|Enter (1) to see existing accounts    |\n" +
 						 "|Enter (2) to open an existing account |\n" +

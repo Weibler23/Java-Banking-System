@@ -7,7 +7,7 @@ import java.util.Scanner;
 import java.util.Random;
 
 public class bankingProfile {
-    public String username;
+    public String username = "";
     public String password;
     private String phoneNumber;
     private String birthday;
@@ -48,7 +48,7 @@ public class bankingProfile {
 
         do {
             org.ClearScreen();
-            HS.profileHP(username);
+            HS.profileHP(username, ID);
             UInp.getMenuInput(4, 1);
             switch (UInp.userInput) {
                 case 1:
@@ -97,15 +97,20 @@ public class bankingProfile {
                            "Input: ");
         birthday = input.nextLine();
 
+        /* Move to Account
         System.out.print("\n|Enter your balance |\n" +
                            "Input: ");
         UInp.getUserInputBalance(0);
+        */
         
         generateID();
-        System.out.println("\n* Your profile ID is: " + ID + " *");
-        System.out.println("* Your balance is: $" + UInp.userInputBalance + " *");
+        System.out.println("\n* Your profile was created *\n" +
+                             "* Profile ID: " + ID + " *\n" +
+                             "* Username: " + username + " *\n" +
+                             "* Password: " + password + " *");
+        //System.out.println("* Your balance is: $" + UInp.userInputBalance + " *");
         System.out.print("* Type 'next' to move on *\nInput: ");
-        UInp.getUserInputString("next", true);
+        UInp.getUserInputString("next", false);
     }
 
     public void profile(String username, String password) {
