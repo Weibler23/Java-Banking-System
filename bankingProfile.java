@@ -11,7 +11,6 @@ public class bankingProfile {
     public String password;
     private String phoneNumber;
     private String birthday;
-    private double balance;
     private int ID = 0;
 
     // Create scanner object
@@ -60,9 +59,7 @@ public class bankingProfile {
 
                 case 2:
                 System.out.println("* User chose to open an account *\n");
-
-                // DEBUG
-                System.exit(0);
+                Acc.openAccount();
                 break;
 
                 case 3:

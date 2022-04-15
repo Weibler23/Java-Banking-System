@@ -41,7 +41,7 @@ public class homeScreen {
     public void accountHP (String accName, double balance) {
 		Frame(44, true);
 		System.out.format("|%-42s|%n", accName);
-		System.out.format("|$%-41.2f|%n", balance);
+		System.out.format("|$ %-40.2f|%n", balance);
 		Frame(44, true);
 		System.out.print("|Enter (1) to transfer money               |\n" +
 						 "|Enter (2) to take out loan (If available) |\n" +
