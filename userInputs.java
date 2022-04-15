@@ -8,6 +8,7 @@ import java.io.*;
 
 public class userInputs {
     private String userSecurity = "Wrong";
+    public String userInputString = "Wrong";
     public int userInput = 0;
     public double userInputBalance = 0;
 
@@ -55,12 +56,25 @@ public class userInputs {
                 failCheck = false;
             } catch (Exception e) {
                 System.out.print("* ERROR: Please enter a valid " + securityType + "*\nInput: ");
-                //userSecurity = input.nextLine();
                 failCheck = true;
-                
-                //System.out.println("DEBUG:: userSecurity = |" + userSecurity + "|");
             }
         } while (failCheck);
         return "";
     }
+
+    public String getUserInputString(String reqInput, boolean clearLine) {
+		boolean failCheck = false;
+        if (clearLine) input.nextLine();
+		do {
+			try {
+				userInputString = input.nextLine();
+				if (Objects.equals(userInputString, reqInput) == false) throw new IOException ("Incorrect Input");				
+				failCheck = false;
+			} catch (Exception e) {
+				System.out.print("* ERROR: Please enter a valid input *\nInput: ");
+				failCheck = true;
+			}
+		} while (failCheck);
+		return "";
+	}
 }

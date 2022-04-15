@@ -27,12 +27,18 @@ public class bankingMain {
             switch (UInp.userInput) {
                 case 1: 
                 ///System.out.println("* User chose to open an existing profile *\n");
-                bankProf.openProfile();
+                if (bankProf.username.isEmpty()){
+                    org.ClearScreen();
+                    System.out.println ("* No profiles exist. Please create a new profile *");
+                    bankProf.createProfile();
+                } else bankProf.openProfile();
                 break;
+
                 case 2:
                 //System.out.println("* User chose to create a new profile *\n");
                 bankProf.createProfile();
                 break;
+
                 case 3:
                 System.out.println("* User chose to exit the program *\n");
                 homeScreenRepeat = false;

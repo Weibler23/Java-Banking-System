@@ -7,8 +7,8 @@ import java.util.Scanner;
 import java.util.Random;
 
 public class bankingProfile {
-    private String username = "Test1";
-    private String password = "T3st1";
+    public String username = "";
+    public String password;
     private String phoneNumber;
     private String birthday;
     private double balance;
@@ -36,20 +36,15 @@ public class bankingProfile {
     }
 
     public void openProfile() {
-
-        // TESTING: Username set to Test1
+        boolean profileHS = true;
 
         System.out.print("\n|Enter your username |\n" +
                            "Input: ");
         UInp.getUserInputSecurity("username", username);
 
-        // TESTING: Password set to T3st1
-
         System.out.print("\n|Enter your password |\n" +
                            "Input: ");
         UInp.getUserInputSecurity("password", password);
-
-        boolean profileHS = true;
 
         do {
             org.ClearScreen();
@@ -95,7 +90,8 @@ public class bankingProfile {
 
         System.out.print("\n|Enter your phone number |\n" +
                            "Input: ");
-        phoneNumber = input.nextLine();
+        UInp.getUserInputString("1234", false);
+        phoneNumber = UInp.userInputString;
 
         System.out.print("\n|Enter your birthday (DD/MM/YY) |\n" +
                            "Input: ");
@@ -104,13 +100,12 @@ public class bankingProfile {
         System.out.print("\n|Enter your balance |\n" +
                            "Input: ");
         UInp.getUserInputBalance(0);
-        //input.nextLine();
         
         generateID();
         System.out.println("\n* Your profile ID is: " + ID + " *");
         System.out.println("* Your balance is: $" + UInp.userInputBalance + " *");
-        System.out.println("* Enter any key to move on *");
-        String str = input.nextLine();
+        System.out.print("* Type 'next' to move on *\nInput: ");
+        UInp.getUserInputString("next", true);
     }
 
     public void profile(String username, String password) {
