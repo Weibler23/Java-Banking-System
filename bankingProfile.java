@@ -7,7 +7,7 @@ import java.util.Scanner;
 import java.util.Random;
 
 public class bankingProfile {
-    public String username = "";
+    public String username;
     public String password;
     private String phoneNumber;
     private String birthday;
