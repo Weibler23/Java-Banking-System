@@ -4,6 +4,7 @@
 // Created: 4/12/22
 
 import java.util.Scanner;
+import java.time.LocalDate;
 import java.util.Random;
 
 public class bankingProfile {
@@ -90,22 +91,15 @@ public class bankingProfile {
         UInp.getUserInputString("1234", false);
         phoneNumber = UInp.userInputString;
 
-        System.out.print("\n|Enter your birthday (DD/MM/YY) |\n" +
+        System.out.print("\n|Enter your birthday (MM-dd-yyyy) |\n" +
                            "Input: ");
-        birthday = input.nextLine();
-
-        /* Move to Account
-        System.out.print("\n|Enter your balance |\n" +
-                           "Input: ");
-        UInp.getUserInputBalance(0);
-        */
+        //UInp.getUserInputDate();
         
         generateID();
         System.out.println("\n* Your profile was created *\n" +
                              "* Profile ID: " + ID + " *\n" +
                              "* Username: " + username + " *\n" +
                              "* Password: " + password + " *");
-        //System.out.println("* Your balance is: $" + UInp.userInputBalance + " *");
         System.out.print("* Type 'next' to move on *\nInput: ");
         UInp.getUserInputString("next", false);
     }

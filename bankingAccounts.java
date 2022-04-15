@@ -23,3 +23,11 @@ public class bankingAccounts {
         UInp.getMenuInput(5, 1);
     }
 }
+
+        /* Move to Account
+        System.out.print("\n|Enter your balance |\n" +
+                           "Input: ");
+        UInp.getUserInputBalance(0);
+        */
+
+                //System.out.println("* Your balance is: $" + UInp.userInputBalance + " *");

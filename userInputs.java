@@ -5,8 +5,10 @@
 
 import java.util.*;
 import java.io.*;
+import java.text.*;
 
 public class userInputs {
+    private String userDate;
     private String userSecurity = "Wrong";
     public String userInputString = "Wrong";
     public int userInput = 0;
@@ -59,7 +61,7 @@ public class userInputs {
                 failCheck = true;
             }
         } while (failCheck);
-        return "";
+        return userSecurity;
     }
 
     public String getUserInputString(String reqInput, boolean clearLine) {
@@ -75,6 +77,6 @@ public class userInputs {
 				failCheck = true;
 			}
 		} while (failCheck);
-		return "";
+		return userInputString;
 	}
 }
