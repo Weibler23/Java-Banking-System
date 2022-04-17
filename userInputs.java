@@ -12,12 +12,9 @@ public class userInputs {
     private String userSecurity = "Wrong";
     private String DOB; 
     private String dateFormat = "MM-dd-yyyy";
-<<<<<<< Updated upstream
-=======
     public String username;
     private String password; 
     private String profID; 
->>>>>>> Stashed changes
     public String userInputString = "Wrong";
     public int userInput = 0;
     public double userInputBalance = 0;
@@ -26,12 +23,9 @@ public class userInputs {
     // Create scanner object
     Scanner input = new Scanner(System.in);
 
-<<<<<<< Updated upstream
-=======
     // Implement dataStorage class
     dataStorage dS = new dataStorage();
 
->>>>>>> Stashed changes
     public String getDOB() {
         boolean failCheck = false;
         DateFormat sdf = new SimpleDateFormat(dateFormat);
