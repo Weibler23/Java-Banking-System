@@ -12,6 +12,8 @@ public class userInputs {
     private String userSecurity = "Wrong";
     private String DOB; 
     private String dateFormat = "MM-dd-yyyy";
+    public String username;
+    private String password; 
     public String userInputString = "Wrong";
     public int userInput = 0;
     public double userInputBalance = 0;
@@ -19,6 +21,12 @@ public class userInputs {
 
     // Create scanner object
     Scanner input = new Scanner(System.in);
+
+    // Implement bankingProfile class
+    bankingProfile bankProf = new bankingProfile();
+
+    // Implement dataStorage class
+    dataStorage dS = new dataStorage();
 
     public String getDOB() {
         boolean failCheck = false;
@@ -69,20 +77,25 @@ public class userInputs {
         return 0;
     }
 
-    public String getUserInputSecurity(String securityType, String security) {
+    public String getUserInputSecurity(String securityFilePath) {
         boolean failCheck = false;
         do {
-            try {
-                userSecurity = input.nextLine();
-                if (Objects.equals(security, userSecurity) == false) throw new IOException ("Incorrect Input");
-                failCheck = false;
-            } catch (Exception e) {
-                System.out.print("* ERROR: Please enter a valid " + securityType + "*\nInput: ");
+            System.out.print("\n|Enter your username |\n" +
+                             "Input: ");
+            username = input.nextLine();
+
+            System.out.print("\n|Enter your password |\n" +
+                               "Input: ");
+            username = input.nextLine();
+        
+            dS.verifyLogin(username, password, securityFilePath);
+            if (dS.found == false) {
+                System.out.println("* ERROR: Your username or password was wrong. Please try again *\n\n");
                 failCheck = true;
-            }
+            } else failCheck = false;
         } while (failCheck);
         return userSecurity;
-    }
+    } 
 
     public String getUserInputString(String reqInput, boolean clearLine) {
 		boolean failCheck = false;

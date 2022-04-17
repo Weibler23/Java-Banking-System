@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.Random;
 
 public class bankingProfile {
-    public String username = "";
+    public String username;
     public String password;
     private String phoneNumber;
     private String birthday;
@@ -29,6 +29,9 @@ public class bankingProfile {
     // Implement account class
     bankingAccounts Acc = new bankingAccounts();
 
+    // Implement dataStorage class
+    dataStorage dS = new dataStorage();
+
     private void generateID() {
         Random rand = new Random();
         int UpperBound = 10000;
@@ -38,17 +41,11 @@ public class bankingProfile {
     public void openProfile() {
         boolean profileHS = true;
 
-        System.out.print("\n|Enter your username |\n" +
-                           "Input: ");
-        UInp.getUserInputSecurity("username", username);
-
-        System.out.print("\n|Enter your password |\n" +
-                           "Input: ");
-        UInp.getUserInputSecurity("password", password);
+        UInp.getUserInputSecurity("ProfileLogin.txt");
 
         do {
             org.ClearScreen();
-            HS.profileHP(username, ID);
+            HS.profileHP(UInp.username, ID);
             UInp.getMenuInput(4, 1);
             switch (UInp.userInput) {
                 case 1:
@@ -107,6 +104,8 @@ public class bankingProfile {
                              "**-------------------------------------------------------------------------**\n");
         System.out.print("* Type 'next' to move on *\nInput: ");
         UInp.getUserInputString("next", false);
+
+        dS.writeProfileLogin(username, password, ID);
     }
 
     public void profile(String username, String password) {
