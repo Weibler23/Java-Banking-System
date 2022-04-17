@@ -25,7 +25,7 @@ public class homeScreen {
 		System.out.print("Input: ");
     }
 
-    public void profileHP (String profName, int profID) {
+    public void profileHP (String profName, String profID) {
 		Frame(40, true); 
 		System.out.format("|%-38s|%n", profName);
 		System.out.format("|Profile ID: %-26s|%n", profID);

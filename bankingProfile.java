@@ -10,6 +10,7 @@ import java.util.Random;
 public class bankingProfile {
     public String username = "";
     public String password;
+    public String sID;
     private String phoneNumber;
     private String birthday;
     private int ID = 0;
@@ -33,6 +34,7 @@ public class bankingProfile {
         Random rand = new Random();
         int UpperBound = 10000;
         ID = rand.nextInt(UpperBound);
+        sID = Integer.toString(ID);
     }
 
     public void openProfile() {
@@ -48,7 +50,11 @@ public class bankingProfile {
 
         do {
             org.ClearScreen();
+<<<<<<< Updated upstream
             HS.profileHP(username, ID);
+=======
+            HS.profileHP(dS.username, dS.sID);
+>>>>>>> Stashed changes
             UInp.getMenuInput(4, 1);
             switch (UInp.userInput) {
                 case 1:
@@ -107,6 +113,11 @@ public class bankingProfile {
                              "**-------------------------------------------------------------------------**\n");
         System.out.print("* Type 'next' to move on *\nInput: ");
         UInp.getUserInputString("next", false);
+<<<<<<< Updated upstream
+=======
+
+        dS.writeProfileLogin(username, password, sID);
+>>>>>>> Stashed changes
     }
 
     public void profile(String username, String password) {

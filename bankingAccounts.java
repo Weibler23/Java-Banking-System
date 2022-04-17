@@ -8,7 +8,7 @@ public class bankingAccounts {
     private double balance = 1;
 
     // Implement homeScreen class
-    homeScreen HS = new homeScreen();
+    homeScreen HS = new homeScreen(); 
 
     // Implement userInputs class
     userInputs UInp = new userInputs();

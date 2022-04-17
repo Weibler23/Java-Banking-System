@@ -12,6 +12,12 @@ public class userInputs {
     private String userSecurity = "Wrong";
     private String DOB; 
     private String dateFormat = "MM-dd-yyyy";
+<<<<<<< Updated upstream
+=======
+    public String username;
+    private String password; 
+    private String profID; 
+>>>>>>> Stashed changes
     public String userInputString = "Wrong";
     public int userInput = 0;
     public double userInputBalance = 0;
@@ -20,6 +26,12 @@ public class userInputs {
     // Create scanner object
     Scanner input = new Scanner(System.in);
 
+<<<<<<< Updated upstream
+=======
+    // Implement dataStorage class
+    dataStorage dS = new dataStorage();
+
+>>>>>>> Stashed changes
     public String getDOB() {
         boolean failCheck = false;
         DateFormat sdf = new SimpleDateFormat(dateFormat);
@@ -69,6 +81,7 @@ public class userInputs {
         return 0;
     }
 
+<<<<<<< Updated upstream
     public String getUserInputSecurity(String securityType, String security) {
         boolean failCheck = false;
         do {
@@ -81,6 +94,25 @@ public class userInputs {
                 failCheck = true;
             }
         } while (failCheck);
+=======
+    public String getUserInputSecurity(String securityFilePath) {
+            System.out.print("\n|Enter your username |\n" +
+                             "Input: ");
+            username = input.nextLine();
+
+            System.out.print("\n|Enter your password |\n" +
+                             "Input: ");
+            username = input.nextLine();
+
+            System.out.print("\n|Enter your profile ID# |\n" +
+                             "Input: ");
+            profID = input.nextLine();
+        
+            dS.verifyLogin(username, password, profID, securityFilePath);
+            if (dS.found == false) {
+                System.out.println("* ERROR: Your username or password was wrong. Please try again *\n\n");
+            }
+>>>>>>> Stashed changes
         return userSecurity;
     }
 

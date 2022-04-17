@@ -7,6 +7,12 @@ import java.io.*;
 
 public class dataStorage {
     public boolean fileIsEmpty;
+<<<<<<< Updated upstream
+=======
+    public boolean found = false;
+    public String username = "";
+    public String sID = "";
+>>>>>>> Stashed changes
 
     public void createFile (String fileName) {
         try {
@@ -26,4 +32,41 @@ public class dataStorage {
             e.printStackTrace();
         }
     }
+<<<<<<< Updated upstream
+=======
+
+    public void writeProfileLogin (String username, String password, String ID) {
+        try {
+            FileWriter myWriter = new FileWriter("ProfileLogin.txt", true);
+            myWriter.write(username + "," + password + "," + ID + "\n");
+            myWriter.close();
+        } catch (IOException e) {
+            System.out.println(" DEBUG:: ERROR WRITING TO FILE ");
+            e.printStackTrace();
+        }
+    }
+
+    public void verifyLogin(String username, String password, String profID, String filepath) {
+        String tempUsername = "";
+        String tempPassword = "";
+        String tempProfID = "";
+
+        try {
+            x = new Scanner (new File(filepath));
+            x.useDelimiter("[,\n]");
+
+            while (x.hasNext() && !found) {
+                tempUsername = x.next();
+                tempPassword = x.next();
+                tempProfID = x.next();
+
+                if (tempUsername.trim().equals(username.trim()) && tempPassword.trim().equals(password.trim()) && tempProfID.trim().equals(profID.trim())) {
+                    found = true;
+                }
+            }
+        } catch (Exception e) {
+
+        }
+    }
+>>>>>>> Stashed changes
 }

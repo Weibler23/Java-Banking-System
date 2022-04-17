@@ -24,14 +24,15 @@ public class bankingMain {
         boolean homeScreenRepeat = true;
 
         // Create/Check file for profile login
-        dS.createFile("ProfileLogin.txt");
 
+        
         do {
             org.ClearScreen();
             HS.startScreen();
             UInp.getMenuInput(3,1);
             switch (UInp.userInput) {
                 case 1: 
+                dS.createFile("ProfileLogin.txt");
                 ///System.out.println("* User chose to open an existing profile *\n");
                 if (dS.fileIsEmpty == true) {
                     org.ClearScreen();
@@ -50,6 +51,6 @@ public class bankingMain {
                 homeScreenRepeat = false;
                 break;
            }
-        } while (homeScreenRepeat);        
+        } while (homeScreenRepeat);      
     }
 }
