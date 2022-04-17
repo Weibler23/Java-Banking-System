@@ -50,11 +50,7 @@ public class bankingProfile {
 
         do {
             org.ClearScreen();
-<<<<<<< Updated upstream
-            HS.profileHP(username, ID);
-=======
             HS.profileHP(dS.username, dS.sID);
->>>>>>> Stashed changes
             UInp.getMenuInput(4, 1);
             switch (UInp.userInput) {
                 case 1:
@@ -113,11 +109,8 @@ public class bankingProfile {
                              "**-------------------------------------------------------------------------**\n");
         System.out.print("* Type 'next' to move on *\nInput: ");
         UInp.getUserInputString("next", false);
-<<<<<<< Updated upstream
-=======
 
         dS.writeProfileLogin(username, password, sID);
->>>>>>> Stashed changes
     }
 
     public void profile(String username, String password) {
