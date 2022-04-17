@@ -30,6 +30,9 @@ public class bankingProfile {
     // Implement account class
     bankingAccounts Acc = new bankingAccounts();
 
+    // Implement dataStorage class
+    dataStorage dS = new dataStorage();
+
     private void generateID() {
         Random rand = new Random();
         int UpperBound = 10000;
@@ -40,13 +43,7 @@ public class bankingProfile {
     public void openProfile() {
         boolean profileHS = true;
 
-        System.out.print("\n|Enter your username |\n" +
-                           "Input: ");
-        UInp.getUserInputSecurity("username", username);
-
-        System.out.print("\n|Enter your password |\n" +
-                           "Input: ");
-        UInp.getUserInputSecurity("password", password);
+        UInp.getUserInputSecurity("ProfileLogin.txt");
 
         do {
             org.ClearScreen();

@@ -4,6 +4,7 @@
 // Created 4/17/22
 
 import java.io.*;
+import java.util.*;
 
 public class dataStorage {
     public boolean fileIsEmpty;
@@ -42,6 +43,7 @@ public class dataStorage {
     }
 
     public void verifyLogin(String username, String password, String profID, String filepath) {
+        Scanner x;
         String tempUsername = "";
         String tempPassword = "";
         String tempProfID = "";
