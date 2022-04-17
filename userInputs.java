@@ -81,20 +81,6 @@ public class userInputs {
         return 0;
     }
 
-<<<<<<< Updated upstream
-    public String getUserInputSecurity(String securityType, String security) {
-        boolean failCheck = false;
-        do {
-            try {
-                userSecurity = input.nextLine();
-                if (Objects.equals(security, userSecurity) == false) throw new IOException ("Incorrect Input");
-                failCheck = false;
-            } catch (Exception e) {
-                System.out.print("* ERROR: Please enter a valid " + securityType + "*\nInput: ");
-                failCheck = true;
-            }
-        } while (failCheck);
-=======
     public String getUserInputSecurity(String securityFilePath) {
             System.out.print("\n|Enter your username |\n" +
                              "Input: ");
@@ -112,7 +98,6 @@ public class userInputs {
             if (dS.found == false) {
                 System.out.println("* ERROR: Your username or password was wrong. Please try again *\n\n");
             }
->>>>>>> Stashed changes
         return userSecurity;
     }
 
