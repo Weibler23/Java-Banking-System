@@ -15,7 +15,7 @@ public class bankingAccounts {
 
     public void newAccount() {
         HS.newAccountHP();
-        UInp.getMenuInput(4,1);
+        UInp.getMenuInput(3,1);
     }
 
     public void openAccount() {

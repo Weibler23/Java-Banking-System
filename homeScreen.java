@@ -54,10 +54,9 @@ public class homeScreen {
 
 	public void newAccountHP () {
 		Frame(42, true);
-		System.out.print("|Enter (1) to create a savings account  |\n" +
-						 "|Enter (2) to create a checking account |\n" +
-						 "|Enter (3) to create a _______ account  |\n" +
-						 "|Enter (4) to exit                      |\n");
+		System.out.print("|Enter (1) to create a Test no BOD check account  |\n" +
+						 "|Enter (2) to create a Test BOD check.    account |\n" +
+						 "|Enter (3) to exit                                |\n");
 		Frame(42, true);
 		System.out.print("Input: ");
 	}

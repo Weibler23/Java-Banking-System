@@ -99,7 +99,8 @@ public class bankingProfile {
         System.out.println("\n* Your profile was created *\n" +
                              "* Profile ID: " + ID + " *\n" +
                              "* Username: " + username + " *\n" +
-                             "* Password: " + password + " *");
+                             "* Password: " + password + " *" + 
+                             "* WARNING:: There is no way to recover a forgotten username, password, or profile ID. Please make sure to write these down! *");
         System.out.print("* Type 'next' to move on *\nInput: ");
         UInp.getUserInputString("next", false);
     }
