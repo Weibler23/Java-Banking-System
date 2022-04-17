@@ -7,12 +7,9 @@ import java.io.*;
 
 public class dataStorage {
     public boolean fileIsEmpty;
-<<<<<<< Updated upstream
-=======
     public boolean found = false;
     public String username = "";
     public String sID = "";
->>>>>>> Stashed changes
 
     public void createFile (String fileName) {
         try {
@@ -32,8 +29,6 @@ public class dataStorage {
             e.printStackTrace();
         }
     }
-<<<<<<< Updated upstream
-=======
 
     public void writeProfileLogin (String username, String password, String ID) {
         try {
@@ -68,5 +63,4 @@ public class dataStorage {
 
         }
     }
->>>>>>> Stashed changes
 }
