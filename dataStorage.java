@@ -9,8 +9,9 @@ import java.util.*;
 public class dataStorage {
     public boolean fileIsEmpty;
     public boolean found = false;
-    public String username = "";
-    public String sID = "";
+    public String profUsername = "";
+    public String profSID = "";
+    private Scanner x;
 
     public void createFile (String fileName) {
         try {
@@ -43,7 +44,6 @@ public class dataStorage {
     }
 
     public void verifyLogin(String username, String password, String profID, String filepath) {
-        Scanner x;
         String tempUsername = "";
         String tempPassword = "";
         String tempProfID = "";
@@ -59,6 +59,10 @@ public class dataStorage {
 
                 if (tempUsername.trim().equals(username.trim()) && tempPassword.trim().equals(password.trim()) && tempProfID.trim().equals(profID.trim())) {
                     found = true;
+                    profUsername = tempUsername;
+                    profSID = tempProfID;
+
+                    System.out.println(" DEBUG:: profUsername = |" + profUsername + "|");
                 }
             }
         } catch (Exception e) {

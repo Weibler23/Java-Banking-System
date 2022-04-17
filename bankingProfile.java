@@ -14,6 +14,8 @@ public class bankingProfile {
     private String phoneNumber;
     private String birthday;
     private int ID = 0;
+    public boolean profileHS = true;
+
 
     // Create scanner object
 	Scanner input = new Scanner(System.in);
@@ -41,13 +43,12 @@ public class bankingProfile {
     }
 
     public void openProfile() {
-        boolean profileHS = true;
 
         UInp.getUserInputSecurity("ProfileLogin.txt");
 
         do {
             org.ClearScreen();
-            HS.profileHP(dS.username, dS.sID);
+            HS.profileHP(dS.profUsername, dS.profSID);
             UInp.getMenuInput(4, 1);
             switch (UInp.userInput) {
                 case 1:
