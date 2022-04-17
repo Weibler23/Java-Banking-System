@@ -93,14 +93,18 @@ public class bankingProfile {
 
         System.out.print("\n|Enter your birthday (MM-dd-yyyy) |\n" +
                            "Input: ");
-        //UInp.getUserInputDate();
+        UInp.getDOB();
         
+        org.ClearScreen();
         generateID();
         System.out.println("\n* Your profile was created *\n" +
                              "* Profile ID: " + ID + " *\n" +
                              "* Username: " + username + " *\n" +
-                             "* Password: " + password + " *" + 
-                             "* WARNING:: There is no way to recover a forgotten username, password, or profile ID. Please make sure to write these down! *");
+                             "* Password: " + password + " *\n\n" +
+                             "**---------------------------------WARNING---------------------------------**\n" +
+                             "* There is no way to recover a forgotten username, password, or profile ID. *\n" +
+                             "*                   Please make sure to write these down!                   *\n"+
+                             "**-------------------------------------------------------------------------**\n");
         System.out.print("* Type 'next' to move on *\nInput: ");
         UInp.getUserInputString("next", false);
     }

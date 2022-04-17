@@ -10,12 +10,32 @@ import java.text.*;
 public class userInputs {
     private String userDate;
     private String userSecurity = "Wrong";
+    private String DOB; 
+    private String dateFormat = "MM-dd-yyyy";
     public String userInputString = "Wrong";
     public int userInput = 0;
     public double userInputBalance = 0;
+    public Date userDOB = null;
 
     // Create scanner object
     Scanner input = new Scanner(System.in);
+
+    public String getDOB() {
+        boolean failCheck = false;
+        DateFormat sdf = new SimpleDateFormat(dateFormat);
+        sdf.setLenient(false);
+        do {
+            try{
+                DOB = input.nextLine();
+                userDOB = sdf.parse(DOB);
+                failCheck = false;
+            } catch (Exception e) {
+                System.out.print("* ERROR: Please enter a valid date: *\nInput: ");
+                failCheck = true;
+            }
+        } while (failCheck);
+        return DOB;
+    }
 
     public int getMenuInput(int topBound, int lowBound) {
 		boolean failCheck = false;
