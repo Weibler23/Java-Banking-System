@@ -18,7 +18,13 @@ public class bankingMain {
         // Implement userInputs class
         userInputs UInp = new userInputs();
 
+        // Implement dataStorage class
+        dataStorage dS = new dataStorage();
+
         boolean homeScreenRepeat = true;
+
+        // Create/Check file for profile login
+        dS.createFile("ProfileLogin.txt");
 
         do {
             org.ClearScreen();
@@ -27,7 +33,7 @@ public class bankingMain {
             switch (UInp.userInput) {
                 case 1: 
                 ///System.out.println("* User chose to open an existing profile *\n");
-                if (bankProf.username.isEmpty()){
+                if (dS.fileIsEmpty == true) {
                     org.ClearScreen();
                     System.out.println ("* No profiles exist. Please create a new profile *");
                     bankProf.createProfile();
