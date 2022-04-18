@@ -94,7 +94,7 @@ public class userInputs {
         
             dS.verifyLogin(username, password, profID, securityFilePath);
             if (dS.found == false) {
-                System.out.println("* ERROR: Your username or password was wrong. Please try again *\n\n");
+                System.out.println("* ERROR: Your username, password, or profile ID# was wrong. Please try again *\n\n");
                 System.out.println(" DEBUG:: username = |" + username + "|\n" +
                                    " DEBUG:: password = |" + password + "|\n" +
                                    " DEBUG:: profID = |" + profID + "|\n");
