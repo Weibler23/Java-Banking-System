@@ -48,7 +48,7 @@ public class bankingProfile {
 
         do {
             org.ClearScreen();
-            HS.profileHP(dS.profUsername, dS.profSID);
+            HS.profileHP(UInp.username, UInp.profID);
             UInp.getMenuInput(4, 1);
             switch (UInp.userInput) {
                 case 1:

@@ -7,7 +7,6 @@ import java.util.*;
 import java.io.*;
 
 public class homeScreen {
-
     private static void Frame (int num, boolean newLine) {
 		for (int i = 1; i <= num; i ++){
 		    System.out.print ('-');

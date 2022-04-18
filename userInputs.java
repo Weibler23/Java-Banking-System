@@ -13,8 +13,8 @@ public class userInputs {
     private String DOB; 
     private String dateFormat = "MM-dd-yyyy";
     public String username;
-    private String password; 
-    private String profID; 
+    public String password; 
+    public String profID; 
     public String userInputString = "Wrong";
     public int userInput = 0;
     public double userInputBalance = 0;
