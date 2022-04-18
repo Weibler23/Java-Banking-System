@@ -18,16 +18,27 @@ public class dataStorage {
                 System.out.println(" DEBUG:: File Created: " + createFile.getName());
             } else {
                 System.out.println(" DEBUG:: File " + createFile.getName() + " already exists ");
-                if (createFile.length() == 0) {
-                    fileIsEmpty = true;
-                } else {
-                    fileIsEmpty = false;
-                }
             }
         } catch (IOException e) {
             System.out.println(" DEBUG:: ERROR CREATING FILE ");
             e.printStackTrace();
         }
+    }
+
+    public void checkFileisEmpty (String fileName) {
+        //try {
+            File testFile = new File(fileName);
+            if (testFile.length() == 0) {
+                System.out.println(" DEBUG:: FILE: " + testFile.getName() + " is empty ");
+                fileIsEmpty = true;
+            } else {
+                System.out.println(" DEBUG:: FILE: " + testFile.getName() + " is not empty ");
+                fileIsEmpty = false; 
+            }
+        //} catch (IOException e) {
+            //System.out.println(" DEBUG:: ERROR CREATING FILE ");
+            //e.printStackTrace();
+        //}
     }
 
     public void writeProfileLogin (String username, String password, String ID) {

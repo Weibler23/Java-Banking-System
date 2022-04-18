@@ -33,7 +33,7 @@ public class bankingMain {
             switch (UInp.userInput) {
                 case 1: 
                 dS.createFile("ProfileLogin.txt");
-                ///System.out.println("* User chose to open an existing profile *\n");
+                dS.checkFileisEmpty("ProfileLogin.txt");
                 if (dS.fileIsEmpty == true) {
                     org.ClearScreen();
                     System.out.println ("* No profiles exist. Please create a new profile *");
