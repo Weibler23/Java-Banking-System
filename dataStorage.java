@@ -26,19 +26,14 @@ public class dataStorage {
     }
 
     public void checkFileisEmpty (String fileName) {
-        //try {
-            File testFile = new File(fileName);
-            if (testFile.length() == 0) {
-                System.out.println(" DEBUG:: FILE: " + testFile.getName() + " is empty ");
-                fileIsEmpty = true;
-            } else {
-                System.out.println(" DEBUG:: FILE: " + testFile.getName() + " is not empty ");
-                fileIsEmpty = false; 
-            }
-        //} catch (IOException e) {
-            //System.out.println(" DEBUG:: ERROR CREATING FILE ");
-            //e.printStackTrace();
-        //}
+        File testFile = new File(fileName);
+        if (testFile.length() == 0) {
+            System.out.println(" DEBUG:: FILE: " + testFile.getName() + " is empty ");
+            fileIsEmpty = true;
+        } else {
+            System.out.println(" DEBUG:: FILE: " + testFile.getName() + " is not empty ");
+            fileIsEmpty = false; 
+        }
     }
 
     public void writeProfileLogin (String username, String password, String ID) {
@@ -56,7 +51,6 @@ public class dataStorage {
         String tempUsername = "";
         String tempPassword = "";
         String tempProfID = "";
-
         try {
             x = new Scanner (new File(filepath));
             x.useDelimiter("[,\n]");
@@ -71,7 +65,6 @@ public class dataStorage {
                 }
             }
         } catch (Exception e) {
-
         }
     }
 }

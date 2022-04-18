@@ -79,7 +79,6 @@ public class userInputs {
     public String getUserInputSecurity(String securityFilePath) {
         boolean failCheck = false;
         do {
-            //input.next();
             System.out.print("\n|Enter your username |\n" +
                              "Input: ");
             username = input.nextLine();

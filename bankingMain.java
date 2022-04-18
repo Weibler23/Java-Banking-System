@@ -22,9 +22,6 @@ public class bankingMain {
         dataStorage dS = new dataStorage();
 
         boolean homeScreenRepeat = true;
-
-        // Create/Check file for profile login
-
         
         do {
             org.ClearScreen();
@@ -32,8 +29,10 @@ public class bankingMain {
             UInp.getMenuInput(3,1);
             switch (UInp.userInput) {
                 case 1: 
+                // Create/Check file for profile login
                 dS.createFile("ProfileLogin.txt");
                 dS.checkFileisEmpty("ProfileLogin.txt");
+
                 if (dS.fileIsEmpty == true) {
                     org.ClearScreen();
                     System.out.println ("* No profiles exist. Please create a new profile *");
@@ -42,7 +41,6 @@ public class bankingMain {
                 break;
 
                 case 2:
-                //System.out.println("* User chose to create a new profile *\n");
                 bankProf.createProfile();
                 break;
 
