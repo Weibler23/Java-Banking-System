@@ -19,6 +19,7 @@ public class userInputs {
     public int userInput = 0;
     public double userInputBalance = 0;
     public Date userDOB = null;
+    public boolean invalidProfLogin = true;
 
     // Create scanner object
     Scanner input = new Scanner(System.in);
@@ -76,13 +77,16 @@ public class userInputs {
     }
 
     public String getUserInputSecurity(String securityFilePath) {
+        boolean failCheck = false;
+        do {
+            //input.next();
             System.out.print("\n|Enter your username |\n" +
                              "Input: ");
             username = input.nextLine();
 
             System.out.print("\n|Enter your password |\n" +
                              "Input: ");
-            username = input.nextLine();
+            password = input.nextLine();
 
             System.out.print("\n|Enter your profile ID# |\n" +
                              "Input: ");
@@ -91,7 +95,14 @@ public class userInputs {
             dS.verifyLogin(username, password, profID, securityFilePath);
             if (dS.found == false) {
                 System.out.println("* ERROR: Your username or password was wrong. Please try again *\n\n");
+                System.out.println(" DEBUG:: username = |" + username + "|\n" +
+                                   " DEBUG:: password = |" + password + "|\n" +
+                                   " DEBUG:: profID = |" + profID + "|\n");
+                failCheck = true;
+            } else {
+                failCheck = false;
             }
+        } while (failCheck); 
         return userSecurity;
     }
 
