@@ -84,13 +84,6 @@ public class bankingProfile {
                            "Input: ");
         password = input.nextLine();
 
-        /*
-        System.out.print("\n|Enter your phone number |\n" +
-                           "Input: ");
-        UInp.getUserInputString("1234", false);
-        phoneNumber = UInp.userInputString;
-        */
-
         System.out.print("\n|Enter your birthday (MM-dd-yyyy) |\n" +
                            "Input: ");
         UInp.getDOB();
