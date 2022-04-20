@@ -34,6 +34,9 @@ public class bankingProfile {
     // Implement dataStorage class
     dataStorage dS = new dataStorage();
 
+    // Implement bankingSettings class
+    bankingSettings bankSettings = new bankingSettings();
+
     private void generateID() {
         Random rand = new Random();
         int UpperBound = 10000;
@@ -73,6 +76,7 @@ public class bankingProfile {
 
                 case 5:
                 System.out.println("* User chose to enter profile settings *\n");
+                bankSettings.openSettings();
                 break;
 
                 case 6:
