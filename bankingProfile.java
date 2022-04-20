@@ -78,6 +78,7 @@ public class bankingProfile {
 
                 case 6:
                 System.out.println("* User chose to delete their profile *");
+                break;
             }
         } while (profileHS);
     }
