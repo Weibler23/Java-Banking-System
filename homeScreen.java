@@ -32,7 +32,9 @@ public class homeScreen {
 		System.out.print("|Enter (1) to see existing accounts    |\n" +
 						 "|Enter (2) to open an existing account |\n" +
 						 "|Enter (3) to create a new account     |\n" +
-						 "|Enter (4) to return to home page      |\n");
+						 "|Enter (4) to return to home page      |\n" +
+						 "|Enter (5) to enter profile settings   |\n" +
+						 "|Enter (6) to delete profile           |\n");
 		Frame(40, true);
 		System.out.print("Input: ");
     }

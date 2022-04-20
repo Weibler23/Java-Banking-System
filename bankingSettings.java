@@ -4,4 +4,7 @@
 // Created 4/20/22
 
 public class bankingSettings.java {
+    private boolean checkDOB;
+    private boolean binaryFiles;
+    private boolean 
 }
