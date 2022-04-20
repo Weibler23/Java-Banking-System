@@ -47,7 +47,7 @@ public class bankingProfile {
         do {
             org.ClearScreen();
             HS.profileHP(UInp.username, UInp.profID);
-            UInp.getMenuInput(4, 1);
+            UInp.getMenuInput(6, 1);
             switch (UInp.userInput) {
                 case 1:
                 System.out.println("* User chose to see all existing accounts *\n");
@@ -71,6 +71,13 @@ public class bankingProfile {
                 System.out.println("* User chose to return to home page *\n");
                 profileHS = false;
                 break;
+
+                case 5:
+                System.out.println("* User chose to enter profile settings *\n");
+                break;
+
+                case 6:
+                System.out.println("* User chose to delete their profile *");
             }
         } while (profileHS);
     }
