@@ -64,7 +64,6 @@ public class bankingProfile {
                 case 3:
                 System.out.println("* User chose to open a new account *\n");
                 Acc.newAccount();
-
                 break;
 
                 case 4:
