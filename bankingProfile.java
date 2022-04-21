@@ -70,17 +70,13 @@ public class bankingProfile {
                 break;
 
                 case 4:
-                System.out.println("* User chose to return to home page *\n");
-                profileHS = false;
-                break;
-
-                case 5:
                 System.out.println("* User chose to enter profile settings *\n");
                 bankSettings.openSettings(UInp.username);
                 break;
 
-                case 6:
-                System.out.println("* User chose to delete their profile *");
+                case 5:
+                System.out.println("* User chose to return to home page *\n");
+                profileHS = false;
                 break;
             }
         } while (profileHS);

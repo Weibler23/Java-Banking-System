@@ -10,6 +10,10 @@ public class homeScreen {
 	// Implement bankingSettings class
 	//bankingSettings bankSettings = new bankingSettings();
 
+	private static final String ANSI_RESET = "\u001B[0m";
+	private static final String ANSI_RED = "\u001B[31m";
+	private static final String ANSI_GREEN = "\u001B[32m";
+
     private static void Frame (int num, boolean newLine) {
 		for (int i = 1; i <= num; i ++){
 		    System.out.print ('-');
@@ -32,8 +36,14 @@ public class homeScreen {
 		System.out.format("|%-41s|%n", profName);
 		Frame(43, true);
 		System.out.print("|Enter (1) to see settings information    |\n");
-		System.out.format("|Enter (2) to toggle checkDOB:: %-10s|%n", checkDOB);
-		System.out.format("|Enter (3) to toggle binaryFiles:: %-7s|%n", binaryFiles);
+		if (checkDOB == true) {System.out.format("|Enter (2) to toggle checkDOB:: %-10s|%n", ANSI_GREEN + checkDOB + ANSI_RESET);
+		} else {
+			System.out.format("|Enter (2) to toggle checkDOB:: " + ANSI_RED + "%-10s|%n", checkDOB + ANSI_RESET);
+		}
+		if (binaryFiles == true) {System.out.format("|Enter (3) to toggle binaryFiles:: %-7s|%n", ANSI_GREEN + binaryFiles + ANSI_RESET);	
+		} else {
+			System.out.format("|Enter (3) to toggle binaryFiles:: %-7s|%n", ANSI_RED + binaryFiles + ANSI_RESET);
+		}
 		System.out.print("|Enter (4) to delete profile              |\n");
 		System.out.print("|Enter (5) to return to profile home page |\n");
 		Frame(43, true);

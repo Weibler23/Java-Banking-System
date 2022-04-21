@@ -4,8 +4,8 @@
 // Created 4/20/22
 
 public class bankingSettings {
-    public boolean checkDOB = true;
-    public boolean binaryFiles = false;
+    public boolean checkDOB = false;
+    public boolean binaryFiles = true;
 
     // Implement homeScreen class
     homeScreen HS = new homeScreen(); 
