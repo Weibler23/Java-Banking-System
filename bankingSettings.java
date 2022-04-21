@@ -30,7 +30,7 @@ public class bankingSettings {
             break;
 
             case 4:
-            Sytem.out.println("* User chose to exit settings *");
+            System.out.println("* User chose to exit settings *");
             break;
         }
     }
