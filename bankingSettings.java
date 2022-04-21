@@ -16,5 +16,22 @@ public class bankingSettings {
     public void openSettings() {
         HS.settingsHP(UInp.username);
         UInp.getMenuInput(4,1);
+        switch(UInp.userInput) {
+            case 1:
+            System.out.println("* User chose to see settings information *");
+            break;
+
+            case 2:
+            System.out.println("* User chose to toggle checkDOB *");
+            break;
+
+            case 3:
+            System.out.println("* User chose to toggle binaryFiles *");
+            break;
+
+            case 4:
+            Sytem.out.println("* User chose to exit settings *");
+            break;
+        }
     }
 }
