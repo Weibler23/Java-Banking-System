@@ -29,7 +29,7 @@ public class homeScreen {
 
 	public void settingsHP (String profName) {
 		Frame(43, true);
-		System.out.format("|%-42s|%n", profName);
+		System.out.format("|%-41s|%n", profName);
 		Frame(43, true);
 		System.out.print("|Enter (1) to see settings information    |\n" +
 						 "|Enter (2) to toggle checkDOB             |\n" +
