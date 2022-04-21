@@ -7,6 +7,9 @@ import java.util.*;
 import java.io.*;
 
 public class homeScreen {
+	// Implement bankingSettings class
+	//bankingSettings bankSettings = new bankingSettings();
+
     private static void Frame (int num, boolean newLine) {
 		for (int i = 1; i <= num; i ++){
 		    System.out.print ('-');
@@ -23,6 +26,18 @@ public class homeScreen {
 		Frame(40, true);
 		System.out.print("Input: ");
     }
+
+	public void settingsHP (String profName, boolean checkDOB, boolean binaryFiles) {
+		Frame(43, true);
+		System.out.format("|%-41s|%n", profName);
+		Frame(43, true);
+		System.out.print("|Enter (1) to see settings information    |\n");
+		System.out.format("|Enter (2) to toggle checkDOB:: %-10s|%n", checkDOB);
+		System.out.format("|Enter (3) to toggle binaryFiles:: %-7s|%n", binaryFiles);
+		System.out.print("|Enter (4) to return to profile home page |\n");
+		Frame(43, true);
+		System.out.print("Input: ");
+	}
 
     public void profileHP (String profName, String profID) {
 		Frame(40, true); 

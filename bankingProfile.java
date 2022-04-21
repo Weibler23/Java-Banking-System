@@ -34,6 +34,9 @@ public class bankingProfile {
     // Implement dataStorage class
     dataStorage dS = new dataStorage();
 
+    // Implement bankingSettings class
+    bankingSettings bankSettings = new bankingSettings();
+
     private void generateID() {
         Random rand = new Random();
         int UpperBound = 10000;
@@ -47,7 +50,7 @@ public class bankingProfile {
         do {
             org.ClearScreen();
             HS.profileHP(UInp.username, UInp.profID);
-            UInp.getMenuInput(4, 1);
+            UInp.getMenuInput(6, 1);
             switch (UInp.userInput) {
                 case 1:
                 System.out.println("* User chose to see all existing accounts *\n");
@@ -64,12 +67,20 @@ public class bankingProfile {
                 case 3:
                 System.out.println("* User chose to open a new account *\n");
                 Acc.newAccount();
-
                 break;
 
                 case 4:
                 System.out.println("* User chose to return to home page *\n");
                 profileHS = false;
+                break;
+
+                case 5:
+                System.out.println("* User chose to enter profile settings *\n");
+                bankSettings.openSettings(UInp.username);
+                break;
+
+                case 6:
+                System.out.println("* User chose to delete their profile *");
                 break;
             }
         } while (profileHS);
