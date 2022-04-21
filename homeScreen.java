@@ -36,13 +36,13 @@ public class homeScreen {
 		System.out.format("|%-41s|%n", profName);
 		Frame(43, true);
 		System.out.print("|Enter (1) to see settings information    |\n");
-		if (checkDOB == true) {System.out.format("|Enter (2) to toggle checkDOB:: %-10s|%n", ANSI_GREEN + checkDOB + ANSI_RESET);
+		if (checkDOB == true) {System.out.format("|Enter (2) to toggle checkDOB:: " + ANSI_GREEN + "%-14s|%n", checkDOB + ANSI_RESET);
 		} else {
-			System.out.format("|Enter (2) to toggle checkDOB:: " + ANSI_RED + "%-10s|%n", checkDOB + ANSI_RESET);
+			System.out.format("|Enter (2) to toggle checkDOB:: " + ANSI_RED + "%-14s|%n", checkDOB + ANSI_RESET);
 		}
-		if (binaryFiles == true) {System.out.format("|Enter (3) to toggle binaryFiles:: %-7s|%n", ANSI_GREEN + binaryFiles + ANSI_RESET);	
+		if (binaryFiles == true) {System.out.format("|Enter (3) to toggle binaryFiles:: " + ANSI_GREEN + "%-11s|%n", binaryFiles + ANSI_RESET);	
 		} else {
-			System.out.format("|Enter (3) to toggle binaryFiles:: %-7s|%n", ANSI_RED + binaryFiles + ANSI_RESET);
+			System.out.format("|Enter (3) to toggle binaryFiles:: " + ANSI_RED + "%-11s|%n", binaryFiles + ANSI_RESET);
 		}
 		System.out.print("|Enter (4) to delete profile              |\n");
 		System.out.print("|Enter (5) to return to profile home page |\n");
