@@ -97,14 +97,14 @@ public class bankingProfile {
         
         org.ClearScreen();
         generateID();
-        System.out.println("\n* Your profile was created *\n" +
-                             "* Profile ID: " + ID + " *\n" +
-                             "* Username: " + username + " *\n" +
-                             "* Password: " + password + " *\n\n" +
-                             "**---------------------------------WARNING---------------------------------**\n" +
-                             "* There is no way to recover a forgotten username, password, or profile ID. *\n" +
-                             "*                   Please make sure to write these down!                   *\n"+
-                             "**-------------------------------------------------------------------------**\n");
+        System.out.print("**---------------------------------WARNING---------------------------------**\n" +
+                           "* There is no way to recover a forgotten username, password, or profile ID. *\n" +
+                           "*                   Please make sure to write these down!                   *\n" +
+                           "**-------------------------------------------------------------------------**\n");
+        System.out.format("* Profile ID: %-62s*%n", ID);
+        System.out.format("* Username: %-64s*%n", username);
+        System.out.format("* Password: %-64s*%n", password);
+        System.out.println("**-------------------------------------------------------------------------**\n");
         System.out.print("* Type 'next' to move on *\nInput: ");
         UInp.getUserInputString("next", false);
 
