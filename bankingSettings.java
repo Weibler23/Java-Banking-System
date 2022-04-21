@@ -4,6 +4,7 @@
 // Created 4/20/22
 
 public class bankingSettings {
+    public static boolean settingsRepeat = true;
     public boolean checkDOB = true;
     public boolean binaryFiles = false;
 
@@ -16,7 +17,7 @@ public class bankingSettings {
     public void openSettings(String profileUsername) {
         HS.settingsHP(profileUsername, checkDOB, binaryFiles);
         UInp.getMenuInput(5,1);
-        switch(UInp.userInput) {
+        switch(UInp.userInput) {   
             case 1:
             System.out.println("* User chose to see settings information *");
             break;
@@ -29,8 +30,13 @@ public class bankingSettings {
             System.out.println("* User chose to toggle binaryFiles *");
             break;
 
-            case 4:
+            case 4: 
+            System.out.println("* User chose to delete profile *");
+            break;
+
+            case 5:
             System.out.println("* User chose to exit settings *");
+            settingsRepeat = false;
             break;
         }
     }

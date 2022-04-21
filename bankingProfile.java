@@ -71,7 +71,9 @@ public class bankingProfile {
 
                 case 4:
                 System.out.println("* User chose to enter profile settings *\n");
-                bankSettings.openSettings(UInp.username);
+                do {
+                    bankSettings.openSettings(UInp.username);
+                } while (bankSettings.settingsRepeat == true);
                 break;
 
                 case 5:
