@@ -15,6 +15,6 @@ public class bankingSettings {
 
     public void openSettings() {
         HS.settingsHP(UInp.username);
-        UInp.getMenuInput(5,1);
+        UInp.getMenuInput(4,1);
     }
 }

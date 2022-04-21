@@ -34,8 +34,7 @@ public class homeScreen {
 		System.out.print("|Enter (1) to see settings information    |\n" +
 						 "|Enter (2) to toggle checkDOB             |\n" +
 						 "|Enter (3) to toggle binaryFiles          |\n" +
-						 "|Enter (4) to toggle |\n"+       
-						 "|Enter (5) to return to profile home page |");
+						 "|Enter (4) to return to profile home page |");
 		Frame(43, true);
 		System.out.print("Input: ");
 	}
