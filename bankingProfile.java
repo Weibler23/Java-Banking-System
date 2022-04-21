@@ -76,7 +76,7 @@ public class bankingProfile {
 
                 case 5:
                 System.out.println("* User chose to enter profile settings *\n");
-                bankSettings.openSettings();
+                bankSettings.openSettings(UInp.username);
                 break;
 
                 case 6:

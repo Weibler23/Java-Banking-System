@@ -4,8 +4,8 @@
 // Created 4/20/22
 
 public class bankingSettings {
-    public boolean checkDOB;
-    public boolean binaryFiles;
+    public boolean checkDOB = true;
+    public boolean binaryFiles = false;
 
     // Implement homeScreen class
     homeScreen HS = new homeScreen(); 
@@ -13,8 +13,8 @@ public class bankingSettings {
     // Implement userInputs class
     userInputs UInp = new userInputs();
 
-    public void openSettings() {
-        HS.settingsHP(UInp.username);
+    public void openSettings(String profileUsername) {
+        HS.settingsHP(profileUsername, checkDOB, binaryFiles);
         UInp.getMenuInput(4,1);
         switch(UInp.userInput) {
             case 1:
