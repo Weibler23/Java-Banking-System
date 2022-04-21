@@ -7,9 +7,6 @@ import java.util.*;
 import java.io.*;
 
 public class homeScreen {
-	// Implement bankingSettings class
-	//bankingSettings bankSettings = new bankingSettings();
-
 	private static final String ANSI_RESET = "\u001B[0m";
 	private static final String ANSI_RED = "\u001B[31m";
 	private static final String ANSI_GREEN = "\u001B[32m";
