@@ -15,7 +15,7 @@ public class bankingSettings {
 
     public void openSettings(String profileUsername) {
         HS.settingsHP(profileUsername, checkDOB, binaryFiles);
-        UInp.getMenuInput(4,1);
+        UInp.getMenuInput(5,1);
         switch(UInp.userInput) {
             case 1:
             System.out.println("* User chose to see settings information *");

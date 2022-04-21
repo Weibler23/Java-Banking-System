@@ -34,7 +34,8 @@ public class homeScreen {
 		System.out.print("|Enter (1) to see settings information    |\n");
 		System.out.format("|Enter (2) to toggle checkDOB:: %-10s|%n", checkDOB);
 		System.out.format("|Enter (3) to toggle binaryFiles:: %-7s|%n", binaryFiles);
-		System.out.print("|Enter (4) to return to profile home page |\n");
+		System.out.print("|Enter (4) to delete profile              |\n");
+		System.out.print("|Enter (5) to return to profile home page |\n");
 		Frame(43, true);
 		System.out.print("Input: ");
 	}
@@ -47,9 +48,8 @@ public class homeScreen {
 		System.out.print("|Enter (1) to see existing accounts    |\n" +
 						 "|Enter (2) to open an existing account |\n" +
 						 "|Enter (3) to create a new account     |\n" +
-						 "|Enter (4) to return to home page      |\n" +
-						 "|Enter (5) to enter profile settings   |\n" +
-						 "|Enter (6) to delete profile           |\n");
+						 "|Enter (4) to enter profile settings   |\n" +
+						 "|Enter (5) to return to home page      |\n");
 		Frame(40, true);
 		System.out.print("Input: ");
     }

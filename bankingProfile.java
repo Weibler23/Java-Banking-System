@@ -50,7 +50,7 @@ public class bankingProfile {
         do {
             org.ClearScreen();
             HS.profileHP(UInp.username, UInp.profID);
-            UInp.getMenuInput(6, 1);
+            UInp.getMenuInput(5, 1);
             switch (UInp.userInput) {
                 case 1:
                 System.out.println("* User chose to see all existing accounts *\n");
