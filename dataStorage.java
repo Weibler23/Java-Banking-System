@@ -67,4 +67,16 @@ public class dataStorage {
         } catch (Exception e) {
         }
     }
+
+    public boolean profileSettings() {
+        Properties prop = new Properties();
+        prop.setProperty("db.checkDOB", "checkDOB");
+        prop.setProperty("db.binaryFiles", "binaryFiles");
+
+        prop.keySet();
+
+        prop.forEach((k, v) -> System.out.println("Key : " + k + ", Value : " + v));
+
+        return true;
+    }
 }
