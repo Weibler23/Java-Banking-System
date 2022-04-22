@@ -11,6 +11,8 @@ public class dataStorage {
     public boolean found = false;
     private Scanner x;
 
+    Properties prop = new Properties();
+
     public void createFile (String fileName) {
         try {
             File createFile = new File(fileName);
@@ -69,7 +71,6 @@ public class dataStorage {
     }
 
     public boolean profileSettings() {
-        Properties prop = new Properties();
         prop.setProperty("db.checkDOB", "checkDOB");
         prop.setProperty("db.binaryFiles", "binaryFiles");
 
@@ -78,5 +79,17 @@ public class dataStorage {
         prop.forEach((k, v) -> System.out.println("Key : " + k + ", Value : " + v));
 
         return true;
+    }
+
+    public void writeProfileSettings(boolean checkDOB, boolean binaryFiles) {
+        try (OutputStream output = new FileOutputStream("profileSettings.properties")) {
+            String str1 = Boolean.toString(checkDOB);
+            String str2 = Boolean.toString(binaryFiles);
+            prop.setProperty("db.checkDOB", str1);
+            prop.setProperty("db.binaryFiles", str2);
+            prop.store(output, null);
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
     }
 }

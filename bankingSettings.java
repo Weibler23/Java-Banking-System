@@ -40,6 +40,7 @@ public class bankingSettings {
 
             case 5:
             System.out.println("* User chose to exit settings *");
+            dS.writeProfileSettings(checkDOB, binaryFiles);
             settingsRepeat = false;
             break;
         }
