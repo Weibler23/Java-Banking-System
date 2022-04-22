@@ -14,7 +14,11 @@ public class bankingSettings {
     // Implement userInputs class
     userInputs UInp = new userInputs();
 
+    // Implement dataStorage class
+    dataStorage dS = new dataStorage();
+
     public void openSettings(String profileUsername) {
+        dS.createFile("profileSettings.properties");
         HS.settingsHP(profileUsername, checkDOB, binaryFiles);
         UInp.getMenuInput(5,1);
         switch(UInp.userInput) {   
