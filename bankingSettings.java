@@ -3,10 +3,15 @@
 // Contain the settings that users can toggle in the system
 // Created 4/20/22
 
+import java.io.*;
+import java.util.*;
+
 public class bankingSettings {
     public static boolean settingsRepeat = true;
-    public boolean checkDOB = true;
-    public boolean binaryFiles = false;
+    public boolean checkDOB;
+    public boolean binaryFiles;
+
+    Properties prop = new Properties();
 
     // Implement homeScreen class
     homeScreen HS = new homeScreen(); 
@@ -17,8 +22,19 @@ public class bankingSettings {
     // Implement dataStorage class
     dataStorage dS = new dataStorage();
 
-    public void openSettings(String profileUsername) {
+public void openSettings(String profileUsername) {
+        try (InputStream fileInput = new FileInputStream("profileSettings.properties")) {
+            prop.load(fileInput);
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
+
         dS.createFile("profileSettings.properties");
+        //System.out.println(" DEBUG:: db.checkDOB = " + prop.getProperty("db.checkDOB"));
+        dS.parseBoolean(prop.getProperty("db.checkDOB"));
+        checkDOB = dS.parsedBoolean;
+        dS.parseBoolean(prop.getProperty("db.binaryFiles"));
+        binaryFiles = dS.parsedBoolean;
         HS.settingsHP(profileUsername, checkDOB, binaryFiles);
         UInp.getMenuInput(5,1);
         switch(UInp.userInput) {   

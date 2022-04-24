@@ -9,6 +9,7 @@ import java.util.*;
 public class dataStorage {
     public boolean fileIsEmpty;
     public boolean found = false;
+    public boolean parsedBoolean;
     private Scanner x;
 
     Properties prop = new Properties();
@@ -91,5 +92,13 @@ public class dataStorage {
         } catch (IOException io) {
             io.printStackTrace();
         }
+    }
+
+    public void parseBoolean(String Str1) {
+        System.out.println(" DEBUG:: Str1 = |" + Str1 + "|");
+        parsedBoolean = true;
+        parsedBoolean = Boolean.parseBoolean(Str1);
+        System.out.println(" DEBUG:: parsedBoolean = " + parsedBoolean);
+        //return parsedBoolean;
     }
 }
