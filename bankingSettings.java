@@ -30,7 +30,6 @@ public void openSettings(String profileUsername) {
         }
 
         dS.createFile("profileSettings.properties");
-        //System.out.println(" DEBUG:: db.checkDOB = " + prop.getProperty("db.checkDOB"));
         dS.parseBoolean(prop.getProperty("db.checkDOB"));
         checkDOB = dS.parsedBoolean;
         dS.parseBoolean(prop.getProperty("db.binaryFiles"));
