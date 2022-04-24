@@ -10,6 +10,7 @@ public class dataStorage {
     public boolean fileIsEmpty;
     public boolean found = false;
     public boolean parsedBoolean;
+    public boolean toggledSet;
     private Scanner x;
 
     Properties prop = new Properties();
@@ -100,5 +101,18 @@ public class dataStorage {
         parsedBoolean = Boolean.parseBoolean(Str1);
         System.out.println(" DEBUG:: parsedBoolean = " + parsedBoolean);
         //return parsedBoolean;
+    }
+
+    public boolean toggleSettings(boolean toggleSet, boolean checkDOB, boolean binaryFiles, boolean DOB) {
+        toggleSet = ! toggleSet; 
+        System.out.println(" DEBUG:: toggledSet = |" + toggleSet + "|");
+        if (DOB == true) {
+            System.out.println(" DEBUG:: DOB is set to true");
+            writeProfileSettings(toggleSet, binaryFiles);
+        } else {
+            System.out.println(" DEBUG:: DOB is set to false");
+            writeProfileSettings(checkDOB, toggleSet);
+        }
+        return true;
     }
 }

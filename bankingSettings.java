@@ -43,10 +43,12 @@ public void openSettings(String profileUsername) {
 
             case 2:
             System.out.println("* User chose to toggle checkDOB *");
+            dS.toggleSettings(checkDOB, checkDOB, binaryFiles, true);
             break;
 
             case 3:
             System.out.println("* User chose to toggle binaryFiles *");
+            dS.toggleSettings(binaryFiles, checkDOB, binaryFiles, false);
             break;
 
             case 4: 
