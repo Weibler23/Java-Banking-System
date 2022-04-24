@@ -10,6 +10,7 @@ public class bankingSettings {
     public static boolean settingsRepeat = true;
     public boolean checkDOB;
     public boolean binaryFiles;
+    private String userProfileUsername;
 
     Properties prop = new Properties();
 
@@ -23,13 +24,16 @@ public class bankingSettings {
     dataStorage dS = new dataStorage();
 
 public void openSettings(String profileUsername) {
-        try (InputStream fileInput = new FileInputStream("profileSettings.properties")) {
+    userProfileUsername = profileUsername + " ProfileSettings.properties";
+
+    dS.createFile(userProfileUsername);
+
+        try (InputStream fileInput = new FileInputStream(userProfileUsername)) {
             prop.load(fileInput);
         } catch (IOException io) {
             io.printStackTrace();
         }
 
-        dS.createFile("profileSettings.properties");
         dS.parseBoolean(prop.getProperty("db.checkDOB"));
         checkDOB = dS.parsedBoolean;
         dS.parseBoolean(prop.getProperty("db.binaryFiles"));
@@ -43,12 +47,12 @@ public void openSettings(String profileUsername) {
 
             case 2:
             System.out.println("* User chose to toggle checkDOB *");
-            dS.toggleSettings(checkDOB, checkDOB, binaryFiles, true);
+            dS.toggleSettings(checkDOB, checkDOB, binaryFiles, true, userProfileUsername);
             break;
 
             case 3:
             System.out.println("* User chose to toggle binaryFiles *");
-            dS.toggleSettings(binaryFiles, checkDOB, binaryFiles, false);
+            dS.toggleSettings(binaryFiles, checkDOB, binaryFiles, false, userProfileUsername);
             break;
 
             case 4: 
@@ -57,7 +61,7 @@ public void openSettings(String profileUsername) {
 
             case 5:
             System.out.println("* User chose to exit settings *");
-            dS.writeProfileSettings(checkDOB, binaryFiles);
+            dS.writeProfileSettings(checkDOB, binaryFiles, userProfileUsername);
             settingsRepeat = false;
             break;
         }
