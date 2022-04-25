@@ -30,8 +30,6 @@ public class profileSettings {
     public void openSettings(String profileUsername) {
         userProfileUsername = profileUsername + " ProfileSettings.properties";
 
-        dS.createFile(userProfileUsername);
-
         try (InputStream fileInput = new FileInputStream(userProfileUsername)) {
             prop.load(fileInput);
         } catch (IOException io) {
