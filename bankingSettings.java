@@ -9,7 +9,7 @@ import java.util.*;
 public class bankingSettings {
     public static boolean settingsRepeat = true;
     public boolean checkDOB;
-    public boolean binaryFiles;
+    public boolean balanceAlerts;
     private String userProfileUsername;
 
     Properties prop = new Properties();
@@ -36,9 +36,9 @@ public void openSettings(String profileUsername) {
 
         dS.parseBoolean(prop.getProperty("db.checkDOB"));
         checkDOB = dS.parsedBoolean;
-        dS.parseBoolean(prop.getProperty("db.binaryFiles"));
-        binaryFiles = dS.parsedBoolean;
-        HS.settingsHP(profileUsername, checkDOB, binaryFiles);
+        dS.parseBoolean(prop.getProperty("db.balanceAlerts"));
+        balanceAlerts = dS.parsedBoolean;
+        HS.settingsHP(profileUsername, checkDOB, balanceAlerts);
         UInp.getMenuInput(5,1);
         switch(UInp.userInput) {   
             case 1:
@@ -48,12 +48,12 @@ public void openSettings(String profileUsername) {
 
             case 2:
             System.out.println("* User chose to toggle checkDOB *");
-            dS.toggleSettings(checkDOB, checkDOB, binaryFiles, true, userProfileUsername);
+            dS.toggleSettings(checkDOB, checkDOB, balanceAlerts, true, userProfileUsername);
             break;
 
             case 3:
-            System.out.println("* User chose to toggle binaryFiles *");
-            dS.toggleSettings(binaryFiles, checkDOB, binaryFiles, false, userProfileUsername);
+            System.out.println("* User chose to toggle balanceAlerts *");
+            dS.toggleSettings(balanceAlerts, checkDOB, balanceAlerts, false, userProfileUsername);
             break;
 
             case 4: 
@@ -67,7 +67,7 @@ public void openSettings(String profileUsername) {
 
             case 5:
             System.out.println("* User chose to exit settings *");
-            dS.writeProfileSettings(checkDOB, binaryFiles, userProfileUsername);
+            dS.writeProfileSettings(checkDOB, balanceAlerts, userProfileUsername);
             settingsRepeat = false;
             break;
         }
