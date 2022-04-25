@@ -6,20 +6,20 @@
 
 public class bankingMain {
     public static void main(String[] args) {
-        // Implement homeScreen class
-	    homeScreen HS = new homeScreen();
-
         // Implement bankingProfile class
         bankingProfile bankProf = new bankingProfile();
+
+        // Implement dataStorage class
+        dataStorage dS = new dataStorage();
+
+        // Implement homeScreen class
+	    homeScreen HS = new homeScreen();
 
         // Implement organization class
         organization org = new organization();
 
         // Implement userInputs class
         userInputs UInp = new userInputs();
-
-        // Implement dataStorage class
-        dataStorage dS = new dataStorage();
 
         boolean homeScreenRepeat = true;
         

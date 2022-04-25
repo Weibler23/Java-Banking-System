@@ -18,6 +18,15 @@ public class bankingProfile {
     // Create scanner object
 	Scanner input = new Scanner(System.in);
 
+    // Implement account class
+    bankingAccounts Acc = new bankingAccounts();
+
+    // Implement bankingSettings class
+    bankingSettings bankSettings = new bankingSettings();
+
+    // Implement dataStorage class
+    dataStorage dS = new dataStorage();
+
     // Implement homeScreen class
     homeScreen HS = new homeScreen();
 
@@ -26,15 +35,6 @@ public class bankingProfile {
 
     // Implement userInputs class
     userInputs UInp = new userInputs();
-
-    // Implement account class
-    bankingAccounts Acc = new bankingAccounts();
-
-    // Implement dataStorage class
-    dataStorage dS = new dataStorage();
-
-    // Implement bankingSettings class
-    bankingSettings bankSettings = new bankingSettings();
 
     private void generateID() {
         Random rand = new Random();

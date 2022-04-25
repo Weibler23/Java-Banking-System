@@ -13,6 +13,7 @@ public class dataStorage {
     public boolean toggledSet;
     private Scanner x;
 
+    // Create properties object
     Properties prop = new Properties();
 
     public void createFile (String fileName) {

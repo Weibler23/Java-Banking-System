@@ -12,19 +12,20 @@ public class bankingSettings {
     public boolean balanceAlerts;
     private String userProfileUsername;
 
+    // Create properties object
     Properties prop = new Properties();
-
-    // Implement homeScreen class
-    homeScreen HS = new homeScreen(); 
-
-    // Implement userInputs class
-    userInputs UInp = new userInputs();
 
     // Implement dataStorage class
     dataStorage dS = new dataStorage();
 
+    // Implement homeScreen class
+    homeScreen HS = new homeScreen(); 
+
     // Implement organization class
     organization org = new organization();
+
+    // Implement userInputs class
+    userInputs UInp = new userInputs();
 
 public void openSettings(String profileUsername) {
     userProfileUsername = profileUsername + " ProfileSettings.properties";
