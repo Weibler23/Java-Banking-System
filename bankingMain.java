@@ -24,6 +24,7 @@ public class bankingMain {
         userInputs UInp = new userInputs();
 
         dS.createFolder("Test");
+        dS.createFile("Test/test.txt");
         
         do {
             org.ClearScreen();
