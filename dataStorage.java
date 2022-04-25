@@ -74,7 +74,7 @@ public class dataStorage {
 
     public boolean profileSettings() {
         prop.setProperty("db.checkDOB", "checkDOB");
-        prop.setProperty("db.binaryFiles", "binaryFiles");
+        prop.setProperty("db.balanceAlerts", "balanceAlerts");
 
         prop.keySet();
 
@@ -83,12 +83,12 @@ public class dataStorage {
         return true;
     }
 
-    public void writeProfileSettings(boolean checkDOB, boolean binaryFiles, String fileName) {
+    public void writeProfileSettings(boolean checkDOB, boolean balanceAlerts, String fileName) {
         try (OutputStream output = new FileOutputStream(fileName)) {
             String str1 = Boolean.toString(checkDOB);
-            String str2 = Boolean.toString(binaryFiles);
+            String str2 = Boolean.toString(balanceAlerts);
             prop.setProperty("db.checkDOB", str1);
-            prop.setProperty("db.binaryFiles", str2);
+            prop.setProperty("db.balanceAlerts", str2);
             prop.store(output, null);
         } catch (IOException io) {
             io.printStackTrace();
@@ -103,12 +103,12 @@ public class dataStorage {
         //return parsedBoolean;
     }
 
-    public boolean toggleSettings(boolean toggleSet, boolean checkDOB, boolean binaryFiles, boolean DOB, String fileName) {
+    public boolean toggleSettings(boolean toggleSet, boolean checkDOB, boolean balanceAlerts, boolean DOB, String fileName) {
         toggleSet = ! toggleSet; 
         System.out.println(" DEBUG:: toggledSet = |" + toggleSet + "|");
         if (DOB == true) {
             //System.out.println(" DEBUG:: DOB is set to true");
-            writeProfileSettings(toggleSet, binaryFiles, fileName);
+            writeProfileSettings(toggleSet, balanceAlerts, fileName);
         } else {
             //System.out.println(" DEBUG:: DOB is set to false");
             writeProfileSettings(checkDOB, toggleSet, fileName);
