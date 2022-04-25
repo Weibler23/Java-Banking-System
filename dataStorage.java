@@ -115,4 +115,23 @@ public class dataStorage {
         }
         return true;
     }
+
+    public void readFullFile(String fileName) {
+        try {
+            File file = new File(fileName);
+            Scanner sc = new Scanner(file);
+            while (sc.hasNextLine()) System.out.println(sc.nextLine());
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
+    }
+
+    public void deleteFile(String fileName) {
+        File file = new File (fileName);
+        if (file.delete()) { 
+            System.out.println("* Deleted the file: " + file.getName() + " *");
+          } else {
+            System.out.println("Failed to delete the file.");
+          } 
+    }
 }

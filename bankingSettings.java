@@ -43,6 +43,7 @@ public void openSettings(String profileUsername) {
         switch(UInp.userInput) {   
             case 1:
             System.out.println("* User chose to see settings information *");
+            dS.readFullFile("settingsInformation.txt");
             break;
 
             case 2:
@@ -57,6 +58,11 @@ public void openSettings(String profileUsername) {
 
             case 4: 
             System.out.println("* User chose to delete profile *");
+            System.out.print("* Are you sure you want to delete your profile? ** THIS CANNOT BE UNDONE ** (y/n)\nInput: ");
+            UInp.getUserInputChar('y', 'n');
+            if (UInp.userInputChar == 'y') {
+                dS.deleteFile(userProfileUsername);
+            } 
             break;
 
             case 5:
