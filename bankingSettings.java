@@ -27,10 +27,10 @@ public class bankingSettings {
     // Implement userInputs class
     userInputs UInp = new userInputs();
 
-public void openSettings(String profileUsername) {
-    userProfileUsername = profileUsername + " ProfileSettings.properties";
+    public void openSettings(String profileUsername) {
+        userProfileUsername = profileUsername + " ProfileSettings.properties";
 
-    dS.createFile(userProfileUsername);
+        dS.createFile(userProfileUsername);
 
         try (InputStream fileInput = new FileInputStream(userProfileUsername)) {
             prop.load(fileInput);
