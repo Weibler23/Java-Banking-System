@@ -11,13 +11,21 @@ public class bankingProfile {
     public String username = "";
     public String password;
     public String sID;
-    private String phoneNumber;
     private String birthday;
     private int ID = 0;
     public boolean profileHS = true;
 
     // Create scanner object
 	Scanner input = new Scanner(System.in);
+
+    // Implement account class
+    bankingAccounts Acc = new bankingAccounts();
+
+    // Implement bankingSettings class
+    bankingSettings bankSettings = new bankingSettings();
+
+    // Implement dataStorage class
+    dataStorage dS = new dataStorage();
 
     // Implement homeScreen class
     homeScreen HS = new homeScreen();
@@ -27,12 +35,6 @@ public class bankingProfile {
 
     // Implement userInputs class
     userInputs UInp = new userInputs();
-
-    // Implement account class
-    bankingAccounts Acc = new bankingAccounts();
-
-    // Implement dataStorage class
-    dataStorage dS = new dataStorage();
 
     private void generateID() {
         Random rand = new Random();
@@ -47,7 +49,7 @@ public class bankingProfile {
         do {
             org.ClearScreen();
             HS.profileHP(UInp.username, UInp.profID);
-            UInp.getMenuInput(4, 1);
+            UInp.getMenuInput(5, 1);
             switch (UInp.userInput) {
                 case 1:
                 System.out.println("* User chose to see all existing accounts *\n");
@@ -64,10 +66,16 @@ public class bankingProfile {
                 case 3:
                 System.out.println("* User chose to open a new account *\n");
                 Acc.newAccount();
-
                 break;
 
                 case 4:
+                System.out.println("* User chose to enter profile settings *\n");
+                do {
+                    bankSettings.openSettings(UInp.username);
+                } while (bankSettings.settingsRepeat == true);
+                break;
+
+                case 5:
                 System.out.println("* User chose to return to home page *\n");
                 profileHS = false;
                 break;
@@ -90,14 +98,14 @@ public class bankingProfile {
         
         org.ClearScreen();
         generateID();
-        System.out.println("\n* Your profile was created *\n" +
-                             "* Profile ID: " + ID + " *\n" +
-                             "* Username: " + username + " *\n" +
-                             "* Password: " + password + " *\n\n" +
-                             "**---------------------------------WARNING---------------------------------**\n" +
-                             "* There is no way to recover a forgotten username, password, or profile ID. *\n" +
-                             "*                   Please make sure to write these down!                   *\n"+
-                             "**-------------------------------------------------------------------------**\n");
+        System.out.print("**---------------------------------WARNING---------------------------------**\n" +
+                           "* There is no way to recover a forgotten username, password, or profile ID. *\n" +
+                           "*                   Please make sure to write these down!                   *\n" +
+                           "**-------------------------------------------------------------------------**\n");
+        System.out.format("* Profile ID: %-62s*%n", ID);
+        System.out.format("* Username: %-64s*%n", username);
+        System.out.format("* Password: %-64s*%n", password);
+        System.out.println("**-------------------------------------------------------------------------**\n");
         System.out.print("* Type 'next' to move on *\nInput: ");
         UInp.getUserInputString("next", false);
 

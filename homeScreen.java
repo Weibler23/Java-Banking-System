@@ -7,6 +7,10 @@ import java.util.*;
 import java.io.*;
 
 public class homeScreen {
+	private static final String ANSI_RESET = "\u001B[0m";
+	private static final String ANSI_RED = "\u001B[31m";
+	private static final String ANSI_GREEN = "\u001B[32m";
+
     private static void Frame (int num, boolean newLine) {
 		for (int i = 1; i <= num; i ++){
 		    System.out.print ('-');
@@ -24,6 +28,25 @@ public class homeScreen {
 		System.out.print("Input: ");
     }
 
+	public void settingsHP (String profName, boolean checkDOB, boolean binaryFiles) {
+		Frame(43, true);
+		System.out.format("|%-41s|%n", profName);
+		Frame(43, true);
+		System.out.print("|Enter (1) to see settings information    |\n");
+		if (checkDOB == true) {System.out.format("|Enter (2) to toggle checkDOB:: " + ANSI_GREEN + "%-14s|%n", checkDOB + ANSI_RESET);
+		} else {
+			System.out.format("|Enter (2) to toggle checkDOB:: " + ANSI_RED + "%-14s|%n", checkDOB + ANSI_RESET);
+		}
+		if (binaryFiles == true) {System.out.format("|Enter (3) to toggle binaryFiles:: " + ANSI_GREEN + "%-11s|%n", binaryFiles + ANSI_RESET);	
+		} else {
+			System.out.format("|Enter (3) to toggle binaryFiles:: " + ANSI_RED + "%-11s|%n", binaryFiles + ANSI_RESET);
+		}
+		System.out.print("|Enter (4) to delete profile              |\n");
+		System.out.print("|Enter (5) to return to profile home page |\n");
+		Frame(43, true);
+		System.out.print("Input: ");
+	}
+
     public void profileHP (String profName, String profID) {
 		Frame(40, true); 
 		System.out.format("|%-38s|%n", profName);
@@ -32,7 +55,8 @@ public class homeScreen {
 		System.out.print("|Enter (1) to see existing accounts    |\n" +
 						 "|Enter (2) to open an existing account |\n" +
 						 "|Enter (3) to create a new account     |\n" +
-						 "|Enter (4) to return to home page      |\n");
+						 "|Enter (4) to enter profile settings   |\n" +
+						 "|Enter (5) to return to home page      |\n");
 		Frame(40, true);
 		System.out.print("Input: ");
     }

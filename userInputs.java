@@ -18,6 +18,7 @@ public class userInputs {
     public String userInputString = "Wrong";
     public int userInput = 0;
     public double userInputBalance = 0;
+    public char userInputChar;
     public Date userDOB = null;
     public boolean invalidProfLogin = true;
 
@@ -93,16 +94,33 @@ public class userInputs {
         
             dS.verifyLogin(username, password, profID, securityFilePath);
             if (dS.found == false) {
-                System.out.println("* ERROR: Your username, password, or profile ID# was wrong. Please try again *\n\n");
-                System.out.println(" DEBUG:: username = |" + username + "|\n" +
-                                   " DEBUG:: password = |" + password + "|\n" +
-                                   " DEBUG:: profID = |" + profID + "|\n");
+                System.out.println("\n* ERROR: Your username, password, or profile ID# was wrong. Please try again *");
+                //System.out.println(" DEBUG:: username = |" + username + "|\n" +
+                //                   " DEBUG:: password = |" + password + "|\n" +
+                //                   " DEBUG:: profID = |" + profID + "|\n");
                 failCheck = true;
             } else {
                 failCheck = false;
             }
         } while (failCheck); 
         return userSecurity;
+    }
+
+    public char getUserInputChar(char char1, char char2) {
+        boolean failCheck = false;
+        do {
+            try {
+                userInputChar = input.next().charAt(0);
+                //System.out.println(" DEBUG:: userInputChar = |" + userInputChar + "|");
+                if (((Objects.equals(userInputChar, char1)) || (Objects.equals(userInputChar, char2))) == false) throw new IOException("Exceeds Bounds");
+                failCheck = false;
+            } catch (Exception e) {
+                System.out.print("* ERROR: Please enter a valid input *\nInput: ");
+                input.nextLine();
+                failCheck = true;
+            }
+        } while (failCheck);
+        return char1;
     }
 
     public String getUserInputString(String reqInput, boolean clearLine) {
