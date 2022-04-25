@@ -28,6 +28,7 @@ public class profileSettings {
     userInputs UInp = new userInputs();
 
     public void openSettings(String profileUsername) {
+        settingsRepeat = true;
         userProfileUsername = "Properties/" + profileUsername + " ProfileSettings.properties";
 
         try (InputStream fileInput = new FileInputStream(userProfileUsername)) {

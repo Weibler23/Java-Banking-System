@@ -21,7 +21,7 @@ public class bankingProfile {
     // Implement account class
     bankingAccounts Acc = new bankingAccounts();
 
-    // Implement bankingSettings class
+    // Implement profileSettings class
     profileSettings profileSettings = new profileSettings();
 
     // Implement dataStorage class
