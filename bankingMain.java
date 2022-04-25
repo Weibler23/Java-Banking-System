@@ -6,6 +6,8 @@
 
 public class bankingMain {
     public static void main(String[] args) {
+        boolean homeScreenRepeat = true;
+        
         // Implement bankingProfile class
         bankingProfile bankProf = new bankingProfile();
 
@@ -20,8 +22,6 @@ public class bankingMain {
 
         // Implement userInputs class
         userInputs UInp = new userInputs();
-
-        boolean homeScreenRepeat = true;
         
         do {
             org.ClearScreen();
