@@ -19,9 +19,9 @@ public class dataStorage {
         try {
             File createFile = new File(fileName);
             if (createFile.createNewFile()) {
-                System.out.println(" DEBUG:: File Created: " + createFile.getName());
+                //System.out.println(" DEBUG:: File Created: " + createFile.getName());
             } else {
-                System.out.println(" DEBUG:: File " + createFile.getName() + " already exists ");
+                //System.out.println(" DEBUG:: File " + createFile.getName() + " already exists ");
             }
         } catch (IOException e) {
             System.out.println(" DEBUG:: ERROR CREATING FILE ");
@@ -32,10 +32,10 @@ public class dataStorage {
     public void checkFileisEmpty (String fileName) {
         File testFile = new File(fileName);
         if (testFile.length() == 0) {
-            System.out.println(" DEBUG:: FILE: " + testFile.getName() + " is empty ");
+            //System.out.println(" DEBUG:: FILE: " + testFile.getName() + " is empty ");
             fileIsEmpty = true;
         } else {
-            System.out.println(" DEBUG:: FILE: " + testFile.getName() + " is not empty ");
+            //System.out.println(" DEBUG:: FILE: " + testFile.getName() + " is not empty ");
             fileIsEmpty = false; 
         }
     }
@@ -96,16 +96,16 @@ public class dataStorage {
     }
 
     public void parseBoolean(String Str1) {
-        System.out.println(" DEBUG:: Str1 = |" + Str1 + "|");
+        //System.out.println(" DEBUG:: Str1 = |" + Str1 + "|");
         parsedBoolean = true;
         parsedBoolean = Boolean.parseBoolean(Str1);
-        System.out.println(" DEBUG:: parsedBoolean = " + parsedBoolean);
+        //System.out.println(" DEBUG:: parsedBoolean = " + parsedBoolean);
         //return parsedBoolean;
     }
 
     public boolean toggleSettings(boolean toggleSet, boolean checkDOB, boolean balanceAlerts, boolean DOB, String fileName) {
         toggleSet = ! toggleSet; 
-        System.out.println(" DEBUG:: toggledSet = |" + toggleSet + "|");
+        //System.out.println(" DEBUG:: toggledSet = |" + toggleSet + "|");
         if (DOB == true) {
             //System.out.println(" DEBUG:: DOB is set to true");
             writeProfileSettings(toggleSet, balanceAlerts, fileName);
@@ -129,9 +129,9 @@ public class dataStorage {
     public void deleteFile(String fileName) {
         File file = new File (fileName);
         if (file.delete()) { 
-            System.out.println("* Deleted the file: " + file.getName() + " *");
+            //System.out.println("* Deleted the file: " + file.getName() + " *");
           } else {
-            System.out.println("Failed to delete the file.");
+            System.out.println("* DEBUG:: Failed to delete file: " + file.getName() + " *");
           } 
     }
 }

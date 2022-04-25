@@ -46,24 +46,24 @@ public void openSettings(String profileUsername) {
         UInp.getMenuInput(5,1);
         switch(UInp.userInput) {   
             case 1:
-            System.out.println("* User chose to see settings information *");
+            //System.out.println("* User chose to see settings information *");
             dS.readFullFile("settingsInformation.txt");
             System.out.print("* Type 'next' to move on *\nInput: ");
             UInp.getUserInputString("next", true);
             break;
 
             case 2:
-            System.out.println("* User chose to toggle checkDOB *");
+            //System.out.println("* User chose to toggle checkDOB *");
             dS.toggleSettings(checkDOB, checkDOB, balanceAlerts, true, userProfileUsername);
             break;
 
             case 3:
-            System.out.println("* User chose to toggle balanceAlerts *");
+            //System.out.println("* User chose to toggle balanceAlerts *");
             dS.toggleSettings(balanceAlerts, checkDOB, balanceAlerts, false, userProfileUsername);
             break;
 
             case 4: 
-            System.out.println("* User chose to delete profile *");
+            //System.out.println("* User chose to delete profile *");
             System.out.print("* Are you sure you want to delete your profile? ** THIS CANNOT BE UNDONE ** (y/n)\nInput: ");
             UInp.getUserInputChar('y', 'n');
             if (UInp.userInputChar == 'y') {

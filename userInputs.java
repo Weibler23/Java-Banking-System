@@ -94,10 +94,10 @@ public class userInputs {
         
             dS.verifyLogin(username, password, profID, securityFilePath);
             if (dS.found == false) {
-                System.out.println("* ERROR: Your username, password, or profile ID# was wrong. Please try again *\n\n");
-                System.out.println(" DEBUG:: username = |" + username + "|\n" +
-                                   " DEBUG:: password = |" + password + "|\n" +
-                                   " DEBUG:: profID = |" + profID + "|\n");
+                System.out.println("\n* ERROR: Your username, password, or profile ID# was wrong. Please try again *");
+                //System.out.println(" DEBUG:: username = |" + username + "|\n" +
+                //                   " DEBUG:: password = |" + password + "|\n" +
+                //                  " DEBUG:: profID = |" + profID + "|\n");
                 failCheck = true;
             } else {
                 failCheck = false;
@@ -111,7 +111,7 @@ public class userInputs {
         do {
             try {
                 userInputChar = input.next().charAt(0);
-                System.out.println(" DEBUG:: userInputChar = |" + userInputChar + "|");
+                //System.out.println(" DEBUG:: userInputChar = |" + userInputChar + "|");
                 if (((Objects.equals(userInputChar, char1)) || (Objects.equals(userInputChar, char2))) == false) throw new IOException("Exceeds Bounds");
                 failCheck = false;
             } catch (Exception e) {
