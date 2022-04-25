@@ -1,5 +1,5 @@
 // accountSavings.java
-// Immanual
+// Immanuel
 // Class for saving accounts
 // Created 4/14/22
 
