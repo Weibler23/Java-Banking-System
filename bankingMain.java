@@ -22,6 +22,8 @@ public class bankingMain {
 
         // Implement userInputs class
         userInputs UInp = new userInputs();
+
+        dS.createFolder("Test");
         
         do {
             org.ClearScreen();

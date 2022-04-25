@@ -30,6 +30,12 @@ public class dataStorage {
         }
     }
 
+    public void createFolder (String folderName) {
+        File createFolder = new File(folderName);
+        boolean bool = createFolder.mkdir();
+        if(bool == false) System.out.println(" DEBUG:: ERROR CREATING FOLDER ");
+    }
+
     public void checkFileisEmpty (String fileName) {
         File testFile = new File(fileName);
         if (testFile.length() == 0) {
