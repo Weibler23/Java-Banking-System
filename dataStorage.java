@@ -20,9 +20,9 @@ public class dataStorage {
         try {
             File createFile = new File(fileName);
             if (createFile.createNewFile()) {
-                //System.out.println(" DEBUG:: File Created: " + createFile.getName());
+                System.out.println(" DEBUG:: File Created: " + createFile.getName());
             } else {
-                //System.out.println(" DEBUG:: File " + createFile.getName() + " already exists ");
+                System.out.println(" DEBUG:: File " + createFile.getName() + " already exists ");
             }
         } catch (IOException e) {
             System.out.println(" DEBUG:: ERROR CREATING FILE ");
