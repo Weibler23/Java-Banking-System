@@ -97,7 +97,7 @@ public class userInputs {
                 System.out.println("\n* ERROR: Your username, password, or profile ID# was wrong. Please try again *");
                 //System.out.println(" DEBUG:: username = |" + username + "|\n" +
                 //                   " DEBUG:: password = |" + password + "|\n" +
-                //                  " DEBUG:: profID = |" + profID + "|\n");
+                //                   " DEBUG:: profID = |" + profID + "|\n");
                 failCheck = true;
             } else {
                 failCheck = false;

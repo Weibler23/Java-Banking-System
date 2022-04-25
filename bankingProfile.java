@@ -11,7 +11,6 @@ public class bankingProfile {
     public String username = "";
     public String password;
     public String sID;
-    private String phoneNumber;
     private String birthday;
     private int ID = 0;
     public boolean profileHS = true;
