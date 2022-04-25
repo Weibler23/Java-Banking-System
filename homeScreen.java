@@ -7,8 +7,9 @@ import java.util.*;
 import java.io.*;
 
 public class homeScreen {
-	// Implement bankingSettings class
-	//bankingSettings bankSettings = new bankingSettings();
+	private static final String ANSI_RESET = "\u001B[0m";
+	private static final String ANSI_RED = "\u001B[31m";
+	private static final String ANSI_GREEN = "\u001B[32m";
 
     private static void Frame (int num, boolean newLine) {
 		for (int i = 1; i <= num; i ++){
@@ -32,9 +33,16 @@ public class homeScreen {
 		System.out.format("|%-41s|%n", profName);
 		Frame(43, true);
 		System.out.print("|Enter (1) to see settings information    |\n");
-		System.out.format("|Enter (2) to toggle checkDOB:: %-10s|%n", checkDOB);
-		System.out.format("|Enter (3) to toggle binaryFiles:: %-7s|%n", binaryFiles);
-		System.out.print("|Enter (4) to return to profile home page |\n");
+		if (checkDOB == true) {System.out.format("|Enter (2) to toggle checkDOB:: " + ANSI_GREEN + "%-14s|%n", checkDOB + ANSI_RESET);
+		} else {
+			System.out.format("|Enter (2) to toggle checkDOB:: " + ANSI_RED + "%-14s|%n", checkDOB + ANSI_RESET);
+		}
+		if (binaryFiles == true) {System.out.format("|Enter (3) to toggle binaryFiles:: " + ANSI_GREEN + "%-11s|%n", binaryFiles + ANSI_RESET);	
+		} else {
+			System.out.format("|Enter (3) to toggle binaryFiles:: " + ANSI_RED + "%-11s|%n", binaryFiles + ANSI_RESET);
+		}
+		System.out.print("|Enter (4) to delete profile              |\n");
+		System.out.print("|Enter (5) to return to profile home page |\n");
 		Frame(43, true);
 		System.out.print("Input: ");
 	}
@@ -47,9 +55,8 @@ public class homeScreen {
 		System.out.print("|Enter (1) to see existing accounts    |\n" +
 						 "|Enter (2) to open an existing account |\n" +
 						 "|Enter (3) to create a new account     |\n" +
-						 "|Enter (4) to return to home page      |\n" +
-						 "|Enter (5) to enter profile settings   |\n" +
-						 "|Enter (6) to delete profile           |\n");
+						 "|Enter (4) to enter profile settings   |\n" +
+						 "|Enter (5) to return to home page      |\n");
 		Frame(40, true);
 		System.out.print("Input: ");
     }

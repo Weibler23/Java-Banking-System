@@ -50,7 +50,7 @@ public class bankingProfile {
         do {
             org.ClearScreen();
             HS.profileHP(UInp.username, UInp.profID);
-            UInp.getMenuInput(6, 1);
+            UInp.getMenuInput(5, 1);
             switch (UInp.userInput) {
                 case 1:
                 System.out.println("* User chose to see all existing accounts *\n");
@@ -70,17 +70,15 @@ public class bankingProfile {
                 break;
 
                 case 4:
-                System.out.println("* User chose to return to home page *\n");
-                profileHS = false;
+                System.out.println("* User chose to enter profile settings *\n");
+                do {
+                    bankSettings.openSettings(UInp.username);
+                } while (bankSettings.settingsRepeat == true);
                 break;
 
                 case 5:
-                System.out.println("* User chose to enter profile settings *\n");
-                bankSettings.openSettings(UInp.username);
-                break;
-
-                case 6:
-                System.out.println("* User chose to delete their profile *");
+                System.out.println("* User chose to return to home page *\n");
+                profileHS = false;
                 break;
             }
         } while (profileHS);
@@ -101,14 +99,14 @@ public class bankingProfile {
         
         org.ClearScreen();
         generateID();
-        System.out.println("\n* Your profile was created *\n" +
-                             "* Profile ID: " + ID + " *\n" +
-                             "* Username: " + username + " *\n" +
-                             "* Password: " + password + " *\n\n" +
-                             "**---------------------------------WARNING---------------------------------**\n" +
-                             "* There is no way to recover a forgotten username, password, or profile ID. *\n" +
-                             "*                   Please make sure to write these down!                   *\n"+
-                             "**-------------------------------------------------------------------------**\n");
+        System.out.print("**---------------------------------WARNING---------------------------------**\n" +
+                           "* There is no way to recover a forgotten username, password, or profile ID. *\n" +
+                           "*                   Please make sure to write these down!                   *\n" +
+                           "**-------------------------------------------------------------------------**\n");
+        System.out.format("* Profile ID: %-62s*%n", ID);
+        System.out.format("* Username: %-64s*%n", username);
+        System.out.format("* Password: %-64s*%n", password);
+        System.out.println("**-------------------------------------------------------------------------**\n");
         System.out.print("* Type 'next' to move on *\nInput: ");
         UInp.getUserInputString("next", false);
 

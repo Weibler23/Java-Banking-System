@@ -9,7 +9,11 @@ import java.util.*;
 public class dataStorage {
     public boolean fileIsEmpty;
     public boolean found = false;
+    public boolean parsedBoolean;
+    public boolean toggledSet;
     private Scanner x;
+
+    Properties prop = new Properties();
 
     public void createFile (String fileName) {
         try {
@@ -66,5 +70,68 @@ public class dataStorage {
             }
         } catch (Exception e) {
         }
+    }
+
+    public boolean profileSettings() {
+        prop.setProperty("db.checkDOB", "checkDOB");
+        prop.setProperty("db.binaryFiles", "binaryFiles");
+
+        prop.keySet();
+
+        prop.forEach((k, v) -> System.out.println("Key : " + k + ", Value : " + v));
+
+        return true;
+    }
+
+    public void writeProfileSettings(boolean checkDOB, boolean binaryFiles, String fileName) {
+        try (OutputStream output = new FileOutputStream(fileName)) {
+            String str1 = Boolean.toString(checkDOB);
+            String str2 = Boolean.toString(binaryFiles);
+            prop.setProperty("db.checkDOB", str1);
+            prop.setProperty("db.binaryFiles", str2);
+            prop.store(output, null);
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
+    }
+
+    public void parseBoolean(String Str1) {
+        System.out.println(" DEBUG:: Str1 = |" + Str1 + "|");
+        parsedBoolean = true;
+        parsedBoolean = Boolean.parseBoolean(Str1);
+        System.out.println(" DEBUG:: parsedBoolean = " + parsedBoolean);
+        //return parsedBoolean;
+    }
+
+    public boolean toggleSettings(boolean toggleSet, boolean checkDOB, boolean binaryFiles, boolean DOB, String fileName) {
+        toggleSet = ! toggleSet; 
+        System.out.println(" DEBUG:: toggledSet = |" + toggleSet + "|");
+        if (DOB == true) {
+            //System.out.println(" DEBUG:: DOB is set to true");
+            writeProfileSettings(toggleSet, binaryFiles, fileName);
+        } else {
+            //System.out.println(" DEBUG:: DOB is set to false");
+            writeProfileSettings(checkDOB, toggleSet, fileName);
+        }
+        return true;
+    }
+
+    public void readFullFile(String fileName) {
+        try {
+            File file = new File(fileName);
+            Scanner sc = new Scanner(file);
+            while (sc.hasNextLine()) System.out.println(sc.nextLine());
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
+    }
+
+    public void deleteFile(String fileName) {
+        File file = new File (fileName);
+        if (file.delete()) { 
+            System.out.println("* Deleted the file: " + file.getName() + " *");
+          } else {
+            System.out.println("Failed to delete the file.");
+          } 
     }
 }
