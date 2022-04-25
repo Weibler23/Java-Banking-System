@@ -50,7 +50,7 @@ public class bankingProfile {
             org.ClearScreen();
             HS.profileHP(UInp.username, UInp.profID);
             UInp.getMenuInput(5, 1);
-            dS.createFile("Test/" + UInp.username + " ProfileSettings.properties");
+            dS.createFile("Profile/" + UInp.username + " ProfileSettings.properties");
 
             switch (UInp.userInput) {
                 case 1:

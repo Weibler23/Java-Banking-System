@@ -28,7 +28,7 @@ public class profileSettings {
     userInputs UInp = new userInputs();
 
     public void openSettings(String profileUsername) {
-        userProfileUsername = "Test/" + profileUsername + " ProfileSettings.properties";
+        userProfileUsername = "Profile/" + profileUsername + " ProfileSettings.properties";
 
         try (InputStream fileInput = new FileInputStream(userProfileUsername)) {
             prop.load(fileInput);
