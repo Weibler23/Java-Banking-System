@@ -22,7 +22,7 @@ public class bankingProfile {
     bankingAccounts Acc = new bankingAccounts();
 
     // Implement bankingSettings class
-    bankingSettings bankSettings = new bankingSettings();
+    profileSettings profileSettings = new profileSettings();
 
     // Implement dataStorage class
     dataStorage dS = new dataStorage();
@@ -71,8 +71,8 @@ public class bankingProfile {
                 case 4:
                 System.out.println("* User chose to enter profile settings *\n");
                 do {
-                    bankSettings.openSettings(UInp.username);
-                } while (bankSettings.settingsRepeat == true);
+                    profileSettings.openSettings(UInp.username);
+                } while (profileSettings.settingsRepeat == true);
                 break;
 
                 case 5:

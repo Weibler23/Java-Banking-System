@@ -1,4 +1,4 @@
-// bankingSettings.java
+// profileSettings.java
 // Adam Weibler
 // Contain the settings that users can toggle in the system
 // Created 4/20/22
@@ -6,7 +6,7 @@
 import java.io.*;
 import java.util.*;
 
-public class bankingSettings {
+public class profileSettings {
     public static boolean settingsRepeat = true;
     public boolean checkDOB;
     public boolean balanceAlerts;
