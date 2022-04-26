@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.Random;
 
 public class bankingProfile {
-    public String username = "";
+    public String username;
     public String password;
     public String sID;
     private String birthday;

@@ -59,6 +59,7 @@ public class dataStorage {
     }
 
     public void verifyLogin(String username, String password, String profID, String filepath) {
+        found = false;
         String tempUsername = "";
         String tempPassword = "";
         String tempProfID = "";
