@@ -82,7 +82,7 @@ public class bankingProfile {
                 profileHS = false;
                 break;
             }
-        } while (profileHS);
+        } while ((profileHS) && ((profileSettings.deletedProfile) == false));
     }
 
     public void createProfile() {

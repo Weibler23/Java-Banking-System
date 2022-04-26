@@ -8,6 +8,7 @@ import java.util.*;
 
 public class profileSettings {
     public static boolean settingsRepeat = true;
+    public static boolean deletedProfile = false;
     public boolean checkDOB;
     public boolean balanceAlerts;
     private String userProfileUsername;
@@ -69,6 +70,7 @@ public class profileSettings {
             if (UInp.userInputChar == 'y') {
                 dS.deleteFile(userProfileUsername);
                 settingsRepeat = false;
+                deletedProfile = true;
             } 
             break;
 
