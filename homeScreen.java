@@ -28,7 +28,7 @@ public class homeScreen {
 		System.out.print("Input: ");
     }
 
-	public void settingsHP (String profName, boolean checkDOB, boolean binaryFiles, boolean lockNewAccounts) {
+	public void settingsHP (String profName, boolean checkDOB, boolean balanceAlerts, boolean lockNewAccounts) {
 		Frame(43, true);
 		System.out.format("|%-41s|%n", profName);
 		Frame(43, true);
@@ -37,11 +37,11 @@ public class homeScreen {
 		} else {
 			System.out.format("|Enter (2) to toggle checkDOB:: " + ANSI_RED + "%-14s|%n", checkDOB + ANSI_RESET);
 		}
-		if (binaryFiles == true) {System.out.format("|Enter (3) to toggle balanceAlerts:: " + ANSI_GREEN + "%-9s|%n", binaryFiles + ANSI_RESET);	
+		if (balanceAlerts == true) {System.out.format("|Enter (3) to toggle balanceAlerts:: " + ANSI_GREEN + "%-9s|%n", balanceAlerts + ANSI_RESET);	
 		} else {
-			System.out.format("|Enter (3) to toggle balanceAlerts:: " + ANSI_RED + "%-9s|%n", binaryFiles + ANSI_RESET);
+			System.out.format("|Enter (3) to toggle balanceAlerts:: " + ANSI_RED + "%-9s|%n", balanceAlerts + ANSI_RESET);
 		}
-		if (binaryFiles == true) {System.out.format("|Enter (4) to toggle lockNewAccounts:: " + ANSI_GREEN + "%-9s|%n", lockNewAccounts + ANSI_RESET);	
+		if (lockNewAccounts == true) {System.out.format("|Enter (4) to toggle lockNewAccounts:: " + ANSI_GREEN + "%-9s|%n", lockNewAccounts + ANSI_RESET);	
 		} else {
 			System.out.format("|Enter (4) to toggle lockNewAccounts:: " + ANSI_RED + "%-9s|%n", lockNewAccounts + ANSI_RESET);
 		}
