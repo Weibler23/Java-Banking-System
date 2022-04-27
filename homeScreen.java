@@ -28,7 +28,7 @@ public class homeScreen {
 		System.out.print("Input: ");
     }
 
-	public void settingsHP (String profName, boolean checkDOB, boolean binaryFiles) {
+	public void settingsHP (String profName, boolean checkDOB, boolean binaryFiles, boolean lockNewAccounts) {
 		Frame(43, true);
 		System.out.format("|%-41s|%n", profName);
 		Frame(43, true);
@@ -41,8 +41,12 @@ public class homeScreen {
 		} else {
 			System.out.format("|Enter (3) to toggle balanceAlerts:: " + ANSI_RED + "%-9s|%n", binaryFiles + ANSI_RESET);
 		}
-		System.out.print("|Enter (4) to delete profile              |\n");
-		System.out.print("|Enter (5) to return to profile home page |\n");
+		if (binaryFiles == true) {System.out.format("|Enter (4) to toggle lockNewAccounts:: " + ANSI_GREEN + "%-9s|%n", lockNewAccounts + ANSI_RESET);	
+		} else {
+			System.out.format("|Enter (4) to toggle lockNewAccounts:: " + ANSI_RED + "%-9s|%n", lockNewAccounts + ANSI_RESET);
+		}
+		System.out.print("|Enter (5) to delete profile              |\n");
+		System.out.print("|Enter (6) to return to profile home page |\n");
 		Frame(43, true);
 		System.out.print("Input: ");
 	}

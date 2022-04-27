@@ -13,7 +13,7 @@ public class bankingAccounts {
     // Implement userInputs class
     userInputs UInp = new userInputs();
 
-    public void newAccount() {
+    public void newAccount(boolean lockNewAccounts) {
         HS.newAccountHP();
         UInp.getMenuInput(3,1);
     }
@@ -21,6 +21,10 @@ public class bankingAccounts {
     public void openAccount() {
         HS.accountHP(account, balance);
         UInp.getMenuInput(5, 1);
+    }
+
+    private void createAccount(boolean checkDOB, boolean balanceAlerts, String accountType, String profileUsername) {
+
     }
 }
 

@@ -11,6 +11,7 @@ public class profileSettings {
     public static boolean deletedProfile = false;
     public boolean checkDOB;
     public boolean balanceAlerts;
+    public boolean lockNewAccounts;
     private String userProfileUsername;
 
     // Create properties object
@@ -42,9 +43,11 @@ public class profileSettings {
         checkDOB = dS.parsedBoolean;
         dS.parseBoolean(prop.getProperty("db.balanceAlerts"));
         balanceAlerts = dS.parsedBoolean;
+        dS.parseBoolean(prop.getProperty("db.lockNewAccounts"));
+        lockNewAccounts = dS.parsedBoolean;
         org.ClearScreen();
-        HS.settingsHP(profileUsername, checkDOB, balanceAlerts);
-        UInp.getMenuInput(5,1);
+        HS.settingsHP(profileUsername, checkDOB, balanceAlerts, lockNewAccounts);
+        UInp.getMenuInput(6,1);
         switch(UInp.userInput) {   
             case 1:
             //System.out.println("* User chose to see settings information *");
@@ -54,16 +57,21 @@ public class profileSettings {
             break;
 
             case 2:
-            //System.out.println("* User chose to toggle checkDOB *");
-            dS.toggleSettings(checkDOB, checkDOB, balanceAlerts, true, userProfileUsername);
+            //System.out.println("* User chose to toggle balanceAlerts *");
+            dS.toggleSettings(checkDOB, checkDOB, balanceAlerts, lockNewAccounts, true, false, userProfileUsername);
             break;
 
             case 3:
             //System.out.println("* User chose to toggle balanceAlerts *");
-            dS.toggleSettings(balanceAlerts, checkDOB, balanceAlerts, false, userProfileUsername);
+            dS.toggleSettings(balanceAlerts, checkDOB, balanceAlerts, lockNewAccounts, false, false, userProfileUsername);
             break;
 
-            case 4: 
+            case 4:
+            //System.out.println("* User chose to toggle balanceAlerts *");
+            dS.toggleSettings(lockNewAccounts, checkDOB, balanceAlerts, lockNewAccounts, false, true, userProfileUsername);
+            break;
+
+            case 5: 
             //System.out.println("* User chose to delete profile *");
             System.out.print("* Are you sure you want to delete your profile? ** THIS CANNOT BE UNDONE ** (y/n)\nInput: ");
             UInp.getUserInputChar('y', 'n');
@@ -74,9 +82,9 @@ public class profileSettings {
             } 
             break;
 
-            case 5:
+            case 6:
             System.out.println("* User chose to exit settings *");
-            dS.writeProfileSettings(checkDOB, balanceAlerts, userProfileUsername);
+            dS.writeProfileSettings(checkDOB, balanceAlerts, lockNewAccounts, userProfileUsername);
             settingsRepeat = false;
             break;
         }

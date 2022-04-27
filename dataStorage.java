@@ -83,6 +83,7 @@ public class dataStorage {
     public boolean profileSettings() {
         prop.setProperty("db.checkDOB", "checkDOB");
         prop.setProperty("db.balanceAlerts", "balanceAlerts");
+        prop.setProperty("db.lockNewAccounts", "lockNewAccounts");
 
         prop.keySet();
 
@@ -91,12 +92,14 @@ public class dataStorage {
         return true;
     }
 
-    public void writeProfileSettings(boolean checkDOB, boolean balanceAlerts, String fileName) {
+    public void writeProfileSettings(boolean checkDOB, boolean balanceAlerts, boolean lockNewAccounts, String fileName) {
         try (OutputStream output = new FileOutputStream(fileName)) {
             String str1 = Boolean.toString(checkDOB);
             String str2 = Boolean.toString(balanceAlerts);
+            String str3 = Boolean.toString(lockNewAccounts);
             prop.setProperty("db.checkDOB", str1);
             prop.setProperty("db.balanceAlerts", str2);
+            prop.setProperty("db.lockNewAccounts", str3);
             prop.store(output, null);
         } catch (IOException io) {
             io.printStackTrace();
@@ -111,16 +114,20 @@ public class dataStorage {
         //return parsedBoolean;
     }
 
-    public boolean toggleSettings(boolean toggleSet, boolean checkDOB, boolean balanceAlerts, boolean DOB, String fileName) {
+    public boolean toggleSettings(boolean toggleSet, boolean checkDOB, boolean balanceAlerts, boolean lockNewAccounts, boolean DOB, boolean LNA, String fileName) {
         toggleSet = ! toggleSet; 
         //System.out.println(" DEBUG:: toggledSet = |" + toggleSet + "|");
         if (DOB == true) {
             //System.out.println(" DEBUG:: DOB is set to true");
-            writeProfileSettings(toggleSet, balanceAlerts, fileName);
+            writeProfileSettings(toggleSet, balanceAlerts, lockNewAccounts, fileName);
         } else {
             //System.out.println(" DEBUG:: DOB is set to false");
-            writeProfileSettings(checkDOB, toggleSet, fileName);
+            writeProfileSettings(checkDOB, toggleSet, lockNewAccounts, fileName);
         }
+        if (LNA == true) {
+            writeProfileSettings(checkDOB, balanceAlerts, toggleSet, fileName);
+        } 
+
         return true;
     }
 
