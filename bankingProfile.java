@@ -146,7 +146,7 @@ public class bankingProfile {
 
         // Create user profileInfo.properties
         dS.createFile(userProfilePath + username + "Info.properties");
-        dS.writeProfileInfo(username, password, ID, UInp.userAge, userProfilePath + username + "Info.properties");
+        dS.writeProfileInfo(username, password, sID, UInp.userAge, userProfilePath + username + "Info.properties");
 
     }
 
