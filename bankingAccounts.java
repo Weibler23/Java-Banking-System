@@ -1,5 +1,5 @@
 // bankingAccounts.java
-// Adam Weibler
+// Immanuel Weidman 
 // Store the different banking accounts
 // Created: 4/14/22
 
