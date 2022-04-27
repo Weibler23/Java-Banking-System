@@ -6,6 +6,8 @@
 import java.util.Scanner;
 import java.time.LocalDate;
 import java.util.Random;
+import java.io.*;
+import java.util.*;
 
 public class bankingProfile {
     public String username;
@@ -14,6 +16,14 @@ public class bankingProfile {
     private String birthday;
     private int ID = 0;
     public boolean profileHS = true;
+    //private String profileUsername;
+    public boolean checkDOB;
+    public boolean balanceAlerts;
+    public boolean lockNewAccounts;
+    private String userProfileUsername;
+
+    // Create properties object
+    Properties prop = new Properties();
 
     // Create scanner object
 	Scanner input = new Scanner(System.in);
@@ -46,11 +56,15 @@ public class bankingProfile {
     public void openProfile() {
         UInp.getUserInputSecurity("ProfileLogin.txt");
 
+        userProfileUsername = "Properties/" + UInp.username + " ProfileSettings.properties";
+        dS.createFile(userProfileUsername);
+
+        parseProperties(userProfileUsername);
+
         do {
             org.ClearScreen();
             HS.profileHP(UInp.username, UInp.profID);
             UInp.getMenuInput(5, 1);
-            dS.createFile("Properties/" + UInp.username + " ProfileSettings.properties");
 
             switch (UInp.userInput) {
                 case 1:
@@ -67,13 +81,19 @@ public class bankingProfile {
 
                 case 3:
                 System.out.println("* User chose to open a new account *\n");
-                Acc.newAccount(true);
+                Acc.newAccount(lockNewAccounts);
                 break;
 
                 case 4:
                 System.out.println("* User chose to enter profile settings *\n");
                 do {
-                    profileSettings.openSettings(UInp.username);
+                    parseProperties(userProfileUsername);
+                    //System.out.println(//" DEBUG:: profileUsername: |" + profileUsername + "|\n" +
+                    //       " DEBUG:: userProfileUsername: |" + userProfileUsername + "|\n" +
+                    //       " DEBUG:: checkDOB: |" + checkDOB + "|\n" +
+                    //       " DEBUG:: balanceAlerts: |" + balanceAlerts + "|\n" +
+                    //       " DEBUG:: lockNewAccounts: |" + lockNewAccounts + "|\n");
+                    profileSettings.openSettings(UInp.username, userProfileUsername, checkDOB, balanceAlerts, lockNewAccounts);
                 } while (profileSettings.settingsRepeat == true);
                 break;
 
@@ -118,4 +138,19 @@ public class bankingProfile {
         System.out.println("\n* Username: " + username + " *\n" + 
                            "* Password: " + password + " *\n");
     }
+
+    private void parseProperties(String userProfileUsername) {
+    try (InputStream fileInput = new FileInputStream(userProfileUsername)) {
+        prop.load(fileInput);
+    } catch (IOException io) {
+        io.printStackTrace();
+    }
+
+    dS.parseBoolean(prop.getProperty("db.checkDOB"));
+    checkDOB = dS.parsedBoolean;
+    dS.parseBoolean(prop.getProperty("db.balanceAlerts"));
+    balanceAlerts = dS.parsedBoolean;
+    dS.parseBoolean(prop.getProperty("db.lockNewAccounts"));
+    lockNewAccounts = dS.parsedBoolean;
+}
 }

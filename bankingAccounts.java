@@ -14,8 +14,12 @@ public class bankingAccounts {
     userInputs UInp = new userInputs();
 
     public void newAccount(boolean lockNewAccounts) {
-        HS.newAccountHP();
-        UInp.getMenuInput(3,1);
+        if (lockNewAccounts) {
+            System.out.println("* You are not able to create new accounts at this time *");
+        } else {
+            HS.newAccountHP();
+            UInp.getMenuInput(3,1);
+        }
     }
 
     public void openAccount() {

@@ -33,7 +33,7 @@ public class dataStorage {
     public void createFolder (String folderName) {
         File createFolder = new File(folderName);
         boolean bool = createFolder.mkdir();
-        if(bool == false) System.out.println(" DEBUG:: ERROR CREATING FOLDER ");
+        if(bool == false) System.out.println(" DEBUG:: ERROR CREATING FOLDER: " + createFolder.getName());
     }
 
     public void checkFileisEmpty (String fileName) {

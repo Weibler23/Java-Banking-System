@@ -9,10 +9,6 @@ import java.util.*;
 public class profileSettings {
     public static boolean settingsRepeat = true;
     public static boolean deletedProfile = false;
-    public boolean checkDOB;
-    public boolean balanceAlerts;
-    public boolean lockNewAccounts;
-    private String userProfileUsername;
 
     // Create properties object
     Properties prop = new Properties();
@@ -29,23 +25,16 @@ public class profileSettings {
     // Implement userInputs class
     userInputs UInp = new userInputs();
 
-    public void openSettings(String profileUsername) {
+    public void openSettings(String profileUsername, String userProfileUsername, boolean checkDOB, boolean balanceAlerts, boolean lockNewAccounts) {
         settingsRepeat = true;
-        userProfileUsername = "Properties/" + profileUsername + " ProfileSettings.properties";
 
-        try (InputStream fileInput = new FileInputStream(userProfileUsername)) {
-            prop.load(fileInput);
-        } catch (IOException io) {
-            io.printStackTrace();
-        }
-
-        dS.parseBoolean(prop.getProperty("db.checkDOB"));
-        checkDOB = dS.parsedBoolean;
-        dS.parseBoolean(prop.getProperty("db.balanceAlerts"));
-        balanceAlerts = dS.parsedBoolean;
-        dS.parseBoolean(prop.getProperty("db.lockNewAccounts"));
-        lockNewAccounts = dS.parsedBoolean;
         org.ClearScreen();
+        //System.out.println(" DEBUG:: profileUsername: |" + profileUsername + "|\n" +
+        //                   " DEBUG:: userProfileUsername: |" + userProfileUsername + "|\n" +
+        //                   " DEBUG:: checkDOB: |" + checkDOB + "|\n" +
+        //                   " DEBUG:: balanceAlerts: |" + balanceAlerts + "|\n" +
+        //                   " DEBUG:: lockNewAccounts: |" + lockNewAccounts + "|\n");
+
         HS.settingsHP(profileUsername, checkDOB, balanceAlerts, lockNewAccounts);
         UInp.getMenuInput(6,1);
         switch(UInp.userInput) {   
