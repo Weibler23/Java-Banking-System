@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.Random;
 
 public class bankingProfile {
-    public String username = "";
+    public String username;
     public String password;
     public String sID;
     private String birthday;
@@ -21,7 +21,7 @@ public class bankingProfile {
     // Implement account class
     bankingAccounts Acc = new bankingAccounts();
 
-    // Implement bankingSettings class
+    // Implement profileSettings class
     profileSettings profileSettings = new profileSettings();
 
     // Implement dataStorage class
@@ -50,7 +50,7 @@ public class bankingProfile {
             org.ClearScreen();
             HS.profileHP(UInp.username, UInp.profID);
             UInp.getMenuInput(5, 1);
-            dS.createFile(UInp.username + " ProfileSettings.properties");
+            dS.createFile("Properties/" + UInp.username + " ProfileSettings.properties");
 
             switch (UInp.userInput) {
                 case 1:
@@ -82,7 +82,7 @@ public class bankingProfile {
                 profileHS = false;
                 break;
             }
-        } while (profileHS);
+        } while ((profileHS) && ((profileSettings.deletedProfile) == false));
     }
 
     public void createProfile() {
