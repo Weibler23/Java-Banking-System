@@ -6,6 +6,7 @@
 import java.util.*;
 import java.io.*;
 import java.text.*;
+import java.time.*;
 
 public class userInputs {
     private String userDate;
@@ -17,6 +18,7 @@ public class userInputs {
     public String profID; 
     public String userInputString = "Wrong";
     public int userInput = 0;
+    public int userAge;
     public double userInputBalance = 0;
     public char userInputChar;
     public Date userDOB = null;
@@ -36,6 +38,17 @@ public class userInputs {
             try{
                 DOB = input.nextLine();
                 userDOB = sdf.parse(DOB);
+                Date d = userDOB;
+                Calendar c = Calendar.getInstance();
+                c.setTime(d);
+                int year = c.get(Calendar.YEAR);
+                int month = c.get(Calendar.MONTH) + 1;
+                int date = c.get(Calendar.DATE);
+                LocalDate l1 = LocalDate.of(year, month, date);
+                LocalDate now1 = LocalDate.now();
+                Period diff1 = Period.between(l1, now1);
+                userAge = diff1.getYears();
+                System.out.println(" DEBUG:: userAge = " + userAge);
                 failCheck = false;
             } catch (Exception e) {
                 System.out.print("* ERROR: Please enter a valid date: *\nInput: ");

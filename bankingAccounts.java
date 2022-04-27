@@ -13,10 +13,10 @@ public class bankingAccounts {
     // Implement userInputs class
     userInputs UInp = new userInputs();
 
-    public void newAccount(boolean lockNewAccounts) {
+    public void newAccount(boolean lockNewAccounts, boolean checkDOB) {
         if (lockNewAccounts) {
             System.out.println("* You are not able to create new accounts at this time *");
-        } else {
+        } else if (checkDOB) {
             HS.newAccountHP();
             UInp.getMenuInput(3,1);
         }

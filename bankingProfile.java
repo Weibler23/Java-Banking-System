@@ -76,12 +76,12 @@ public class bankingProfile {
 
                 case 2:
                 System.out.println("* User chose to open an account *\n");
-                Acc.openAccount();
+                //Acc.openAccount(balanceAlerts);
                 break;
 
                 case 3:
                 System.out.println("* User chose to open a new account *\n");
-                Acc.newAccount(lockNewAccounts);
+                Acc.newAccount(lockNewAccounts, checkDOB);
                 break;
 
                 case 4:
