@@ -25,7 +25,7 @@ public class profileSettings {
     // Implement userInputs class
     userInputs UInp = new userInputs();
 
-    public void openSettings(String profileUsername, String userProfileUsername, boolean checkDOB, boolean balanceAlerts, boolean lockNewAccounts) {
+    public void openSettings(String profileUsername, String userProfileUsername, String userProfilePath, boolean checkDOB, boolean balanceAlerts, boolean lockNewAccounts) {
         settingsRepeat = true;
 
         org.ClearScreen();
@@ -65,7 +65,8 @@ public class profileSettings {
             System.out.print("* Are you sure you want to delete your profile? ** THIS CANNOT BE UNDONE ** (y/n)\nInput: ");
             UInp.getUserInputChar('y', 'n');
             if (UInp.userInputChar == 'y') {
-                dS.deleteFile(userProfileUsername);
+                dS.removeLogin(UInp.username, UInp.password, UInp.profID);
+                dS.deleteFolder(userProfilePath);
                 settingsRepeat = false;
                 deletedProfile = true;
             } 

@@ -48,7 +48,7 @@ public class userInputs {
                 LocalDate now1 = LocalDate.now();
                 Period diff1 = Period.between(l1, now1);
                 userAge = diff1.getYears();
-                System.out.println(" DEBUG:: userAge = " + userAge);
+                //System.out.println(" DEBUG:: userAge = " + userAge);
                 failCheck = false;
             } catch (Exception e) {
                 System.out.print("* ERROR: Please enter a valid date: *\nInput: ");

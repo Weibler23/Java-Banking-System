@@ -20,7 +20,8 @@ public class bankingProfile {
     public boolean checkDOB;
     public boolean balanceAlerts;
     public boolean lockNewAccounts;
-    private String userProfileUsername;
+    private String userProfilePath;
+    private String userProfileSettings;
 
     // Create properties object
     Properties prop = new Properties();
@@ -56,10 +57,11 @@ public class bankingProfile {
     public void openProfile() {
         UInp.getUserInputSecurity("ProfileLogin.txt");
 
-        userProfileUsername = "Properties/" + UInp.username + " ProfileSettings.properties";
-        dS.createFile(userProfileUsername);
+        userProfilePath = ("Profiles/" + UInp.username + "/");
+        userProfileSettings = userProfilePath + UInp.username + "Settings.properties";
+        dS.createFile(userProfileSettings);
 
-        parseProperties(userProfileUsername);
+        parseProperties(userProfileSettings);
 
         do {
             org.ClearScreen();
@@ -87,13 +89,13 @@ public class bankingProfile {
                 case 4:
                 System.out.println("* User chose to enter profile settings *\n");
                 do {
-                    parseProperties(userProfileUsername);
+                    parseProperties(userProfileSettings);
                     //System.out.println(//" DEBUG:: profileUsername: |" + profileUsername + "|\n" +
                     //       " DEBUG:: userProfileUsername: |" + userProfileUsername + "|\n" +
                     //       " DEBUG:: checkDOB: |" + checkDOB + "|\n" +
                     //       " DEBUG:: balanceAlerts: |" + balanceAlerts + "|\n" +
                     //       " DEBUG:: lockNewAccounts: |" + lockNewAccounts + "|\n");
-                    profileSettings.openSettings(UInp.username, userProfileUsername, checkDOB, balanceAlerts, lockNewAccounts);
+                    profileSettings.openSettings(UInp.username, userProfileSettings, userProfilePath, checkDOB, balanceAlerts, lockNewAccounts);
                 } while (profileSettings.settingsRepeat == true);
                 break;
 
@@ -132,6 +134,20 @@ public class bankingProfile {
         UInp.getUserInputString("next", false);
 
         dS.writeProfileLogin(username, password, sID);
+
+        userProfilePath = ("Profiles/" + username + "/");
+
+        // Create user profile directory
+        dS.createFolder("Profiles/" + username);
+
+        // Create user profileSettings.properties
+        dS.createFile(userProfilePath + username + "Settings.properties");
+        dS.writeProfileSettings(false, true, true, userProfilePath + username + "Settings.properties");
+
+        // Create user profileInfo.properties
+        dS.createFile(userProfilePath + username + "Info.properties");
+        dS.writeProfileInfo(username, password, sID, UInp.userAge, userProfilePath + username + "Info.properties");
+
     }
 
     public void profile(String username, String password) {
