@@ -97,8 +97,8 @@ public class dataStorage {
     private boolean profileInfo() {
         prop.setProperty("db.username", "username");
         prop.setProperty("db.password", "password");
-        prop.setProperty("db.profID", "profID");
-        prop.setProperty("db.age", "age");
+        prop.setProperty("db.profID", 0);
+        prop.setProperty("db.age", 0);
 
         prop.keySet();
 
@@ -109,11 +109,10 @@ public class dataStorage {
 
     public void writeProfileInfo(String username, String password, String profID, int age, String fileName) {
         try (OutputStream output = new FileOutputStream(fileName)) {
-            String str1 = Integer.toString(age);
             prop.setProperty("db.username", username);
             prop.setProperty("db.password", password);
             prop.setProperty("db.profID", profID);
-            prop.setProperty("db.age", str1);
+            prop.setProperty("db.age", age);
             prop.store(output, null);
         } catch (IOException io) {
             io.printStackTrace();
