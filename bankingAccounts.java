@@ -1,5 +1,5 @@
 // bankingAccounts.java
-// Adam Weibler
+// Immanuel Weidman 
 // Store the different banking accounts
 // Created: 4/14/22
 
@@ -13,14 +13,22 @@ public class bankingAccounts {
     // Implement userInputs class
     userInputs UInp = new userInputs();
 
-    public void newAccount() {
-        HS.newAccountHP();
-        UInp.getMenuInput(3,1);
+    public void newAccount(boolean lockNewAccounts, boolean checkDOB) {
+        if (lockNewAccounts) {
+            System.out.println("* You are not able to create new accounts at this time *");
+        } else if (checkDOB) {
+            HS.newAccountHP();
+            UInp.getMenuInput(3,1);
+        }
     }
 
     public void openAccount() {
         HS.accountHP(account, balance);
         UInp.getMenuInput(5, 1);
+    }
+
+    private void createAccount(boolean checkDOB, boolean balanceAlerts, String accountType, String profileUsername) {
+
     }
 }
 

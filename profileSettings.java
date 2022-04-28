@@ -9,9 +9,9 @@ import java.util.*;
 public class profileSettings {
     public static boolean settingsRepeat = true;
     public static boolean deletedProfile = false;
-    public boolean checkDOB;
-    public boolean balanceAlerts;
-    private String userProfileUsername;
+    private String username;
+    private String password;
+    private String profID;
 
     // Create properties object
     Properties prop = new Properties();
@@ -28,23 +28,18 @@ public class profileSettings {
     // Implement userInputs class
     userInputs UInp = new userInputs();
 
-    public void openSettings(String profileUsername) {
+    public void openSettings(String profileUsername, String userProfileUsername, String userProfilePath, boolean checkDOB, boolean balanceAlerts, boolean lockNewAccounts) {
         settingsRepeat = true;
-        userProfileUsername = "Properties/" + profileUsername + " ProfileSettings.properties";
 
-        try (InputStream fileInput = new FileInputStream(userProfileUsername)) {
-            prop.load(fileInput);
-        } catch (IOException io) {
-            io.printStackTrace();
-        }
-
-        dS.parseBoolean(prop.getProperty("db.checkDOB"));
-        checkDOB = dS.parsedBoolean;
-        dS.parseBoolean(prop.getProperty("db.balanceAlerts"));
-        balanceAlerts = dS.parsedBoolean;
         org.ClearScreen();
-        HS.settingsHP(profileUsername, checkDOB, balanceAlerts);
-        UInp.getMenuInput(5,1);
+        //System.out.println(" DEBUG:: profileUsername: |" + profileUsername + "|\n" +
+        //                   " DEBUG:: userProfileUsername: |" + userProfileUsername + "|\n" +
+        //                   " DEBUG:: checkDOB: |" + checkDOB + "|\n" +
+        //                   " DEBUG:: balanceAlerts: |" + balanceAlerts + "|\n" +
+        //                   " DEBUG:: lockNewAccounts: |" + lockNewAccounts + "|\n");
+
+        HS.settingsHP(profileUsername, checkDOB, balanceAlerts, lockNewAccounts);
+        UInp.getMenuInput(6,1);
         switch(UInp.userInput) {   
             case 1:
             //System.out.println("* User chose to see settings information *");
@@ -54,31 +49,49 @@ public class profileSettings {
             break;
 
             case 2:
-            //System.out.println("* User chose to toggle checkDOB *");
-            dS.toggleSettings(checkDOB, checkDOB, balanceAlerts, true, userProfileUsername);
+            //System.out.println("* User chose to toggle balanceAlerts *");
+            dS.toggleSettings(checkDOB, checkDOB, balanceAlerts, lockNewAccounts, true, false, userProfileUsername);
             break;
 
             case 3:
             //System.out.println("* User chose to toggle balanceAlerts *");
-            dS.toggleSettings(balanceAlerts, checkDOB, balanceAlerts, false, userProfileUsername);
+            dS.toggleSettings(balanceAlerts, checkDOB, balanceAlerts, lockNewAccounts, false, false, userProfileUsername);
             break;
 
-            case 4: 
+            case 4:
+            //System.out.println("* User chose to toggle balanceAlerts *");
+            dS.toggleSettings(lockNewAccounts, checkDOB, balanceAlerts, lockNewAccounts, false, true, userProfileUsername);
+            break;
+
+            case 5: 
             //System.out.println("* User chose to delete profile *");
             System.out.print("* Are you sure you want to delete your profile? ** THIS CANNOT BE UNDONE ** (y/n)\nInput: ");
             UInp.getUserInputChar('y', 'n');
             if (UInp.userInputChar == 'y') {
-                dS.deleteFile(userProfileUsername);
+                getInfoProperties(userProfilePath + profileUsername + "Info.properties");
+                dS.removeLogin(username, password, profID);
+                dS.deleteFolder(userProfilePath);
                 settingsRepeat = false;
                 deletedProfile = true;
             } 
             break;
 
-            case 5:
+            case 6:
             System.out.println("* User chose to exit settings *");
-            dS.writeProfileSettings(checkDOB, balanceAlerts, userProfileUsername);
+            dS.writeProfileSettings(checkDOB, balanceAlerts, lockNewAccounts, userProfileUsername);
             settingsRepeat = false;
             break;
         }
+    }
+    private void getInfoProperties(String userProfileUsername) {
+        try (InputStream fileInput = new FileInputStream(userProfileUsername)) {
+            prop.load(fileInput);
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
+
+        username = prop.getProperty("db.username");
+        password = prop.getProperty("db.password");
+        profID = prop.getProperty("db.profID");
     }
 }

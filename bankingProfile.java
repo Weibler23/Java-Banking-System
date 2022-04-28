@@ -6,6 +6,8 @@
 import java.util.Scanner;
 import java.time.LocalDate;
 import java.util.Random;
+import java.io.*;
+import java.util.*;
 
 public class bankingProfile {
     public String username;
@@ -14,6 +16,15 @@ public class bankingProfile {
     private String birthday;
     private int ID = 0;
     public boolean profileHS = true;
+    //private String profileUsername;
+    public boolean checkDOB;
+    public boolean balanceAlerts;
+    public boolean lockNewAccounts;
+    private String userProfilePath;
+    private String userProfileSettings;
+
+    // Create properties object
+    Properties prop = new Properties();
 
     // Create scanner object
 	Scanner input = new Scanner(System.in);
@@ -46,11 +57,17 @@ public class bankingProfile {
     public void openProfile() {
         UInp.getUserInputSecurity("ProfileLogin.txt");
 
+        userProfilePath = ("Profiles/" + UInp.username + "/");
+        userProfileSettings = userProfilePath + UInp.username + "Settings.properties";
+        dS.createFile(userProfileSettings);
+
+        parseProperties(userProfileSettings);
+
         do {
+            profileHS = true;
             org.ClearScreen();
             HS.profileHP(UInp.username, UInp.profID);
             UInp.getMenuInput(5, 1);
-            dS.createFile("Properties/" + UInp.username + " ProfileSettings.properties");
 
             switch (UInp.userInput) {
                 case 1:
@@ -62,18 +79,24 @@ public class bankingProfile {
 
                 case 2:
                 System.out.println("* User chose to open an account *\n");
-                Acc.openAccount();
+                //Acc.openAccount(balanceAlerts);
                 break;
 
                 case 3:
                 System.out.println("* User chose to open a new account *\n");
-                Acc.newAccount();
+                Acc.newAccount(lockNewAccounts, checkDOB);
                 break;
 
                 case 4:
                 System.out.println("* User chose to enter profile settings *\n");
                 do {
-                    profileSettings.openSettings(UInp.username);
+                    parseProperties(userProfileSettings);
+                    //System.out.println(//" DEBUG:: profileUsername: |" + profileUsername + "|\n" +
+                    //       " DEBUG:: userProfileUsername: |" + userProfileUsername + "|\n" +
+                    //       " DEBUG:: checkDOB: |" + checkDOB + "|\n" +
+                    //       " DEBUG:: balanceAlerts: |" + balanceAlerts + "|\n" +
+                    //       " DEBUG:: lockNewAccounts: |" + lockNewAccounts + "|\n");
+                    profileSettings.openSettings(UInp.username, userProfileSettings, userProfilePath, checkDOB, balanceAlerts, lockNewAccounts);
                 } while (profileSettings.settingsRepeat == true);
                 break;
 
@@ -112,10 +135,39 @@ public class bankingProfile {
         UInp.getUserInputString("next", false);
 
         dS.writeProfileLogin(username, password, sID);
+
+        userProfilePath = ("Profiles/" + username + "/");
+
+        // Create user profile directory
+        dS.createFolder("Profiles/" + username);
+
+        // Create user profileSettings.properties
+        dS.createFile(userProfilePath + username + "Settings.properties");
+        dS.writeProfileSettings(false, true, true, userProfilePath + username + "Settings.properties");
+
+        // Create user profileInfo.properties
+        dS.createFile(userProfilePath + username + "Info.properties");
+        dS.writeProfileInfo(username, password, sID, UInp.userAge, userProfilePath + username + "Info.properties");
+
     }
 
     public void profile(String username, String password) {
         System.out.println("\n* Username: " + username + " *\n" + 
                            "* Password: " + password + " *\n");
+    }
+
+    private void parseProperties(String userProfileUsername) {
+        try (InputStream fileInput = new FileInputStream(userProfileUsername)) {
+            prop.load(fileInput);
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
+
+        dS.parseBoolean(prop.getProperty("db.checkDOB"));
+        checkDOB = dS.parsedBoolean;
+        dS.parseBoolean(prop.getProperty("db.balanceAlerts"));
+        balanceAlerts = dS.parsedBoolean;
+        dS.parseBoolean(prop.getProperty("db.lockNewAccounts"));
+        lockNewAccounts = dS.parsedBoolean;
     }
 }
