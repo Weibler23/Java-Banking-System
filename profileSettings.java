@@ -7,8 +7,8 @@ import java.io.*;
 import java.util.*;
 
 public class profileSettings {
-    public static boolean settingsRepeat = true;
     public static boolean deletedProfile = false;
+    public static boolean settingsRepeat = true;
     private String username;
     private String password;
     private String profID;
@@ -83,6 +83,7 @@ public class profileSettings {
             break;
         }
     }
+    
     private void getInfoProperties(String userProfileUsername) {
         try (InputStream fileInput = new FileInputStream(userProfileUsername)) {
             prop.load(fileInput);
