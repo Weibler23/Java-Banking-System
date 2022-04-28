@@ -19,7 +19,6 @@ public class userInputs {
     public int userInput = 0;
     public int userAge;
     public char userInputChar;
-    private String userDate;
     private String userSecurity = "Wrong";
     private String DOB; 
     private String dateFormat = "MM-dd-yyyy";
