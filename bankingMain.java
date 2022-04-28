@@ -5,7 +5,7 @@
 // Created: 4/12/22
 
 public class bankingMain {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         boolean homeScreenRepeat = true;
         
         // Implement bankingProfile class
@@ -23,10 +23,7 @@ public class bankingMain {
         // Implement userInputs class
         userInputs UInp = new userInputs();
 
-        //dS.createFolder("Properties");
         dS.createFolder("Profiles");
-        //dS.createFolder("Profiles/Test");
-        //dS.createFile("Test/test.txt");
         
         do {
             org.ClearScreen();

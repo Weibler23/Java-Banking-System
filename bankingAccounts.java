@@ -17,6 +17,7 @@ public class bankingAccounts {
         if (lockNewAccounts) {
             System.out.println("* You are not able to create new accounts at this time *");
         } else if (checkDOB) {
+            
             HS.newAccountHP();
             UInp.getMenuInput(3,1);
         }

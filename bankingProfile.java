@@ -10,18 +10,17 @@ import java.io.*;
 import java.util.*;
 
 public class bankingProfile {
+    public boolean balanceAlerts;
+    public boolean checkDOB;
+    public boolean lockNewAccounts;
+    public boolean profileHS = true;
     public String username;
     public String password;
     public String sID;
     private String birthday;
-    private int ID = 0;
-    public boolean profileHS = true;
-    //private String profileUsername;
-    public boolean checkDOB;
-    public boolean balanceAlerts;
-    public boolean lockNewAccounts;
     private String userProfilePath;
     private String userProfileSettings;
+    private int ID = 0;
 
     // Create properties object
     Properties prop = new Properties();
@@ -47,14 +46,7 @@ public class bankingProfile {
     // Implement userInputs class
     userInputs UInp = new userInputs();
 
-    private void generateID() {
-        Random rand = new Random();
-        int UpperBound = 10000;
-        ID = rand.nextInt(UpperBound);
-        sID = Integer.toString(ID);
-    }
-
-    public void openProfile() {
+    public void openProfile() throws Exception {
         UInp.getUserInputSecurity("ProfileLogin.txt");
 
         userProfilePath = ("Profiles/" + UInp.username + "/");
@@ -154,6 +146,13 @@ public class bankingProfile {
     public void profile(String username, String password) {
         System.out.println("\n* Username: " + username + " *\n" + 
                            "* Password: " + password + " *\n");
+    }
+
+    private void generateID() {
+        Random rand = new Random();
+        int UpperBound = 10000;
+        ID = rand.nextInt(UpperBound);
+        sID = Integer.toString(ID);
     }
 
     private void parseProperties(String userProfileUsername) {

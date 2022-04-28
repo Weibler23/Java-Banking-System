@@ -28,6 +28,20 @@ public class homeScreen {
 		System.out.print("Input: ");
     }
 
+	public void profileHP (String profName, String profID) {
+		Frame(40, true); 
+		System.out.format("|%-38s|%n", profName);
+		System.out.format("|Profile ID: %-26s|%n", profID);
+		Frame(40, true);
+		System.out.print("|Enter (1) to see existing accounts    |\n" +
+						 "|Enter (2) to open an existing account |\n" +
+						 "|Enter (3) to create a new account     |\n" +
+						 "|Enter (4) to enter profile settings   |\n" +
+						 "|Enter (5) to return to home page      |\n");
+		Frame(40, true);
+		System.out.print("Input: ");
+    }
+
 	public void settingsHP (String profName, boolean checkDOB, boolean balanceAlerts, boolean lockNewAccounts) {
 		Frame(46, true);
 		System.out.format("|%-44s|%n", profName);
@@ -51,19 +65,7 @@ public class homeScreen {
 		System.out.print("Input: ");
 	}
 
-    public void profileHP (String profName, String profID) {
-		Frame(40, true); 
-		System.out.format("|%-38s|%n", profName);
-		System.out.format("|Profile ID: %-26s|%n", profID);
-		Frame(40, true);
-		System.out.print("|Enter (1) to see existing accounts    |\n" +
-						 "|Enter (2) to open an existing account |\n" +
-						 "|Enter (3) to create a new account     |\n" +
-						 "|Enter (4) to enter profile settings   |\n" +
-						 "|Enter (5) to return to home page      |\n");
-		Frame(40, true);
-		System.out.print("Input: ");
-    }
+    
 
     public void accountHP (String accName, double balance) {
 		Frame(44, true);
