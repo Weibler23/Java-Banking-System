@@ -9,6 +9,9 @@ import java.util.*;
 public class profileSettings {
     public static boolean settingsRepeat = true;
     public static boolean deletedProfile = false;
+    private String username;
+    private String password;
+    private String profID;
 
     // Create properties object
     Properties prop = new Properties();
@@ -65,7 +68,8 @@ public class profileSettings {
             System.out.print("* Are you sure you want to delete your profile? ** THIS CANNOT BE UNDONE ** (y/n)\nInput: ");
             UInp.getUserInputChar('y', 'n');
             if (UInp.userInputChar == 'y') {
-                dS.removeLogin(UInp.username, UInp.password, UInp.profID);
+                getInfoProperties(userProfilePath + profileUsername + "Info.properties");
+                dS.removeLogin(username, password, profID);
                 dS.deleteFolder(userProfilePath);
                 settingsRepeat = false;
                 deletedProfile = true;
@@ -78,5 +82,16 @@ public class profileSettings {
             settingsRepeat = false;
             break;
         }
+    }
+    private void getInfoProperties(String userProfileUsername) {
+        try (InputStream fileInput = new FileInputStream(userProfileUsername)) {
+            prop.load(fileInput);
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
+
+        username = prop.getProperty("db.username");
+        password = prop.getProperty("db.password");
+        profID = prop.getProperty("db.profID");
     }
 }

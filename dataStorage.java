@@ -184,7 +184,15 @@ public class dataStorage {
         }
     }
 
-    public void removeLogin(String username, String password, String ID) {
+    public void deleteFile(String fileName) {
+        File file = new File(fileName);
+        if (file.delete()) {
+        } else {
+            System.out.println(" DEBUG:: File: " + file.getName() + " could not be deleted ");
+        }
+    }
+
+    public void removeLogin(String username, String password, String ID) throws Exception{
         createFile("delete.txt");
         try {
             FileWriter myWriter = new FileWriter("delete.txt");
@@ -223,8 +231,34 @@ public class dataStorage {
             br1.close();
             br2.close();
             pw.close();
+
+            File src = new File("output.txt");
+            File rep = new File("ProfileLogin.txt");
+
+            copyFile(src, rep);
+            deleteFile("output.txt");
+            deleteFile("delete.txt");
+
         } catch (IOException e) {
         }
-        
     }
+
+    private static void copyFile(File fileNameSource, File fileNameReplace) throws Exception {
+        FileInputStream in = new FileInputStream(fileNameSource);
+        FileOutputStream out = new FileOutputStream(fileNameReplace);
+        try {
+            int i;
+            while ((i = in.read()) != -1) {
+                out.write(i);
+            }
+        } catch (IOException e) {
+        } finally {
+            if (in != null) {
+                in.close();
+            } if (out != null) {
+                out.close();
+            }
+        }
+    }
+
 }

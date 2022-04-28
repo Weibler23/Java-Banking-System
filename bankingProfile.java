@@ -156,17 +156,17 @@ public class bankingProfile {
     }
 
     private void parseProperties(String userProfileUsername) {
-    try (InputStream fileInput = new FileInputStream(userProfileUsername)) {
-        prop.load(fileInput);
-    } catch (IOException io) {
-        io.printStackTrace();
-    }
+        try (InputStream fileInput = new FileInputStream(userProfileUsername)) {
+            prop.load(fileInput);
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
 
-    dS.parseBoolean(prop.getProperty("db.checkDOB"));
-    checkDOB = dS.parsedBoolean;
-    dS.parseBoolean(prop.getProperty("db.balanceAlerts"));
-    balanceAlerts = dS.parsedBoolean;
-    dS.parseBoolean(prop.getProperty("db.lockNewAccounts"));
-    lockNewAccounts = dS.parsedBoolean;
-}
+        dS.parseBoolean(prop.getProperty("db.checkDOB"));
+        checkDOB = dS.parsedBoolean;
+        dS.parseBoolean(prop.getProperty("db.balanceAlerts"));
+        balanceAlerts = dS.parsedBoolean;
+        dS.parseBoolean(prop.getProperty("db.lockNewAccounts"));
+        lockNewAccounts = dS.parsedBoolean;
+    }
 }
