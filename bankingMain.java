@@ -5,7 +5,7 @@
 // Created: 4/12/22
 
 public class bankingMain {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         boolean homeScreenRepeat = true;
         
         // Implement bankingProfile class

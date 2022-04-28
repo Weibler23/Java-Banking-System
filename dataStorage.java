@@ -135,7 +135,7 @@ public class dataStorage {
         }
     }
 
-    public void removeLogin(String username, String password, String ID) throws Exception{
+    public void removeLogin (String username, String password, String ID) throws Exception{
         createFile("delete.txt");
         try {
             FileWriter myWriter = new FileWriter("delete.txt");

@@ -28,7 +28,7 @@ public class profileSettings {
     // Implement userInputs class
     userInputs UInp = new userInputs();
 
-    public void openSettings(String profileUsername, String userProfileUsername, String userProfilePath, boolean checkDOB, boolean balanceAlerts, boolean lockNewAccounts) {
+    public void openSettings(String profileUsername, String userProfileUsername, String userProfilePath, boolean checkDOB, boolean balanceAlerts, boolean lockNewAccounts) throws Exception {
         settingsRepeat = true;
 
         org.ClearScreen();
@@ -87,12 +87,11 @@ public class profileSettings {
     private void getInfoProperties(String userProfileUsername) {
         try (InputStream fileInput = new FileInputStream(userProfileUsername)) {
             prop.load(fileInput);
+            username = prop.getProperty("db.username");
+            password = prop.getProperty("db.password");
+            profID = prop.getProperty("db.profID");
         } catch (IOException io) {
             io.printStackTrace();
-        }
-
-        username = prop.getProperty("db.username");
-        password = prop.getProperty("db.password");
-        profID = prop.getProperty("db.profID");
+        } 
     }
 }

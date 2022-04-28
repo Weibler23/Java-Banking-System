@@ -46,7 +46,7 @@ public class bankingProfile {
     // Implement userInputs class
     userInputs UInp = new userInputs();
 
-    public void openProfile() {
+    public void openProfile() throws Exception {
         UInp.getUserInputSecurity("ProfileLogin.txt");
 
         userProfilePath = ("Profiles/" + UInp.username + "/");
