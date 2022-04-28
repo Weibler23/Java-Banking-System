@@ -10,10 +10,10 @@ import java.io.*;
 import java.util.*;
 
 public class bankingProfile {
-    public boolean profileHS = true;
-    public boolean checkDOB;
     public boolean balanceAlerts;
+    public boolean checkDOB;
     public boolean lockNewAccounts;
+    public boolean profileHS = true;
     public String username;
     public String password;
     public String sID;
@@ -45,13 +45,6 @@ public class bankingProfile {
 
     // Implement userInputs class
     userInputs UInp = new userInputs();
-
-    private void generateID() {
-        Random rand = new Random();
-        int UpperBound = 10000;
-        ID = rand.nextInt(UpperBound);
-        sID = Integer.toString(ID);
-    }
 
     public void openProfile() {
         UInp.getUserInputSecurity("ProfileLogin.txt");
@@ -153,6 +146,13 @@ public class bankingProfile {
     public void profile(String username, String password) {
         System.out.println("\n* Username: " + username + " *\n" + 
                            "* Password: " + password + " *\n");
+    }
+
+    private void generateID() {
+        Random rand = new Random();
+        int UpperBound = 10000;
+        ID = rand.nextInt(UpperBound);
+        sID = Integer.toString(ID);
     }
 
     private void parseProperties(String userProfileUsername) {
