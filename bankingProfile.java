@@ -64,6 +64,7 @@ public class bankingProfile {
         parseProperties(userProfileSettings);
 
         do {
+            profileHS = true;
             org.ClearScreen();
             HS.profileHP(UInp.username, UInp.profID);
             UInp.getMenuInput(5, 1);
