@@ -10,18 +10,17 @@ import java.io.*;
 import java.util.*;
 
 public class bankingProfile {
+    public boolean profileHS = true;
+    public boolean checkDOB;
+    public boolean balanceAlerts;
+    public boolean lockNewAccounts;
     public String username;
     public String password;
     public String sID;
     private String birthday;
-    private int ID = 0;
-    public boolean profileHS = true;
-    //private String profileUsername;
-    public boolean checkDOB;
-    public boolean balanceAlerts;
-    public boolean lockNewAccounts;
     private String userProfilePath;
     private String userProfileSettings;
+    private int ID = 0;
 
     // Create properties object
     Properties prop = new Properties();
