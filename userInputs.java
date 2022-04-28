@@ -9,20 +9,20 @@ import java.text.*;
 import java.time.*;
 
 public class userInputs {
-    private String userDate;
-    private String userSecurity = "Wrong";
-    private String DOB; 
-    private String dateFormat = "MM-dd-yyyy";
+    public boolean invalidProfLogin = true;
     public String username;
     public String password; 
     public String profID; 
     public String userInputString = "Wrong";
+    public double userInputBalance = 0;
+    public Date userDOB = null;
     public int userInput = 0;
     public int userAge;
-    public double userInputBalance = 0;
     public char userInputChar;
-    public Date userDOB = null;
-    public boolean invalidProfLogin = true;
+    private String userDate;
+    private String userSecurity = "Wrong";
+    private String DOB; 
+    private String dateFormat = "MM-dd-yyyy";
 
     // Create scanner object
     Scanner input = new Scanner(System.in);
