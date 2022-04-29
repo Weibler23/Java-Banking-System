@@ -28,7 +28,7 @@ public class profileSettings {
     // Implement userInputs class
     userInputs UInp = new userInputs();
 
-    public void openSettings(String profileUsername, String userProfileUsername, String userProfilePath, boolean checkDOB, boolean balanceAlerts, boolean lockNewAccounts) throws Exception {
+    public void openSettings(String profileUsername, String userProfileUsername, String userProfilePath, boolean checkDOB, boolean balanceAlerts, boolean lockNewAccounts, boolean allowForeignCurrency) throws Exception {
         settingsRepeat = true;
 
         org.ClearScreen();
@@ -38,8 +38,8 @@ public class profileSettings {
         //                   " DEBUG:: balanceAlerts: |" + balanceAlerts + "|\n" +
         //                   " DEBUG:: lockNewAccounts: |" + lockNewAccounts + "|\n");
 
-        HS.settingsHP(profileUsername, checkDOB, balanceAlerts, lockNewAccounts);
-        UInp.getMenuInput(6,1);
+        HS.settingsHP(profileUsername, checkDOB, balanceAlerts, lockNewAccounts, allowForeignCurrency);
+        UInp.getMenuInput(7,1);
         switch(UInp.userInput) {   
             case 1:
             //System.out.println("* User chose to see settings information *");
@@ -50,20 +50,24 @@ public class profileSettings {
 
             case 2:
             //System.out.println("* User chose to toggle balanceAlerts *");
-            dS.toggleSettings(checkDOB, checkDOB, balanceAlerts, lockNewAccounts, true, false, userProfileUsername);
+            dS.toggleSettings(checkDOB, checkDOB, balanceAlerts, lockNewAccounts, allowForeignCurrency, true, false, false, userProfileUsername);
             break;
 
             case 3:
             //System.out.println("* User chose to toggle balanceAlerts *");
-            dS.toggleSettings(balanceAlerts, checkDOB, balanceAlerts, lockNewAccounts, false, false, userProfileUsername);
+            dS.toggleSettings(balanceAlerts, checkDOB, balanceAlerts, lockNewAccounts, allowForeignCurrency, false, false, false, userProfileUsername);
             break;
 
             case 4:
             //System.out.println("* User chose to toggle balanceAlerts *");
-            dS.toggleSettings(lockNewAccounts, checkDOB, balanceAlerts, lockNewAccounts, false, true, userProfileUsername);
+            dS.toggleSettings(lockNewAccounts, checkDOB, balanceAlerts, lockNewAccounts, allowForeignCurrency, false, true, false, userProfileUsername);
             break;
 
             case 5: 
+            dS.toggleSettings(allowForeignCurrency, checkDOB, balanceAlerts, lockNewAccounts, allowForeignCurrency, false, false, true, userProfileUsername);
+            break;
+
+            case 6: 
             //System.out.println("* User chose to delete profile *");
             System.out.print("* Are you sure you want to delete your profile? ** THIS CANNOT BE UNDONE ** (y/n)\nInput: ");
             UInp.getUserInputChar('y', 'n');
@@ -76,9 +80,9 @@ public class profileSettings {
             } 
             break;
 
-            case 6:
+            case 7:
             System.out.println("* User chose to exit settings *");
-            dS.writeProfileSettings(checkDOB, balanceAlerts, lockNewAccounts, userProfileUsername);
+            dS.writeProfileSettings(checkDOB, balanceAlerts, lockNewAccounts, allowForeignCurrency, userProfileUsername);
             settingsRepeat = false;
             break;
         }

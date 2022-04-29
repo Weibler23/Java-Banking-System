@@ -204,6 +204,7 @@ public class dataStorage {
         prop.setProperty("db.checkDOB", "checkDOB");
         prop.setProperty("db.balanceAlerts", "balanceAlerts");
         prop.setProperty("db.lockNewAccounts", "lockNewAccounts");
+        prop.setProperty("db.allowForeignCurrency", "allowForeignCurrency");
         //prop.setProperty("db.userAge", "0");
 
         prop.keySet();
@@ -226,33 +227,38 @@ public class dataStorage {
         }
     }
 
-    public void writeProfileSettings(boolean checkDOB, boolean balanceAlerts, boolean lockNewAccounts, String fileName) {
+    public void writeProfileSettings(boolean checkDOB, boolean balanceAlerts, boolean lockNewAccounts, boolean allowForeignCurrency, String fileName) {
         try (OutputStream output = new FileOutputStream(fileName)) {
             String str1 = Boolean.toString(checkDOB);
             String str2 = Boolean.toString(balanceAlerts);
             String str3 = Boolean.toString(lockNewAccounts);
+            String str4 = Boolean.toString(allowForeignCurrency);
             prop.setProperty("db.checkDOB", str1);
             prop.setProperty("db.balanceAlerts", str2);
             prop.setProperty("db.lockNewAccounts", str3);
+            prop.setProperty("db.allowForeignCurrency", str4);
             prop.store(output, null);
         } catch (IOException io) {
             io.printStackTrace();
         }
     }
 
-    public boolean toggleSettings(boolean toggleSet, boolean checkDOB, boolean balanceAlerts, boolean lockNewAccounts, boolean DOB, boolean LNA, String fileName) {
+    public boolean toggleSettings(boolean toggleSet, boolean checkDOB, boolean balanceAlerts, boolean lockNewAccounts, boolean allowForeignCurrency, boolean DOB, boolean LNA, boolean AFC, String fileName) {
         toggleSet = ! toggleSet; 
         //System.out.println(" DEBUG:: toggledSet = |" + toggleSet + "|");
         if (DOB == true) {
             //System.out.println(" DEBUG:: DOB is set to true");
-            writeProfileSettings(toggleSet, balanceAlerts, lockNewAccounts, fileName);
+            writeProfileSettings(toggleSet, balanceAlerts, lockNewAccounts, allowForeignCurrency, fileName);
         } else {
             //System.out.println(" DEBUG:: DOB is set to false");
-            writeProfileSettings(checkDOB, toggleSet, lockNewAccounts, fileName);
+            writeProfileSettings(checkDOB, toggleSet, lockNewAccounts, allowForeignCurrency, fileName);
         }
         if (LNA == true) {
-            writeProfileSettings(checkDOB, balanceAlerts, toggleSet, fileName);
+            writeProfileSettings(checkDOB, balanceAlerts, toggleSet, allowForeignCurrency, fileName);
         } 
+        if (AFC == true) {
+            writeProfileSettings(checkDOB, balanceAlerts, lockNewAccounts, toggleSet, fileName);
+        }
 
         return true;
     }

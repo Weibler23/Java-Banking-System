@@ -42,7 +42,7 @@ public class homeScreen {
 		System.out.print("Input: ");
     }
 
-	public void settingsHP (String profName, boolean checkDOB, boolean balanceAlerts, boolean lockNewAccounts) {
+	public void settingsHP (String profName, boolean checkDOB, boolean balanceAlerts, boolean lockNewAccounts, boolean allowForeignCurrency) {
 		Frame(46, true);
 		System.out.format("|%-44s|%n", profName);
 		Frame(46, true);
@@ -59,8 +59,12 @@ public class homeScreen {
 		} else {
 			System.out.format("|Enter (4) to toggle lockNewAccounts:: " + ANSI_RED + "%-10s|%n", lockNewAccounts + ANSI_RESET);
 		}
-		System.out.print("|Enter (5) to delete profile                 |\n");
-		System.out.print("|Enter (6) to return to profile home page    |\n");
+		if (allowForeignCurrency == true) {System.out.format("|Enter (5) to toggle allowForeignCurrency:: " + ANSI_GREEN + "%-10s|%n", allowForeignCurrency + ANSI_RESET);	
+		} else {
+			System.out.format("|Enter (5) to toggle allowForeignCurrency:: " + ANSI_RED + "%-10s|%n", allowForeignCurrency + ANSI_RESET);
+		}
+		System.out.print("|Enter (6) to delete profile                 |\n");
+		System.out.print("|Enter (7) to return to profile home page    |\n");
 		Frame(46, true);
 		System.out.print("Input: ");
 	}

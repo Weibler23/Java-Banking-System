@@ -10,6 +10,7 @@ import java.io.*;
 import java.util.*;
 
 public class bankingProfile {
+    public boolean allowForeignCurrency;
     public boolean balanceAlerts;
     public boolean checkDOB;
     public boolean lockNewAccounts;
@@ -88,7 +89,7 @@ public class bankingProfile {
                     //       " DEBUG:: checkDOB: |" + checkDOB + "|\n" +
                     //       " DEBUG:: balanceAlerts: |" + balanceAlerts + "|\n" +
                     //       " DEBUG:: lockNewAccounts: |" + lockNewAccounts + "|\n");
-                    profileSettings.openSettings(UInp.username, userProfileSettings, userProfilePath, checkDOB, balanceAlerts, lockNewAccounts);
+                    profileSettings.openSettings(UInp.username, userProfileSettings, userProfilePath, checkDOB, balanceAlerts, lockNewAccounts, allowForeignCurrency);
                 } while (profileSettings.settingsRepeat == true);
                 break;
 
@@ -135,7 +136,7 @@ public class bankingProfile {
 
         // Create user profileSettings.properties
         dS.createFile(userProfilePath + username + "Settings.properties");
-        dS.writeProfileSettings(false, true, true, userProfilePath + username + "Settings.properties");
+        dS.writeProfileSettings(false, true, true, false, userProfilePath + username + "Settings.properties");
 
         // Create user profileInfo.properties
         dS.createFile(userProfilePath + username + "Info.properties");
@@ -168,5 +169,7 @@ public class bankingProfile {
         balanceAlerts = dS.parsedBoolean;
         dS.parseBoolean(prop.getProperty("db.lockNewAccounts"));
         lockNewAccounts = dS.parsedBoolean;
+        dS.parseBoolean(prop.getProperty("db.allowForeignCurrency"));
+        allowForeignCurrency = dS.parsedBoolean; 
     }
 }
