@@ -82,7 +82,7 @@ public class bankingProfile {
 
                 case 3:
                 System.out.println("* User chose to open a new account *\n");
-                Acc.newAccount(lockNewAccounts, checkDOB, age);
+                Acc.newAccount(lockNewAccounts, checkDOB, age, UInp.username);
                 break;
 
                 case 4:
@@ -147,6 +147,8 @@ public class bankingProfile {
         dS.createFile(userProfilePath + username + "Info.properties");
         dS.writeProfileInfo(username, password, sID, UInp.userAge, userProfilePath + username + "Info.properties");
 
+        // Create account Folder
+        dS.createFolder(userProfilePath + "Accounts");
     }
 
     public void profile(String username, String password) {
