@@ -21,7 +21,10 @@ public class bankingProfile {
     private String birthday;
     private String userProfilePath;
     private String userProfileSettings;
+    private String userProfileInfo;
+    private String SAge;
     private int ID = 0;
+    private int age;
 
     // Create properties object
     Properties prop = new Properties();
@@ -52,9 +55,11 @@ public class bankingProfile {
 
         userProfilePath = ("Profiles/" + UInp.username + "/");
         userProfileSettings = userProfilePath + UInp.username + "Settings.properties";
+        userProfileInfo = userProfilePath + UInp.username + "Info.properties";
         dS.createFile(userProfileSettings);
 
         parseProperties(userProfileSettings);
+        parseInfo(userProfileInfo);
 
         do {
             profileHS = true;
@@ -77,7 +82,7 @@ public class bankingProfile {
 
                 case 3:
                 System.out.println("* User chose to open a new account *\n");
-                Acc.newAccount(lockNewAccounts, checkDOB);
+                Acc.newAccount(lockNewAccounts, checkDOB, age);
                 break;
 
                 case 4:
@@ -171,5 +176,16 @@ public class bankingProfile {
         lockNewAccounts = dS.parsedBoolean;
         dS.parseBoolean(prop.getProperty("db.allowForeignCurrency"));
         allowForeignCurrency = dS.parsedBoolean; 
+    }
+
+    private void parseInfo(String userProfileInfo) {
+        try (InputStream fileInput = new FileInputStream(userProfileInfo)) {
+            prop.load(fileInput);
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
+
+        SAge = prop.getProperty("db.age");
+        age = Integer.parseInt(SAge);
     }
 }

@@ -6,6 +6,7 @@
 public class bankingAccounts {
     private String account = "Test1";
     private double balance = 1;
+    private boolean DOBCheckValid;
 
     // Implement homeScreen class
     homeScreen HS = new homeScreen(); 
@@ -13,13 +14,24 @@ public class bankingAccounts {
     // Implement userInputs class
     userInputs UInp = new userInputs();
 
-    public void newAccount(boolean lockNewAccounts, boolean checkDOB) {
-        if (lockNewAccounts) {
-            System.out.println("* You are not able to create new accounts at this time *");
-        } else if (checkDOB) {
-            
-            HS.newAccountHP();
-            UInp.getMenuInput(3,1);
+    public void newAccount(boolean lockNewAccounts, boolean checkDOB, int age) {
+        if (lockNewAccounts == false) {
+            if (checkDOB) {
+                if (age < 16) {
+                    System.out.println("* User is too young to create an account *");
+                    try {Thread.sleep(7000);} catch (InterruptedException ex) {}
+                } else {
+                    System.out.println(" DEBUG:: User is able to create an account");
+                    try {Thread.sleep(7000);} catch (InterruptedException ex) {}
+                }
+            }
+            if (checkDOB == false) {
+                System.out.println(" DEBUG:: User is able to create an account");
+                try {Thread.sleep(7000);} catch (InterruptedException ex) {}
+            }
+        } else {
+            System.out.println("* You are not allowed to create accounts *");
+            try {Thread.sleep(7000);} catch (InterruptedException ex) {}
         }
     }
 
@@ -31,6 +43,7 @@ public class bankingAccounts {
     private void createAccount(boolean checkDOB, boolean balanceAlerts, String accountType, String profileUsername) {
 
     }
+
 }
 
         /* Move to Account
