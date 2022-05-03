@@ -45,11 +45,11 @@ public class dataStorage {
         }
     }
 
-    public void checkifFileExists(String fileName) {
+    public boolean checkifFileExists(String fileName) {
         File tempFile = new File(fileName); 
         fileExists = tempFile.exists();
-        System.out.println(" DEBUG:: tempFile.exists = |" + fileExists + "|");
         System.out.println(" DEBUG:: fileExists = |" + fileExists + "|");
+        return true;
     }
 
     public void readFullFile(String fileName) {

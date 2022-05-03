@@ -24,7 +24,7 @@ public class userInputs {
     private String accountPath;
     private String DOB; 
     private String dateFormat = "MM-dd-yyyy";
-    private boolean fileExists;
+    public boolean fileExists;
 
     // Create scanner object
     Scanner input = new Scanner(System.in);

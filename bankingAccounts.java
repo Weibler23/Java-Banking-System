@@ -69,12 +69,28 @@ public class bankingAccounts {
         accName = input.nextLine();
 
         UInp.getUserInputAccount(username, accName);
-        System.out.println(" DEBUG:: dS.fileExists = |" + dS.fileExists + "|");
-        if (dS.fileExists == true) {
+        System.out.println(" DEBUG:: dS.fileExists = |" + UInp.fileExists + "|");
+        if (UInp.fileExists == true) {
             parseAccInfo("Profiles/" + username + "/Accounts/" + accName + ".properties");
             org.ClearScreen();
             HS.accountHP(accName, balance);
             UInp.getMenuInput(5, 1);
+            switch (UInp.userInput) {
+                case 1:
+                break;
+
+                case 2:
+                break;
+                
+                case 3:
+                break;
+
+                case 4:
+                break;
+
+                case 5:
+                break;
+            }
         } else {
             System.out.println ("* That account does not exist. Please try again *");
             try {Thread.sleep(3000);} catch (InterruptedException ex) {}

@@ -1,8 +1,14 @@
 Settings Information
 
-checkDOB - if true, then creating certain accounts will require the user to be over a set age. 
-         - if false, then there is no age restriction on any account
+checkDOB  - if true, then creating certain accounts will require the user to be over 16 
+DEF(true) - if false, then there is no age restriction on any account
          
 balanceAlerts - if true, then user will be be notified when their balance reaches below $50 
-              - if false, then user will not recieve any notifications when their balance reaches below $50
+DEF(true)     - if false, then user will not recieve any notifications when their balance reaches below $50
+
+lockNewAccounts - if true, then user will not be able to create any new accounts
+DEF(false)      - if false, then user will be able to create new accounts
               
+allowForeignCurrency - if true, then user will be able to transfer funds to or from currencies other than USD
+DEF(false)           - if false, then user will only be able to transfer funds in USD 
+ 

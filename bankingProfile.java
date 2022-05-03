@@ -141,7 +141,7 @@ public class bankingProfile {
 
         // Create user profileSettings.properties
         dS.createFile(userProfilePath + username + "Settings.properties");
-        dS.writeProfileSettings(false, true, true, false, userProfilePath + username + "Settings.properties");
+        dS.writeProfileSettings(true, true, false, false, userProfilePath + username + "Settings.properties");
 
         // Create user profileInfo.properties
         dS.createFile(userProfilePath + username + "Info.properties");
