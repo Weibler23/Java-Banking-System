@@ -7,6 +7,9 @@ import java.util.*;
 import java.io.*;
 
 public class homeScreen {
+	// Implement dataStorage class
+    dataStorage dS = new dataStorage();
+
 	private static final String ANSI_RESET = "\u001B[0m";
 	private static final String ANSI_RED = "\u001B[31m";
 	private static final String ANSI_GREEN = "\u001B[32m";
@@ -28,16 +31,19 @@ public class homeScreen {
 		System.out.print("Input: ");
     }
 
-	public void profileHP (String profName, String profID) {
+	public void profileHP (String profName, String profID, String folderPath) {
 		Frame(40, true); 
 		System.out.format("|%-38s|%n", profName);
 		System.out.format("|Profile ID: %-26s|%n", profID);
 		Frame(40, true);
-		System.out.print("|Enter (1) to see existing accounts    |\n" +
-						 "|Enter (2) to open an existing account |\n" +
-						 "|Enter (3) to create a new account     |\n" +
-						 "|Enter (4) to enter profile settings   |\n" +
-						 "|Enter (5) to return to home page      |\n");
+		System.out.print("|               Accounts               |\n");
+		Frame(40, true);
+		dS.listDirectoryFiles(folderPath, false);
+		Frame(40, true);
+		System.out.print("|Enter (1) to open an existing account |\n" +
+						 "|Enter (2) to create a new account     |\n" +
+						 "|Enter (3) to enter profile settings   |\n" +
+						 "|Enter (4) to return to home page      |\n");
 		Frame(40, true);
 		System.out.print("Input: ");
     }
@@ -88,7 +94,7 @@ public class homeScreen {
 	public void newAccountHP () {
 		Frame(33, true);
 		System.out.print("|Enter (1) to create an account |\n" +
-						 "|Enter (3) to exit              |\n");
+						 "|Enter (2) to exit              |\n");
 		Frame(33, true);
 		System.out.print("Input: ");
 	}

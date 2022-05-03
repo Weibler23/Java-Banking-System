@@ -4,14 +4,19 @@
 // Created: 4/14/22
 
 import java.util.*;
+import java.io.*;
 
 public class bankingAccounts {
     public String accName;
     private String account = "Test1";
     private String accountPath;
+    private String SBalance;
     private double balance = 1;
     private boolean DOBCheckValid;
     private boolean ableToCreateAccount;
+
+    // Create properties object
+    Properties prop = new Properties();
 
     // Create scanner object
 	Scanner input = new Scanner(System.in);
@@ -55,12 +60,18 @@ public class bankingAccounts {
         }
     }
 
-    public void openAccount() {
-        HS.accountHP(account, balance);
+    public void openAccount(String username) {
+        System.out.print("\n|Enter the account name you want to open |\n" +
+                         "Input: ");
+        accName = input.nextLine();
+
+        parseAccInfo("Profiles/" + username + "/Accounts/" + accName + ".properties");
+        UInp.getUserInputAccount(username, accName);
+        HS.accountHP(accName, balance);
         UInp.getMenuInput(5, 1);
     }
 
-    private void createAccount (String username) {
+    private void createAccount(String username) {
         HS.newAccountHP();
         UInp.getMenuInput(2,1);
         switch (UInp.userInput) {
@@ -82,12 +93,15 @@ public class bankingAccounts {
             break;
         }
     }
+
+    private void parseAccInfo(String accountPath) {
+        try (InputStream fileInput = new FileInputStream(accountPath)) {
+            prop.load(fileInput);
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
+
+        SBalance = prop.getProperty("db.accountBalance");
+        balance = Double.parseDouble(SBalance);
+    }
 }
-
-        /* Move to Account
-        System.out.print("\n|Enter your balance |\n" +
-                           "Input: ");
-        UInp.getUserInputBalance(0);
-        */
-
-                //System.out.println("* Your balance is: $" + UInp.userInputBalance + " *");

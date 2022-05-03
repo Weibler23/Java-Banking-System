@@ -64,28 +64,27 @@ public class bankingProfile {
         do {
             profileHS = true;
             org.ClearScreen();
-            HS.profileHP(UInp.username, UInp.profID);
-            UInp.getMenuInput(5, 1);
+            HS.profileHP(UInp.username, UInp.profID, userProfilePath + "Accounts");
+            UInp.getMenuInput(4, 1);
 
             switch (UInp.userInput) {
                 case 1:
-                System.out.println("* User chose to see all existing accounts *\n");
-
-                // DEBUG
-                System.exit(0);
+                dS.checkFolderisEmpty(userProfilePath + "Accounts");
+                if (dS.folderIsEmpty == true) {
+                    org.ClearScreen();
+                    System.out.println ("* No accounts exist. Please create a new account *");
+                    Acc.newAccount(lockNewAccounts, checkDOB, age, UInp.username);
+                } else {
+                    Acc.openAccount(UInp.username);
+                }
                 break;
 
                 case 2:
-                System.out.println("* User chose to open an account *\n");
-                //Acc.openAccount(balanceAlerts);
-                break;
-
-                case 3:
                 System.out.println("* User chose to open a new account *\n");
                 Acc.newAccount(lockNewAccounts, checkDOB, age, UInp.username);
                 break;
 
-                case 4:
+                case 3:
                 System.out.println("* User chose to enter profile settings *\n");
                 do {
                     parseProperties(userProfileSettings);
@@ -98,7 +97,7 @@ public class bankingProfile {
                 } while (profileSettings.settingsRepeat == true);
                 break;
 
-                case 5:
+                case 4:
                 System.out.println("* User chose to return to home page *\n");
                 profileHS = false;
                 break;

@@ -20,8 +20,11 @@ public class userInputs {
     public int userAge;
     public char userInputChar;
     private String userSecurity = "Wrong";
+    private String accountName;
+    private String accountPath;
     private String DOB; 
     private String dateFormat = "MM-dd-yyyy";
+    private boolean fileExists;
 
     // Create scanner object
     Scanner input = new Scanner(System.in);
@@ -116,6 +119,19 @@ public class userInputs {
             }
         } while (failCheck); 
         return userSecurity;
+    }
+
+    public String getUserInputAccount(String username, String accName) {
+        fileExists = false;
+        accountPath = ("Profiles/" + username + "/Accounts/" + accName + ".properties");
+        System.out.println(" DEBUG:: accountPath: |" + accountPath + "|");
+
+        try (InputStream fileInput = new FileInputStream(accountPath)) {
+            fileExists = true;
+        } catch (IOException io) {
+            System.out.println("* This account does not exist *");
+        }
+        return accountPath;
     }
 
     public char getUserInputChar(char char1, char char2) {

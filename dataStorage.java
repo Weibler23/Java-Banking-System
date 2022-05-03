@@ -9,6 +9,7 @@ import java.util.*;
 
 public class dataStorage {
     public boolean fileIsEmpty;
+    public boolean folderIsEmpty;
     public boolean found = false;
     public boolean parsedBoolean;
     public boolean toggledSet;
@@ -22,9 +23,9 @@ public class dataStorage {
         try {
             File createFile = new File(fileName);
             if (createFile.createNewFile()) {
-                System.out.println(" DEBUG:: File Created: " + createFile.getName());
+                //System.out.println(" DEBUG:: File Created: " + createFile.getName());
             } else {
-                System.out.println(" DEBUG:: File " + createFile.getName() + " already exists ");
+                //System.out.println(" DEBUG:: File " + createFile.getName() + " already exists ");
             }
         } catch (IOException e) {
             System.out.println(" DEBUG:: ERROR CREATING FILE ");
@@ -80,16 +81,47 @@ public class dataStorage {
     }
 
     // Folder Manipulation
-    public void createFolder (String folderName) {
+    public void createFolder(String folderName) {
         File createFolder = new File(folderName);
         boolean bool = createFolder.mkdirs();
         if(bool == false) System.out.println(" DEBUG:: ERROR CREATING FOLDER: " + createFolder.getName());
+    }
+
+    public void checkFolderisEmpty(String directoryName) {
+        File directory = new File(directoryName);
+        if (directory.isDirectory()) {
+            String[] files = directory.list();
+            if (directory.length() > 0) {
+                //System.out.println(" DEBUG:: FILE: " + testFile.getName() + " is empty ");
+                folderIsEmpty = true;
+            } else {
+                //System.out.println(" DEBUG:: FILE: " + testFile.getName() + " is not empty ");
+                folderIsEmpty = false; 
+            }
+        } 
     }
     
     public void deleteFolder(String folderPath) {
         File file = new File (folderPath);
         deleteDirectory(file);
         file.delete();
+    }
+
+    public void listDirectoryFiles(String folderPath, boolean menu) {
+        String[] pathnames;
+
+        File f = new File(folderPath);
+        pathnames = f.list();
+
+        if (menu == false) {
+            for (String pathname : pathnames) {
+                System.out.format("|-%-37s|%n", pathname);
+            }
+        } else {
+            for (String pathname : pathnames) {
+                System.out.println(pathname);
+            }
+        }
     }
 
     private void deleteDirectory(File file) {
