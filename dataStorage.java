@@ -189,16 +189,16 @@ public class dataStorage {
         }
     }
 
-    public void writeAccountTransfers (boolean addition, double difference, double newBalance, String filePath) {
+    public void writeAccountTransfers (boolean addition, double OGBalance, double difference, double newBalance, String filePath) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
         LocalDateTime now = LocalDateTime.now();  
         String date = dtf.format(now);  
         try {
             FileWriter myWriter = new FileWriter(filePath, true);
             if (addition == true) {
-                myWriter.write(date + ", + $" + difference + ", $" + newBalance + "\n");
+                myWriter.write(date + ", $" + OGBalance + ", + $" + difference + ", $" + newBalance + "\n");
             } else {
-                myWriter.write(date + ", - $" + difference + ", $" + newBalance + "\n");
+                myWriter.write(date + ", $" + OGBalance + ", + $" + difference + ", $" + newBalance + "\n");
             }
             myWriter.close();
         } catch (IOException e) {

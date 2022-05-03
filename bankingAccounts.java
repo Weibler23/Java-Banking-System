@@ -93,7 +93,7 @@ public class bankingAccounts {
                         UInp.getUserInputBalance(0);
                         newBalance = balance + UInp.userInputBalance;
                         dS.writeAccountInfo(accName, newBalance, accountPath);
-                        dS.writeAccountTransfers(true, UInp.userInputBalance, newBalance, "Profiles/" + username + "/Accounts/" + accName + "/" + accName + " Transfers.txt");
+                        dS.writeAccountTransfers(true, balance, UInp.userInputBalance, newBalance, "Profiles/" + username + "/Accounts/" + accName + "/" + accName + " Transfers.txt");
                         System.out.println(" DEBUG:: newBalance: " + newBalance);
                         break;
 
@@ -103,7 +103,7 @@ public class bankingAccounts {
                         UInp.getUserInputBalance(0);
                         newBalance = balance - UInp.userInputBalance;
                         dS.writeAccountInfo(accName, newBalance, accountPath);
-                        dS.writeAccountTransfers(false, UInp.userInputBalance, newBalance, "Profiles/" + username + "/Accounts/" + accName + "/" + accName + " Transfers.txt");
+                        dS.writeAccountTransfers(false, balance, UInp.userInputBalance, newBalance, "Profiles/" + username + "/Accounts/" + accName + "/" + accName + " Transfers.txt");
                         System.out.println(" DEBUG:: newBalance: " + newBalance);
                         break;
 
