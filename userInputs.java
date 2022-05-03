@@ -76,12 +76,12 @@ public class userInputs {
 		return 0;
 	}
 
-    public double getUserInputBalance(double lowbound) {
+    public double getUserInputBalance(double lowbound, double highbound) {
         boolean failCheck = false;
         do {
             try {
                 userInputBalance = input.nextDouble();
-                if (userInputBalance < lowbound) throw new IOException("Exceeds Bounds");
+                if ((userInputBalance < lowbound) || (userInputBalance > highbound)) throw new IOException("Exceeds Bounds");
                 failCheck = false;
             } catch (Exception e) {
                 System.out.print("* ERROR: Please enter a valid input *\nInput: ");

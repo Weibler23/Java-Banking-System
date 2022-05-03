@@ -15,6 +15,7 @@ public class bankingAccounts {
     private double balance = 1;
     private double newBalance;
     private boolean DOBCheckValid;
+    private boolean validBalance;
     private boolean ableToCreateAccount;
 
     // Create properties object
@@ -90,21 +91,27 @@ public class bankingAccounts {
                         case 1:
                         System.out.print("\n|Enter the amount you want to add |\n" +
                                          "Input: ");
-                        UInp.getUserInputBalance(0);
+                        UInp.getUserInputBalance(0, 1000000000);
                         newBalance = balance + UInp.userInputBalance;
                         dS.writeAccountInfo(accName, newBalance, accountPath);
                         dS.writeAccountTransfers(true, balance, UInp.userInputBalance, newBalance, "Profiles/" + username + "/Accounts/" + accName + "/" + accName + " Transfers.txt");
-                        System.out.println(" DEBUG:: newBalance: " + newBalance);
+                        System.out.println(" DEBUG:: newBalance: " + newBalance);                        
                         break;
 
                         case 2:
+                        validBalance = true;
                         System.out.print("\n|Enter the amount you want to remove |\n" +
                                          "Input: ");
-                        UInp.getUserInputBalance(0);
+                        UInp.getUserInputBalance(0, 100000000);
                         newBalance = balance - UInp.userInputBalance;
-                        dS.writeAccountInfo(accName, newBalance, accountPath);
-                        dS.writeAccountTransfers(false, balance, UInp.userInputBalance, newBalance, "Profiles/" + username + "/Accounts/" + accName + "/" + accName + " Transfers.txt");
-                        System.out.println(" DEBUG:: newBalance: " + newBalance);
+                        if (newBalance < 0) {
+                            System.out.println("* You do not have enough funds to remove that amount *");
+                            validBalance = false;
+                        } else {
+                            dS.writeAccountInfo(accName, newBalance, accountPath);
+                            dS.writeAccountTransfers(false, balance, UInp.userInputBalance, newBalance, "Profiles/" + username + "/Accounts/" + accName + "/" + accName + " Transfers.txt");
+                            System.out.println(" DEBUG:: newBalance: " + newBalance);
+                        }
                         break;
 
                         case 3:
@@ -146,13 +153,22 @@ public class bankingAccounts {
         UInp.getMenuInput(2,1);
         switch (UInp.userInput) {
             case 1:
-            System.out.print("\n|Create your account name |\n" +
-                           "Input: ");
-            accName = input.nextLine();
+            boolean validAccName = false;
+            while (validAccName == false) {
+                System.out.print("\n|Create your account name |\n" +
+                                 "Input: ");
+                accName = input.nextLine();
+                int length = accName.length();
+                if (length <1) {
+                    System.out.print("* ERROR: Please enter a valid input *\nInput: ");
+                } else {
+                validAccName = true;
+                }
+            }
 
             System.out.print("\n|Enter your balance |\n" +
-                           "Input: ");
-            UInp.getUserInputBalance(0);
+                             "Input: ");
+            UInp.getUserInputBalance(0, 100000000);
 
             dS.createFolder("Profiles/" + username + "/Accounts/" + accName);
 
