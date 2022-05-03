@@ -83,10 +83,9 @@ public class homeScreen {
 		System.out.format("|$ %-40.2f|%n", balance);
 		Frame(44, true);
 		System.out.print("|Enter (1) to transfer money               |\n" +
-						 "|Enter (2) to take out loan (If available) |\n" +
-						 "|Enter (3) to view all transfers           |\n" +
-						 "|Enter (4) to close account                |\n" +
-						 "|Enter (5) to return to profile home page  |\n");
+						 "|Enter (2) to view all transfers           |\n" +
+						 "|Enter (3) to close account                |\n" +
+						 "|Enter (4) to return to profile home page  |\n");
 		Frame(44, true);
 		System.out.print("Input: ");
     }
@@ -96,6 +95,16 @@ public class homeScreen {
 		System.out.print("|Enter (1) to create an account |\n" +
 						 "|Enter (2) to exit              |\n");
 		Frame(33, true);
+		System.out.print("Input: ");
+	}
+
+	public void transferHP() {
+		System.out.println();
+		Frame (28, true);
+		System.out.print("|Enter (1) to add funds    |\n" +
+						 "|Enter (2) to remove funds |\n" +
+						 "|Enter (3) to cancel       |\n");
+		Frame (28, true);
 		System.out.print("Input: ");
 	}
 }

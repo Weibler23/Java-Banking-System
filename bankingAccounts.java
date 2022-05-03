@@ -11,7 +11,9 @@ public class bankingAccounts {
     private String account = "Test1";
     private String accountPath;
     private String SBalance;
+    private boolean accHS;
     private double balance = 1;
+    private double newBalance;
     private boolean DOBCheckValid;
     private boolean ableToCreateAccount;
 
@@ -68,34 +70,62 @@ public class bankingAccounts {
                          "Input: ");
         accName = input.nextLine();
 
-        UInp.getUserInputAccount(username, accName);
-        System.out.println(" DEBUG:: dS.fileExists = |" + UInp.fileExists + "|");
-        if (UInp.fileExists == true) {
-            parseAccInfo("Profiles/" + username + "/Accounts/" + accName + ".properties");
-            org.ClearScreen();
-            HS.accountHP(accName, balance);
-            UInp.getMenuInput(5, 1);
-            switch (UInp.userInput) {
-                case 1:
-                break;
+        accountPath = ("Profiles/" + username + "/Accounts/" + accName + ".properties");
 
-                case 2:
-                break;
+        do {
+            UInp.getUserInputAccount(username, accName);
+            System.out.println(" DEBUG:: dS.fileExists = |" + UInp.fileExists + "|");
+            if (UInp.fileExists == true) {
+                parseAccInfo("Profiles/" + username + "/Accounts/" + accName + ".properties");
+            
+                accHS = true;
+                org.ClearScreen();
+                HS.accountHP(accName, balance);
+                UInp.getMenuInput(4, 1);
+                switch (UInp.userInput) {
+                    case 1:
+                    HS.transferHP();
+                    UInp.getMenuInput(3,1);
+                    switch (UInp.userInput) {
+                        case 1:
+                        System.out.print("\n|Enter the amount you want to add |\n" +
+                                         "Input: ");
+                        UInp.getUserInputBalance(0);
+                        newBalance = balance + UInp.userInputBalance;
+                        dS.writeAccountInfo(accName, newBalance, accountPath);
+                        System.out.println(" DEBUG:: newBalance: " + newBalance);
+                        break;
+
+                        case 2:
+                        System.out.print("\n|Enter the amount you want to remove |\n" +
+                                         "Input: ");
+                        UInp.getUserInputBalance(0);
+                        newBalance = balance - UInp.userInputBalance;
+                        dS.writeAccountInfo(accName, newBalance, accountPath);
+                        System.out.println(" DEBUG:: newBalance: " + newBalance);
+                        break;
+
+                        case 3:
+                        break;
+                    }
+                    break;
                 
-                case 3:
-                break;
+                    case 2:
+                    break;
 
-                case 4:
-                break;
+                    case 3:
+                    break;
 
-                case 5:
-                break;
+                    case 4:
+                    System.out.println("* User chose to return to profile home page *\n");
+                    accHS = false;
+                    break;
+                }
+            } else {
+                System.out.println ("* That account does not exist. Please try again *");
+                try {Thread.sleep(3000);} catch (InterruptedException ex) {}
             }
-        } else {
-            System.out.println ("* That account does not exist. Please try again *");
-            try {Thread.sleep(3000);} catch (InterruptedException ex) {}
-        }
-        
+        } while (accHS == true);
     }
 
     private void createAccount(String username) {
