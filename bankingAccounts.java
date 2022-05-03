@@ -8,6 +8,7 @@ import java.util.*;
 public class bankingAccounts {
     public String accName;
     private String account = "Test1";
+    private String accountPath;
     private double balance = 1;
     private boolean DOBCheckValid;
     private boolean ableToCreateAccount;
@@ -72,7 +73,9 @@ public class bankingAccounts {
                            "Input: ");
             UInp.getUserInputBalance(0);
 
-            dS.createFile("Profiles/" + username + "/Accounts/" + accName + ".properties");
+            accountPath = ("Profiles/" + username + "/Accounts/" + accName + ".properties");
+            dS.createFile(accountPath);
+            dS.writeAccountInfo(accName, UInp.userInputBalance, accountPath);
             break;
 
             case 2:
