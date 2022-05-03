@@ -27,6 +27,9 @@ public class bankingAccounts {
     // Implement homeScreen class
     homeScreen HS = new homeScreen(); 
 
+    // Implement organization class
+    organization org = new organization();
+
     // Implement userInputs class
     userInputs UInp = new userInputs();
 
@@ -65,10 +68,18 @@ public class bankingAccounts {
                          "Input: ");
         accName = input.nextLine();
 
-        parseAccInfo("Profiles/" + username + "/Accounts/" + accName + ".properties");
         UInp.getUserInputAccount(username, accName);
-        HS.accountHP(accName, balance);
-        UInp.getMenuInput(5, 1);
+        System.out.println(" DEBUG:: dS.fileExists = |" + dS.fileExists + "|");
+        if (dS.fileExists == true) {
+            parseAccInfo("Profiles/" + username + "/Accounts/" + accName + ".properties");
+            org.ClearScreen();
+            HS.accountHP(accName, balance);
+            UInp.getMenuInput(5, 1);
+        } else {
+            System.out.println ("* That account does not exist. Please try again *");
+            try {Thread.sleep(3000);} catch (InterruptedException ex) {}
+        }
+        
     }
 
     private void createAccount(String username) {

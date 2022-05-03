@@ -126,11 +126,9 @@ public class userInputs {
         accountPath = ("Profiles/" + username + "/Accounts/" + accName + ".properties");
         System.out.println(" DEBUG:: accountPath: |" + accountPath + "|");
 
-        try (InputStream fileInput = new FileInputStream(accountPath)) {
-            fileExists = true;
-        } catch (IOException io) {
-            System.out.println("* This account does not exist *");
-        }
+        dS.checkifFileExists("Profiles/" + username + "/Accounts/" + accName + ".properties");
+        fileExists = dS.fileExists; 
+        System.out.println(" DEBUG:: fileExists = |" + fileExists + "|");
         return accountPath;
     }
 

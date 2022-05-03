@@ -38,7 +38,7 @@ public class homeScreen {
 		Frame(40, true);
 		System.out.print("|               Accounts               |\n");
 		Frame(40, true);
-		dS.listDirectoryFiles(folderPath, false);
+		dS.listDirectoryFiles(folderPath, true);
 		Frame(40, true);
 		System.out.print("|Enter (1) to open an existing account |\n" +
 						 "|Enter (2) to create a new account     |\n" +

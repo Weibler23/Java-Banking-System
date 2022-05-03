@@ -70,7 +70,8 @@ public class bankingProfile {
             switch (UInp.userInput) {
                 case 1:
                 dS.checkFolderisEmpty(userProfilePath + "Accounts");
-                if (dS.folderIsEmpty == true) {
+                System.out.println(" DEBUG: checkFolderisEmpty: |" + (dS.checkFolderisEmpty(userProfilePath + "Accounts")));
+                if ((dS.checkFolderisEmpty(userProfilePath + "Accounts")) == true) {
                     org.ClearScreen();
                     System.out.println ("* No accounts exist. Please create a new account *");
                     Acc.newAccount(lockNewAccounts, checkDOB, age, UInp.username);

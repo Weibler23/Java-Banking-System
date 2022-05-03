@@ -9,6 +9,7 @@ import java.util.*;
 
 public class dataStorage {
     public boolean fileIsEmpty;
+    public boolean fileExists;
     public boolean folderIsEmpty;
     public boolean found = false;
     public boolean parsedBoolean;
@@ -33,7 +34,7 @@ public class dataStorage {
         }
     }
 
-    public void checkFileisEmpty (String fileName) {
+    public void checkFileisEmpty(String fileName) {
         File testFile = new File(fileName);
         if (testFile.length() == 0) {
             //System.out.println(" DEBUG:: FILE: " + testFile.getName() + " is empty ");
@@ -42,6 +43,13 @@ public class dataStorage {
             //System.out.println(" DEBUG:: FILE: " + testFile.getName() + " is not empty ");
             fileIsEmpty = false; 
         }
+    }
+
+    public void checkifFileExists(String fileName) {
+        File tempFile = new File(fileName); 
+        fileExists = tempFile.exists();
+        System.out.println(" DEBUG:: tempFile.exists = |" + fileExists + "|");
+        System.out.println(" DEBUG:: fileExists = |" + fileExists + "|");
     }
 
     public void readFullFile(String fileName) {
@@ -87,18 +95,28 @@ public class dataStorage {
         if(bool == false) System.out.println(" DEBUG:: ERROR CREATING FOLDER: " + createFolder.getName());
     }
 
+    /*
     public void checkFolderisEmpty(String directoryName) {
+        //folderIsEmpty = true;
         File directory = new File(directoryName);
         if (directory.isDirectory()) {
             String[] files = directory.list();
             if (directory.length() > 0) {
-                //System.out.println(" DEBUG:: FILE: " + testFile.getName() + " is empty ");
-                folderIsEmpty = true;
+                System.out.println(" DEBUG:: FOLDER: " + directory.getPath() + " is not empty ");
+                listDirectoryFiles(directoryName, false);
+                folderIsEmpty = false;
             } else {
-                //System.out.println(" DEBUG:: FILE: " + testFile.getName() + " is not empty ");
-                folderIsEmpty = false; 
+                System.out.println(" DEBUG:: FOLDER: " + directory.getPath() + " is empty ");
+                folderIsEmpty = true; 
             }
         } 
+    }
+    */
+
+    public boolean checkFolderisEmpty(String directory) {
+        File directoryFolder = new File(directory);
+        String[] files = directoryFolder.list();
+        return files.length == 0;
     }
     
     public void deleteFolder(String folderPath) {
@@ -113,13 +131,15 @@ public class dataStorage {
         File f = new File(folderPath);
         pathnames = f.list();
 
-        if (menu == false) {
+        if (menu == true) {
             for (String pathname : pathnames) {
                 System.out.format("|-%-37s|%n", pathname);
             }
         } else {
             for (String pathname : pathnames) {
                 System.out.println(pathname);
+                // DEBUG
+                System.out.println("|" + pathname + "|");
             }
         }
     }
