@@ -70,13 +70,13 @@ public class bankingAccounts {
                          "Input: ");
         accName = input.nextLine();
 
-        accountPath = ("Profiles/" + username + "/Accounts/" + accName + ".properties");
+        accountPath = ("Profiles/" + username + "/Accounts/" + accName + "/" + accName + ".properties");
 
         do {
             UInp.getUserInputAccount(username, accName);
             System.out.println(" DEBUG:: dS.fileExists = |" + UInp.fileExists + "|");
             if (UInp.fileExists == true) {
-                parseAccInfo("Profiles/" + username + "/Accounts/" + accName + ".properties");
+                parseAccInfo(accountPath);
             
                 accHS = true;
                 org.ClearScreen();
@@ -93,6 +93,7 @@ public class bankingAccounts {
                         UInp.getUserInputBalance(0);
                         newBalance = balance + UInp.userInputBalance;
                         dS.writeAccountInfo(accName, newBalance, accountPath);
+                        dS.writeAccountTransfers(true, UInp.userInputBalance, newBalance, "Profiles/" + username + "/Accounts/" + accName + "/" + accName + " Transfers.txt");
                         System.out.println(" DEBUG:: newBalance: " + newBalance);
                         break;
 
@@ -102,6 +103,7 @@ public class bankingAccounts {
                         UInp.getUserInputBalance(0);
                         newBalance = balance - UInp.userInputBalance;
                         dS.writeAccountInfo(accName, newBalance, accountPath);
+                        dS.writeAccountTransfers(false, UInp.userInputBalance, newBalance, "Profiles/" + username + "/Accounts/" + accName + "/" + accName + " Transfers.txt");
                         System.out.println(" DEBUG:: newBalance: " + newBalance);
                         break;
 
@@ -111,9 +113,20 @@ public class bankingAccounts {
                     break;
                 
                     case 2:
+                    System.out.println();
+                    dS.readFullFile("Profiles/" + username + "/Accounts/" + accName + "/" + accName + " Transfers.txt");
+                    System.out.println();
+                    System.out.print("* Type 'next' to move on *\nInput: ");
+                    UInp.getUserInputString("next", true);
                     break;
 
                     case 3:
+                    System.out.print("* Are you sure you want to delete this account? ** THIS CANNOT BE UNDONE ** (y/n)\nInput: ");
+                    UInp.getUserInputChar('y', 'n');
+                    if (UInp.userInputChar == 'y') {
+                        dS.deleteFolder("Profiles/" + username + "/Accounts/" + accName);
+                        accHS = false;
+                    } 
                     break;
 
                     case 4:
@@ -141,8 +154,11 @@ public class bankingAccounts {
                            "Input: ");
             UInp.getUserInputBalance(0);
 
-            accountPath = ("Profiles/" + username + "/Accounts/" + accName + ".properties");
+            dS.createFolder("Profiles/" + username + "/Accounts/" + accName);
+
+            accountPath = ("Profiles/" + username + "/Accounts/" + accName + "/" + accName + ".properties");
             dS.createFile(accountPath);
+            dS.createFile("Profiles/" + username + "/Accounts/" + accName + "/" + accName + " Transfers.txt");
             dS.writeAccountInfo(accName, UInp.userInputBalance, accountPath);
             break;
 

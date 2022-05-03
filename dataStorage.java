@@ -5,6 +5,8 @@
 
 import java.io.*;
 import java.util.*;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 //import org.apache.commons.io.FileUtils;
 
 public class dataStorage {
@@ -133,7 +135,7 @@ public class dataStorage {
 
         if (menu == true) {
             for (String pathname : pathnames) {
-                System.out.format("|-%-37s|%n", pathname);
+                System.out.format("| -%-36s|%n", pathname);
             }
         } else {
             for (String pathname : pathnames) {
@@ -180,6 +182,24 @@ public class dataStorage {
         try {
             FileWriter myWriter = new FileWriter("ProfileLogin.txt", true);
             myWriter.write(username + "," + password + "," + ID + "\n");
+            myWriter.close();
+        } catch (IOException e) {
+            System.out.println(" DEBUG:: ERROR WRITING TO FILE ");
+            e.printStackTrace();
+        }
+    }
+
+    public void writeAccountTransfers (boolean addition, double difference, double newBalance, String filePath) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+        LocalDateTime now = LocalDateTime.now();  
+        String date = dtf.format(now);  
+        try {
+            FileWriter myWriter = new FileWriter(filePath, true);
+            if (addition == true) {
+                myWriter.write(date + ", + $" + difference + ", $" + newBalance + "\n");
+            } else {
+                myWriter.write(date + ", - $" + difference + ", $" + newBalance + "\n");
+            }
             myWriter.close();
         } catch (IOException e) {
             System.out.println(" DEBUG:: ERROR WRITING TO FILE ");
