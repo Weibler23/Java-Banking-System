@@ -124,11 +124,11 @@ public class userInputs {
     public String getUserInputAccount(String username, String accName) {
         fileExists = false;
         accountPath = ("Profiles/" + username + "/Accounts/" + accName + "/" + accName + ".properties");
-        System.out.println(" DEBUG:: accountPath: |" + accountPath + "|");
+        //System.out.println(" DEBUG:: accountPath: |" + accountPath + "|");
 
         dS.checkifFileExists("Profiles/" + username + "/Accounts/" + accName + "/" + accName + ".properties");
         fileExists = dS.fileExists; 
-        System.out.println(" DEBUG:: fileExists = |" + fileExists + "|");
+        //System.out.println(" DEBUG:: fileExists = |" + fileExists + "|");
         return accountPath;
     }
 

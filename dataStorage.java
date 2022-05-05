@@ -50,7 +50,7 @@ public class dataStorage {
     public boolean checkifFileExists(String fileName) {
         File tempFile = new File(fileName); 
         fileExists = tempFile.exists();
-        System.out.println(" DEBUG:: fileExists = |" + fileExists + "|");
+        //System.out.println(" DEBUG:: fileExists = |" + fileExists + "|");
         return true;
     }
 
@@ -141,7 +141,7 @@ public class dataStorage {
             for (String pathname : pathnames) {
                 System.out.println(pathname);
                 // DEBUG
-                System.out.println("|" + pathname + "|");
+                //System.out.println("|" + pathname + "|");
             }
         }
     }
@@ -198,7 +198,7 @@ public class dataStorage {
             if (addition == true) {
                 myWriter.write(date + ", $" + OGBalance + ", + $" + difference + ", $" + newBalance + "\n");
             } else {
-                myWriter.write(date + ", $" + OGBalance + ", + $" + difference + ", $" + newBalance + "\n");
+                myWriter.write(date + ", $" + OGBalance + ", - $" + difference + ", $" + newBalance + "\n");
             }
             myWriter.close();
         } catch (IOException e) {

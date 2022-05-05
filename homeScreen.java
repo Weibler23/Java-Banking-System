@@ -80,7 +80,7 @@ public class homeScreen {
     public void accountHP (String accName, double balance) {
 		Frame(44, true);
 		System.out.format("|%-42s|%n", accName);
-		System.out.format("|$ %-40.2f|%n", balance);
+		System.out.format("| $%-40.2f|%n", balance);
 		Frame(44, true);
 		System.out.print("|Enter (1) to transfer money               |\n" +
 						 "|Enter (2) to view all transfers           |\n" +
@@ -100,11 +100,22 @@ public class homeScreen {
 
 	public void transferHP() {
 		System.out.println();
-		Frame (28, true);
-		System.out.print("|Enter (1) to add funds    |\n" +
-						 "|Enter (2) to remove funds |\n" +
-						 "|Enter (3) to cancel       |\n");
-		Frame (28, true);
+		Frame (47, true);
+		System.out.print("|Enter (1) to add funds                       |\n" +
+						 "|Enter (2) to remove funds                    |\n" +
+						 "|Enter (3) to transfer funds between accounts |\n" +
+						 "|Enter (4) to cancel                          |\n");
+		Frame (47, true);
+		System.out.print("Input: ");
+	}
+
+	public void transferBetweenAccHP(String accName) {
+		System.out.println();
+		Frame (50, true);
+		System.out.format("|Enter (1) to add funds to: %-21s|%n", accName);
+		System.out.format("|Enter (2) to remove funds from: %-16s|%n", accName);
+		System.out.print("|Enter (3) to cancel                             |\n");
+		Frame (50, true);
 		System.out.print("Input: ");
 	}
 }

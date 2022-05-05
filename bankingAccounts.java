@@ -13,9 +13,7 @@ public class bankingAccounts {
     private String SBalance;
     private boolean accHS;
     private double balance = 1;
-    private double newBalance;
     private boolean DOBCheckValid;
-    private boolean validBalance;
     private boolean ableToCreateAccount;
 
     // Create properties object
@@ -23,6 +21,9 @@ public class bankingAccounts {
 
     // Create scanner object
 	Scanner input = new Scanner(System.in);
+
+    // Implement bankingTransfers class
+    bankingTransfers bT = new bankingTransfers();
 
     // Implement dataStorage class
     dataStorage dS = new dataStorage();
@@ -42,22 +43,22 @@ public class bankingAccounts {
             if (checkDOB) {
                 if (age < 16) {
                     System.out.println("* User is too young to create an account *");
-                    try {Thread.sleep(3000);} catch (InterruptedException ex) {}
+                    try {Thread.sleep(1500);} catch (InterruptedException ex) {}
                     ableToCreateAccount = false;
                 } else {
-                    System.out.println(" DEBUG:: User is able to create an account");
-                    try {Thread.sleep(3000);} catch (InterruptedException ex) {}
+                    //System.out.println(" DEBUG:: User is able to create an account");
+                    //try {Thread.sleep(3000);} catch (InterruptedException ex) {}
                     ableToCreateAccount = true;
                 }
             }
             if (checkDOB == false) {
-                System.out.println(" DEBUG:: User is able to create an account");
-                try {Thread.sleep(3000);} catch (InterruptedException ex) {}
+                //System.out.println(" DEBUG:: User is able to create an account");
+                //try {Thread.sleep(3000);} catch (InterruptedException ex) {}
                 ableToCreateAccount = true;
             }
         } else {
             System.out.println("* You are not allowed to create accounts *");
-            try {Thread.sleep(3000);} catch (InterruptedException ex) {}
+            try {Thread.sleep(1500);} catch (InterruptedException ex) {}
             ableToCreateAccount = false;
         }
 
@@ -75,7 +76,7 @@ public class bankingAccounts {
 
         do {
             UInp.getUserInputAccount(username, accName);
-            System.out.println(" DEBUG:: dS.fileExists = |" + UInp.fileExists + "|");
+            //System.out.println(" DEBUG:: dS.fileExists = |" + UInp.fileExists + "|");
             if (UInp.fileExists == true) {
                 parseAccInfo(accountPath);
             
@@ -85,40 +86,9 @@ public class bankingAccounts {
                 UInp.getMenuInput(4, 1);
                 switch (UInp.userInput) {
                     case 1:
-                    HS.transferHP();
-                    UInp.getMenuInput(3,1);
-                    switch (UInp.userInput) {
-                        case 1:
-                        System.out.print("\n|Enter the amount you want to add |\n" +
-                                         "Input: ");
-                        UInp.getUserInputBalance(0, 1000000000);
-                        newBalance = balance + UInp.userInputBalance;
-                        dS.writeAccountInfo(accName, newBalance, accountPath);
-                        dS.writeAccountTransfers(true, balance, UInp.userInputBalance, newBalance, "Profiles/" + username + "/Accounts/" + accName + "/" + accName + " Transfers.txt");
-                        System.out.println(" DEBUG:: newBalance: " + newBalance);                        
-                        break;
-
-                        case 2:
-                        validBalance = true;
-                        System.out.print("\n|Enter the amount you want to remove |\n" +
-                                         "Input: ");
-                        UInp.getUserInputBalance(0, 100000000);
-                        newBalance = balance - UInp.userInputBalance;
-                        if (newBalance < 0) {
-                            System.out.println("* You do not have enough funds to remove that amount *");
-                            validBalance = false;
-                        } else {
-                            dS.writeAccountInfo(accName, newBalance, accountPath);
-                            dS.writeAccountTransfers(false, balance, UInp.userInputBalance, newBalance, "Profiles/" + username + "/Accounts/" + accName + "/" + accName + " Transfers.txt");
-                            System.out.println(" DEBUG:: newBalance: " + newBalance);
-                        }
-                        break;
-
-                        case 3:
-                        break;
-                    }
+                    bT.transferMoney(username, accName, balance);
                     break;
-                
+
                     case 2:
                     System.out.println();
                     dS.readFullFile("Profiles/" + username + "/Accounts/" + accName + "/" + accName + " Transfers.txt");
@@ -126,7 +96,7 @@ public class bankingAccounts {
                     System.out.print("* Type 'next' to move on *\nInput: ");
                     UInp.getUserInputString("next", true);
                     break;
-
+    
                     case 3:
                     System.out.print("* Are you sure you want to delete this account? ** THIS CANNOT BE UNDONE ** (y/n)\nInput: ");
                     UInp.getUserInputChar('y', 'n');
@@ -135,14 +105,14 @@ public class bankingAccounts {
                         accHS = false;
                     } 
                     break;
-
+    
                     case 4:
                     System.out.println("* User chose to return to profile home page *\n");
                     accHS = false;
                     break;
-                }
+                }                
             } else {
-                System.out.println ("* That account does not exist. Please try again *");
+                System.out.println ("* That account does not exist. Please try again 1*");
                 try {Thread.sleep(3000);} catch (InterruptedException ex) {}
             }
         } while (accHS == true);
