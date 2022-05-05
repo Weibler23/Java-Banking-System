@@ -7,6 +7,9 @@ import java.util.*;
 import java.io.*;
 
 public class homeScreen {
+	// Implement dataStorage class
+    dataStorage dS = new dataStorage();
+
 	private static final String ANSI_RESET = "\u001B[0m";
 	private static final String ANSI_RED = "\u001B[31m";
 	private static final String ANSI_GREEN = "\u001B[32m";
@@ -28,40 +31,47 @@ public class homeScreen {
 		System.out.print("Input: ");
     }
 
-	public void profileHP (String profName, String profID) {
+	public void profileHP (String profName, String profID, String folderPath) {
 		Frame(40, true); 
 		System.out.format("|%-38s|%n", profName);
 		System.out.format("|Profile ID: %-26s|%n", profID);
 		Frame(40, true);
-		System.out.print("|Enter (1) to see existing accounts    |\n" +
-						 "|Enter (2) to open an existing account |\n" +
-						 "|Enter (3) to create a new account     |\n" +
-						 "|Enter (4) to enter profile settings   |\n" +
-						 "|Enter (5) to return to home page      |\n");
+		System.out.print("|               Accounts               |\n");
+		Frame(40, true);
+		dS.listDirectoryFiles(folderPath, true);
+		Frame(40, true);
+		System.out.print("|Enter (1) to open an existing account |\n" +
+						 "|Enter (2) to create a new account     |\n" +
+						 "|Enter (3) to enter profile settings   |\n" +
+						 "|Enter (4) to return to home page      |\n");
 		Frame(40, true);
 		System.out.print("Input: ");
     }
 
-	public void settingsHP (String profName, boolean checkDOB, boolean balanceAlerts, boolean lockNewAccounts) {
-		Frame(46, true);
-		System.out.format("|%-44s|%n", profName);
-		Frame(46, true);
-		System.out.print("|Enter (1) to see settings information       |\n");
-		if (checkDOB == true) {System.out.format("|Enter (2) to toggle checkDOB:: " + ANSI_GREEN + "%-17s|%n", checkDOB + ANSI_RESET);
+	public void settingsHP (String profName, boolean checkDOB, boolean balanceAlerts, boolean lockNewAccounts, boolean allowForeignCurrency) {
+		Frame(51, true);
+		System.out.format("|%-49s|%n", profName);
+		Frame(51, true);
+		System.out.print("|Enter (1) to see settings information            |\n");
+		if (checkDOB == true) {System.out.format("|Enter (2) to toggle checkDOB:: " + ANSI_GREEN + "%-22s|%n", checkDOB + ANSI_RESET);
 		} else {
-			System.out.format("|Enter (2) to toggle checkDOB:: " + ANSI_RED + "%-17s|%n", checkDOB + ANSI_RESET);
+			System.out.format("|Enter (2) to toggle checkDOB:: " + ANSI_RED + "%-22s|%n", checkDOB + ANSI_RESET);
 		}
-		if (balanceAlerts == true) {System.out.format("|Enter (3) to toggle balanceAlerts:: " + ANSI_GREEN + "%-12s|%n", balanceAlerts + ANSI_RESET);	
+		if (balanceAlerts == true) {System.out.format("|Enter (3) to toggle balanceAlerts:: " + ANSI_GREEN + "%-17s|%n", balanceAlerts + ANSI_RESET);	
 		} else {
-			System.out.format("|Enter (3) to toggle balanceAlerts:: " + ANSI_RED + "%-12s|%n", balanceAlerts + ANSI_RESET);
+			System.out.format("|Enter (3) to toggle balanceAlerts:: " + ANSI_RED + "%-17s|%n", balanceAlerts + ANSI_RESET);
 		}
-		if (lockNewAccounts == true) {System.out.format("|Enter (4) to toggle lockNewAccounts:: " + ANSI_GREEN + "%-10s|%n", lockNewAccounts + ANSI_RESET);	
+		if (lockNewAccounts == true) {System.out.format("|Enter (4) to toggle lockNewAccounts:: " + ANSI_GREEN + "%-15s|%n", lockNewAccounts + ANSI_RESET);	
 		} else {
-			System.out.format("|Enter (4) to toggle lockNewAccounts:: " + ANSI_RED + "%-10s|%n", lockNewAccounts + ANSI_RESET);
+			System.out.format("|Enter (4) to toggle lockNewAccounts:: " + ANSI_RED + "%-15s|%n", lockNewAccounts + ANSI_RESET);
 		}
-		System.out.print("|Enter (5) to delete profile                 |\n");
-		System.out.print("|Enter (6) to return to profile home page    |\n");
-		Frame(46, true);
+		if (allowForeignCurrency == true) {System.out.format("|Enter (5) to toggle allowForeignCurrency:: " + ANSI_GREEN + "%-10s|%n", allowForeignCurrency + ANSI_RESET);	
+		} else {
+			System.out.format("|Enter (5) to toggle allowForeignCurrency:: " + ANSI_RED + "%-10s|%n", allowForeignCurrency + ANSI_RESET);
+		}
+		System.out.print("|Enter (6) to delete profile                      |\n");
+		System.out.print("|Enter (7) to return to profile home page         |\n");
+		Frame(51, true);
 		System.out.print("Input: ");
 	}
 
@@ -70,23 +80,42 @@ public class homeScreen {
     public void accountHP (String accName, double balance) {
 		Frame(44, true);
 		System.out.format("|%-42s|%n", accName);
-		System.out.format("|$ %-40.2f|%n", balance);
+		System.out.format("| $%-40.2f|%n", balance);
 		Frame(44, true);
 		System.out.print("|Enter (1) to transfer money               |\n" +
-						 "|Enter (2) to take out loan (If available) |\n" +
-						 "|Enter (3) to view all transfers           |\n" +
-						 "|Enter (4) to close account                |\n" +
-						 "|Enter (5) to return to profile home page  |\n");
+						 "|Enter (2) to view all transfers           |\n" +
+						 "|Enter (3) to close account                |\n" +
+						 "|Enter (4) to return to profile home page  |\n");
 		Frame(44, true);
 		System.out.print("Input: ");
     }
 
 	public void newAccountHP () {
-		Frame(42, true);
-		System.out.print("|Enter (1) to create a Test no BOD check account  |\n" +
-						 "|Enter (2) to create a Test BOD check.    account |\n" +
-						 "|Enter (3) to exit                                |\n");
-		Frame(42, true);
+		Frame(33, true);
+		System.out.print("|Enter (1) to create an account |\n" +
+						 "|Enter (2) to exit              |\n");
+		Frame(33, true);
+		System.out.print("Input: ");
+	}
+
+	public void transferHP() {
+		System.out.println();
+		Frame (47, true);
+		System.out.print("|Enter (1) to add funds                       |\n" +
+						 "|Enter (2) to remove funds                    |\n" +
+						 "|Enter (3) to transfer funds between accounts |\n" +
+						 "|Enter (4) to cancel                          |\n");
+		Frame (47, true);
+		System.out.print("Input: ");
+	}
+
+	public void transferBetweenAccHP(String accName) {
+		System.out.println();
+		Frame (50, true);
+		System.out.format("|Enter (1) to add funds to: %-21s|%n", accName);
+		System.out.format("|Enter (2) to remove funds from: %-16s|%n", accName);
+		System.out.print("|Enter (3) to cancel                             |\n");
+		Frame (50, true);
 		System.out.print("Input: ");
 	}
 }

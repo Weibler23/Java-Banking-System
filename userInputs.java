@@ -20,8 +20,11 @@ public class userInputs {
     public int userAge;
     public char userInputChar;
     private String userSecurity = "Wrong";
+    private String accountName;
+    private String accountPath;
     private String DOB; 
     private String dateFormat = "MM-dd-yyyy";
+    public boolean fileExists;
 
     // Create scanner object
     Scanner input = new Scanner(System.in);
@@ -73,12 +76,12 @@ public class userInputs {
 		return 0;
 	}
 
-    public double getUserInputBalance(double lowbound) {
+    public double getUserInputBalance(double lowbound, double highbound) {
         boolean failCheck = false;
         do {
             try {
                 userInputBalance = input.nextDouble();
-                if (userInputBalance < lowbound) throw new IOException("Exceeds Bounds");
+                if ((userInputBalance < lowbound) || (userInputBalance > highbound)) throw new IOException("Exceeds Bounds");
                 failCheck = false;
             } catch (Exception e) {
                 System.out.print("* ERROR: Please enter a valid input *\nInput: ");
@@ -116,6 +119,17 @@ public class userInputs {
             }
         } while (failCheck); 
         return userSecurity;
+    }
+
+    public String getUserInputAccount(String username, String accName) {
+        fileExists = false;
+        accountPath = ("Profiles/" + username + "/Accounts/" + accName + "/" + accName + ".properties");
+        //System.out.println(" DEBUG:: accountPath: |" + accountPath + "|");
+
+        dS.checkifFileExists("Profiles/" + username + "/Accounts/" + accName + "/" + accName + ".properties");
+        fileExists = dS.fileExists; 
+        //System.out.println(" DEBUG:: fileExists = |" + fileExists + "|");
+        return accountPath;
     }
 
     public char getUserInputChar(char char1, char char2) {

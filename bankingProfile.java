@@ -10,6 +10,7 @@ import java.io.*;
 import java.util.*;
 
 public class bankingProfile {
+    public boolean allowForeignCurrency;
     public boolean balanceAlerts;
     public boolean checkDOB;
     public boolean lockNewAccounts;
@@ -20,7 +21,10 @@ public class bankingProfile {
     private String birthday;
     private String userProfilePath;
     private String userProfileSettings;
+    private String userProfileInfo;
+    private String SAge;
     private int ID = 0;
+    private int age;
 
     // Create properties object
     Properties prop = new Properties();
@@ -51,35 +55,37 @@ public class bankingProfile {
 
         userProfilePath = ("Profiles/" + UInp.username + "/");
         userProfileSettings = userProfilePath + UInp.username + "Settings.properties";
+        userProfileInfo = userProfilePath + UInp.username + "Info.properties";
         dS.createFile(userProfileSettings);
 
         parseProperties(userProfileSettings);
+        parseInfo(userProfileInfo);
 
         do {
             profileHS = true;
             org.ClearScreen();
-            HS.profileHP(UInp.username, UInp.profID);
-            UInp.getMenuInput(5, 1);
+            HS.profileHP(UInp.username, UInp.profID, userProfilePath + "Accounts");
+            UInp.getMenuInput(4, 1);
 
             switch (UInp.userInput) {
                 case 1:
-                System.out.println("* User chose to see all existing accounts *\n");
-
-                // DEBUG
-                System.exit(0);
+                dS.checkFolderisEmpty(userProfilePath + "Accounts");
+                //System.out.println(" DEBUG: checkFolderisEmpty: |" + (dS.checkFolderisEmpty(userProfilePath + "Accounts")));
+                if ((dS.checkFolderisEmpty(userProfilePath + "Accounts")) == true) {
+                    org.ClearScreen();
+                    System.out.println ("* No accounts exist. Please create a new account *");
+                    Acc.newAccount(lockNewAccounts, checkDOB, age, UInp.username);
+                } else {
+                    Acc.openAccount(UInp.username);
+                }
                 break;
 
                 case 2:
-                System.out.println("* User chose to open an account *\n");
-                //Acc.openAccount(balanceAlerts);
+                System.out.println("* User chose to open a new account *\n");
+                Acc.newAccount(lockNewAccounts, checkDOB, age, UInp.username);
                 break;
 
                 case 3:
-                System.out.println("* User chose to open a new account *\n");
-                Acc.newAccount(lockNewAccounts, checkDOB);
-                break;
-
-                case 4:
                 System.out.println("* User chose to enter profile settings *\n");
                 do {
                     parseProperties(userProfileSettings);
@@ -88,11 +94,11 @@ public class bankingProfile {
                     //       " DEBUG:: checkDOB: |" + checkDOB + "|\n" +
                     //       " DEBUG:: balanceAlerts: |" + balanceAlerts + "|\n" +
                     //       " DEBUG:: lockNewAccounts: |" + lockNewAccounts + "|\n");
-                    profileSettings.openSettings(UInp.username, userProfileSettings, userProfilePath, checkDOB, balanceAlerts, lockNewAccounts);
+                    profileSettings.openSettings(UInp.username, userProfileSettings, userProfilePath, checkDOB, balanceAlerts, lockNewAccounts, allowForeignCurrency);
                 } while (profileSettings.settingsRepeat == true);
                 break;
 
-                case 5:
+                case 4:
                 System.out.println("* User chose to return to home page *\n");
                 profileHS = false;
                 break;
@@ -135,12 +141,14 @@ public class bankingProfile {
 
         // Create user profileSettings.properties
         dS.createFile(userProfilePath + username + "Settings.properties");
-        dS.writeProfileSettings(false, true, true, userProfilePath + username + "Settings.properties");
+        dS.writeProfileSettings(true, true, false, false, userProfilePath + username + "Settings.properties");
 
         // Create user profileInfo.properties
         dS.createFile(userProfilePath + username + "Info.properties");
         dS.writeProfileInfo(username, password, sID, UInp.userAge, userProfilePath + username + "Info.properties");
 
+        // Create account Folder
+        dS.createFolder(userProfilePath + "Accounts");
     }
 
     public void profile(String username, String password) {
@@ -168,5 +176,18 @@ public class bankingProfile {
         balanceAlerts = dS.parsedBoolean;
         dS.parseBoolean(prop.getProperty("db.lockNewAccounts"));
         lockNewAccounts = dS.parsedBoolean;
+        dS.parseBoolean(prop.getProperty("db.allowForeignCurrency"));
+        allowForeignCurrency = dS.parsedBoolean; 
+    }
+
+    private void parseInfo(String userProfileInfo) {
+        try (InputStream fileInput = new FileInputStream(userProfileInfo)) {
+            prop.load(fileInput);
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
+
+        SAge = prop.getProperty("db.age");
+        age = Integer.parseInt(SAge);
     }
 }

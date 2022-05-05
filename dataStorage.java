@@ -5,10 +5,14 @@
 
 import java.io.*;
 import java.util.*;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 //import org.apache.commons.io.FileUtils;
 
 public class dataStorage {
     public boolean fileIsEmpty;
+    public boolean fileExists;
+    public boolean folderIsEmpty;
     public boolean found = false;
     public boolean parsedBoolean;
     public boolean toggledSet;
@@ -22,9 +26,9 @@ public class dataStorage {
         try {
             File createFile = new File(fileName);
             if (createFile.createNewFile()) {
-                System.out.println(" DEBUG:: File Created: " + createFile.getName());
+                //System.out.println(" DEBUG:: File Created: " + createFile.getName());
             } else {
-                System.out.println(" DEBUG:: File " + createFile.getName() + " already exists ");
+                //System.out.println(" DEBUG:: File " + createFile.getName() + " already exists ");
             }
         } catch (IOException e) {
             System.out.println(" DEBUG:: ERROR CREATING FILE ");
@@ -32,7 +36,7 @@ public class dataStorage {
         }
     }
 
-    public void checkFileisEmpty (String fileName) {
+    public void checkFileisEmpty(String fileName) {
         File testFile = new File(fileName);
         if (testFile.length() == 0) {
             //System.out.println(" DEBUG:: FILE: " + testFile.getName() + " is empty ");
@@ -41,6 +45,13 @@ public class dataStorage {
             //System.out.println(" DEBUG:: FILE: " + testFile.getName() + " is not empty ");
             fileIsEmpty = false; 
         }
+    }
+
+    public boolean checkifFileExists(String fileName) {
+        File tempFile = new File(fileName); 
+        fileExists = tempFile.exists();
+        //System.out.println(" DEBUG:: fileExists = |" + fileExists + "|");
+        return true;
     }
 
     public void readFullFile(String fileName) {
@@ -80,16 +91,59 @@ public class dataStorage {
     }
 
     // Folder Manipulation
-    public void createFolder (String folderName) {
+    public void createFolder(String folderName) {
         File createFolder = new File(folderName);
         boolean bool = createFolder.mkdirs();
         if(bool == false) System.out.println(" DEBUG:: ERROR CREATING FOLDER: " + createFolder.getName());
+    }
+
+    /*
+    public void checkFolderisEmpty(String directoryName) {
+        //folderIsEmpty = true;
+        File directory = new File(directoryName);
+        if (directory.isDirectory()) {
+            String[] files = directory.list();
+            if (directory.length() > 0) {
+                System.out.println(" DEBUG:: FOLDER: " + directory.getPath() + " is not empty ");
+                listDirectoryFiles(directoryName, false);
+                folderIsEmpty = false;
+            } else {
+                System.out.println(" DEBUG:: FOLDER: " + directory.getPath() + " is empty ");
+                folderIsEmpty = true; 
+            }
+        } 
+    }
+    */
+
+    public boolean checkFolderisEmpty(String directory) {
+        File directoryFolder = new File(directory);
+        String[] files = directoryFolder.list();
+        return files.length == 0;
     }
     
     public void deleteFolder(String folderPath) {
         File file = new File (folderPath);
         deleteDirectory(file);
         file.delete();
+    }
+
+    public void listDirectoryFiles(String folderPath, boolean menu) {
+        String[] pathnames;
+
+        File f = new File(folderPath);
+        pathnames = f.list();
+
+        if (menu == true) {
+            for (String pathname : pathnames) {
+                System.out.format("| -%-36s|%n", pathname);
+            }
+        } else {
+            for (String pathname : pathnames) {
+                System.out.println(pathname);
+                // DEBUG
+                //System.out.println("|" + pathname + "|");
+            }
+        }
     }
 
     private void deleteDirectory(File file) {
@@ -128,6 +182,24 @@ public class dataStorage {
         try {
             FileWriter myWriter = new FileWriter("ProfileLogin.txt", true);
             myWriter.write(username + "," + password + "," + ID + "\n");
+            myWriter.close();
+        } catch (IOException e) {
+            System.out.println(" DEBUG:: ERROR WRITING TO FILE ");
+            e.printStackTrace();
+        }
+    }
+
+    public void writeAccountTransfers (boolean addition, double OGBalance, double difference, double newBalance, String filePath) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+        LocalDateTime now = LocalDateTime.now();  
+        String date = dtf.format(now);  
+        try {
+            FileWriter myWriter = new FileWriter(filePath, true);
+            if (addition == true) {
+                myWriter.write(date + ", $" + OGBalance + ", + $" + difference + ", $" + newBalance + "\n");
+            } else {
+                myWriter.write(date + ", $" + OGBalance + ", - $" + difference + ", $" + newBalance + "\n");
+            }
             myWriter.close();
         } catch (IOException e) {
             System.out.println(" DEBUG:: ERROR WRITING TO FILE ");
@@ -204,7 +276,18 @@ public class dataStorage {
         prop.setProperty("db.checkDOB", "checkDOB");
         prop.setProperty("db.balanceAlerts", "balanceAlerts");
         prop.setProperty("db.lockNewAccounts", "lockNewAccounts");
-        //prop.setProperty("db.userAge", "0");
+        prop.setProperty("db.allowForeignCurrency", "allowForeignCurrency");
+
+        prop.keySet();
+
+        prop.forEach((k, v) -> System.out.println("Key : " + k + ", Value : " + v));
+
+        return true;
+    }
+
+    private boolean accountInfo() {
+        prop.setProperty("db.accountName", "accountName");
+        prop.setProperty("db.accountBalance", "accountBalance");
 
         prop.keySet();
 
@@ -226,33 +309,49 @@ public class dataStorage {
         }
     }
 
-    public void writeProfileSettings(boolean checkDOB, boolean balanceAlerts, boolean lockNewAccounts, String fileName) {
+    public void writeProfileSettings(boolean checkDOB, boolean balanceAlerts, boolean lockNewAccounts, boolean allowForeignCurrency, String fileName) {
         try (OutputStream output = new FileOutputStream(fileName)) {
             String str1 = Boolean.toString(checkDOB);
             String str2 = Boolean.toString(balanceAlerts);
             String str3 = Boolean.toString(lockNewAccounts);
+            String str4 = Boolean.toString(allowForeignCurrency);
             prop.setProperty("db.checkDOB", str1);
             prop.setProperty("db.balanceAlerts", str2);
             prop.setProperty("db.lockNewAccounts", str3);
+            prop.setProperty("db.allowForeignCurrency", str4);
             prop.store(output, null);
         } catch (IOException io) {
             io.printStackTrace();
         }
     }
 
-    public boolean toggleSettings(boolean toggleSet, boolean checkDOB, boolean balanceAlerts, boolean lockNewAccounts, boolean DOB, boolean LNA, String fileName) {
+    public void writeAccountInfo(String accountName, double accountBalance, String fileName) {
+        try (OutputStream output = new FileOutputStream(fileName)) {
+            String str1 = Double.toString(accountBalance);
+            prop.setProperty("db.accountName", accountName);
+            prop.setProperty("db.accountBalance", str1);
+            prop.store(output, null);
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
+    }
+
+    public boolean toggleSettings(boolean toggleSet, boolean checkDOB, boolean balanceAlerts, boolean lockNewAccounts, boolean allowForeignCurrency, boolean DOB, boolean LNA, boolean AFC, String fileName) {
         toggleSet = ! toggleSet; 
         //System.out.println(" DEBUG:: toggledSet = |" + toggleSet + "|");
         if (DOB == true) {
             //System.out.println(" DEBUG:: DOB is set to true");
-            writeProfileSettings(toggleSet, balanceAlerts, lockNewAccounts, fileName);
+            writeProfileSettings(toggleSet, balanceAlerts, lockNewAccounts, allowForeignCurrency, fileName);
         } else {
             //System.out.println(" DEBUG:: DOB is set to false");
-            writeProfileSettings(checkDOB, toggleSet, lockNewAccounts, fileName);
+            writeProfileSettings(checkDOB, toggleSet, lockNewAccounts, allowForeignCurrency, fileName);
         }
         if (LNA == true) {
-            writeProfileSettings(checkDOB, balanceAlerts, toggleSet, fileName);
+            writeProfileSettings(checkDOB, balanceAlerts, toggleSet, allowForeignCurrency, fileName);
         } 
+        if (AFC == true) {
+            writeProfileSettings(checkDOB, balanceAlerts, lockNewAccounts, toggleSet, fileName);
+        }
 
         return true;
     }
