@@ -76,7 +76,7 @@ public class bankingProfile {
                     System.out.println ("* No accounts exist. Please create a new account *");
                     Acc.newAccount(lockNewAccounts, checkDOB, age, UInp.username);
                 } else {
-                    Acc.openAccount(UInp.username);
+                    Acc.openAccount(UInp.username, balanceAlerts);
                 }
                 break;
 
