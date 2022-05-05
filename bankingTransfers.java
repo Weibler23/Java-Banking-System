@@ -34,8 +34,10 @@ public class bankingTransfers {
     // Implement userInputs class
     userInputs UInp = new userInputs();
 
-    public void transferMoney(String username, String accName, double balance) {
+    public void transferMoney(String username, String accName, double balance, boolean balanceAlerts) {
         accountPath = ("Profiles/" + username + "/Accounts/" + accName + "/" + accName + ".properties");
+
+        checkBalanceAlerts(balanceAlerts, balance);
 
         HS.transferHP();
         UInp.getMenuInput(4,1);
@@ -45,6 +47,7 @@ public class bankingTransfers {
                              "Input: ");
             UInp.getUserInputBalance(0, 1000000000);
             newBalance = balance + UInp.userInputBalance;
+            checkBalanceAlerts(balanceAlerts, newBalance);
             dS.writeAccountInfo(accName, newBalance, accountPath);
             dS.writeAccountTransfers(true, balance, UInp.userInputBalance, newBalance, "Profiles/" + username + "/Accounts/" + accName + "/" + accName + " Transfers.txt");
             //System.out.println(" DEBUG:: newBalance: " + newBalance);                        
@@ -61,6 +64,7 @@ public class bankingTransfers {
                 try {Thread.sleep(3000);} catch (InterruptedException ex) {}
             validBalance = false;
             } else {
+                checkBalanceAlerts(balanceAlerts, newBalance);
                 dS.writeAccountInfo(accName, newBalance, accountPath);
                 dS.writeAccountTransfers(false, balance, UInp.userInputBalance, newBalance, "Profiles/" + username + "/Accounts/" + accName + "/" + accName + " Transfers.txt");
                 //System.out.println(" DEBUG:: newBalance: " + newBalance);
@@ -87,6 +91,7 @@ public class bankingTransfers {
                     UInp.getUserInputBalance(0, 1000000000);
                     
                     newBalance = balance - UInp.userInputBalance;
+                    checkBalanceAlerts(balanceAlerts, newBalance);
                     dS.writeAccountInfo(accName, newBalance, accountPath);
                     dS.writeAccountTransfers(false, balance, UInp.userInputBalance, newBalance, "Profiles/" + username + "/Accounts/" + accName + "/" + accName + " Transfers.txt");
 
@@ -108,6 +113,7 @@ public class bankingTransfers {
                         try {Thread.sleep(3000);} catch (InterruptedException ex) {}
                     validBalance = false;
                     } else {
+                        checkBalanceAlerts(balanceAlerts, newBalance);
                         dS.writeAccountInfo(accName, newBalance, accountPath);
                         dS.writeAccountTransfers(true, balance, UInp.userInputBalance, newBalance, "Profiles/" + username + "/Accounts/" + accName + "/" + accName + " Transfers.txt");
                         //System.out.println(" DEBUG:: newBalance: " + newBalance);
@@ -130,6 +136,15 @@ public class bankingTransfers {
             case 4:
             break;
         }
+    }
+
+    public boolean checkBalanceAlerts(boolean balanceAlerts, double balance) {
+        if (balanceAlerts == true) {
+            if (balance < 50) {
+                System.out.println("* WARNING: Your balance is below $50 ($" + balance + ") *");
+            }
+        }
+        return balanceAlerts;
     }
 
     private void parseAccInfoTranfer(String accountPath) {

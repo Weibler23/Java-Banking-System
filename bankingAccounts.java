@@ -67,7 +67,7 @@ public class bankingAccounts {
         }
     }
 
-    public void openAccount(String username) {
+    public void openAccount(String username, boolean balanceAlerts) {
         System.out.print("\n|Enter the account name you want to open |\n" +
                          "Input: ");
         accName = input.nextLine();
@@ -82,11 +82,18 @@ public class bankingAccounts {
             
                 accHS = true;
                 org.ClearScreen();
+
+                if (balanceAlerts == true) {
+                    if (balance < 50) {
+                        System.out.println("* WARNING: Your balance is below $50 ($" + balance + ") *");
+                    }
+                }
+                
                 HS.accountHP(accName, balance);
                 UInp.getMenuInput(4, 1);
                 switch (UInp.userInput) {
                     case 1:
-                    bT.transferMoney(username, accName, balance);
+                    bT.transferMoney(username, accName, balance, balanceAlerts);
                     break;
 
                     case 2:
