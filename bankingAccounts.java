@@ -101,7 +101,7 @@ public class bankingAccounts {
                     dS.readFullFile("Profiles/" + username + "/Accounts/" + accName + "/" + accName + " Transfers.txt");
                     System.out.println();
                     System.out.print("* Type 'next' to move on *\nInput: ");
-                    UInp.getUserInputString("next", true);
+                    UInp.getUserInputString("next", false);
                     break;
     
                     case 3:

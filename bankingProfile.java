@@ -52,58 +52,60 @@ public class bankingProfile {
 
     public void openProfile() throws Exception {
         UInp.getUserInputSecurity("ProfileLogin.txt");
+        //System.out.println(" DEBUG:: UInp.invalidProfLogin = |" + UInp.invalidProfLogin + "|");
+        if (UInp.invalidProfLogin == false) {
+            userProfilePath = ("Profiles/" + UInp.username + "/");
+            userProfileSettings = userProfilePath + UInp.username + "Settings.properties";
+            userProfileInfo = userProfilePath + UInp.username + "Info.properties";
+            dS.createFile(userProfileSettings);
 
-        userProfilePath = ("Profiles/" + UInp.username + "/");
-        userProfileSettings = userProfilePath + UInp.username + "Settings.properties";
-        userProfileInfo = userProfilePath + UInp.username + "Info.properties";
-        dS.createFile(userProfileSettings);
+            parseProperties(userProfileSettings);
+            parseInfo(userProfileInfo);
 
-        parseProperties(userProfileSettings);
-        parseInfo(userProfileInfo);
+            do {
+                profileHS = true;
+                org.ClearScreen();
+                HS.profileHP(UInp.username, UInp.profID, userProfilePath + "Accounts");
+                UInp.getMenuInput(4, 1);
 
-        do {
-            profileHS = true;
-            org.ClearScreen();
-            HS.profileHP(UInp.username, UInp.profID, userProfilePath + "Accounts");
-            UInp.getMenuInput(4, 1);
+                switch (UInp.userInput) {
+                    case 1:
+                    dS.checkFolderisEmpty(userProfilePath + "Accounts");
+                    //System.out.println(" DEBUG: checkFolderisEmpty: |" + (dS.checkFolderisEmpty(userProfilePath + "Accounts")));
+                    if ((dS.checkFolderisEmpty(userProfilePath + "Accounts")) == true) {
+                        org.ClearScreen();
+                        System.out.println ("* No accounts exist. Please create a new account *");
+                        Acc.newAccount(lockNewAccounts, checkDOB, age, UInp.username);
+                    } else {
+                        Acc.openAccount(UInp.username, balanceAlerts);
+                    }
+                    break;
 
-            switch (UInp.userInput) {
-                case 1:
-                dS.checkFolderisEmpty(userProfilePath + "Accounts");
-                //System.out.println(" DEBUG: checkFolderisEmpty: |" + (dS.checkFolderisEmpty(userProfilePath + "Accounts")));
-                if ((dS.checkFolderisEmpty(userProfilePath + "Accounts")) == true) {
-                    org.ClearScreen();
-                    System.out.println ("* No accounts exist. Please create a new account *");
+                    case 2:
+                    System.out.println("* User chose to open a new account *\n");
                     Acc.newAccount(lockNewAccounts, checkDOB, age, UInp.username);
-                } else {
-                    Acc.openAccount(UInp.username, balanceAlerts);
-                }
-                break;
+                    break;
 
-                case 2:
-                System.out.println("* User chose to open a new account *\n");
-                Acc.newAccount(lockNewAccounts, checkDOB, age, UInp.username);
-                break;
-
-                case 3:
-                System.out.println("* User chose to enter profile settings *\n");
-                do {
-                    parseProperties(userProfileSettings);
+                    case 3:
+                    System.out.println("* User chose to enter profile settings *\n");
+                    do {
+                        parseProperties(userProfileSettings);
                     //System.out.println(//" DEBUG:: profileUsername: |" + profileUsername + "|\n" +
                     //       " DEBUG:: userProfileUsername: |" + userProfileUsername + "|\n" +
                     //       " DEBUG:: checkDOB: |" + checkDOB + "|\n" +
                     //       " DEBUG:: balanceAlerts: |" + balanceAlerts + "|\n" +
                     //       " DEBUG:: lockNewAccounts: |" + lockNewAccounts + "|\n");
-                    profileSettings.openSettings(UInp.username, userProfileSettings, userProfilePath, checkDOB, balanceAlerts, lockNewAccounts, allowForeignCurrency);
-                } while (profileSettings.settingsRepeat == true);
-                break;
+                        profileSettings.openSettings(UInp.username, userProfileSettings, userProfilePath, checkDOB, balanceAlerts, lockNewAccounts, allowForeignCurrency);
+                    } while (profileSettings.settingsRepeat == true);
+                    break;
 
-                case 4:
-                System.out.println("* User chose to return to home page *\n");
-                profileHS = false;
-                break;
-            }
-        } while ((profileHS) && ((profileSettings.deletedProfile) == false));
+                    case 4:
+                    System.out.println("* User chose to return to home page *\n");
+                    profileHS = false;
+                    break;
+                }
+            } while ((profileHS) && ((profileSettings.deletedProfile) == false));
+        }  
     }
 
     public void createProfile() {

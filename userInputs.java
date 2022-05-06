@@ -69,9 +69,9 @@ public class userInputs {
 				failCheck = false;
 			} catch (Exception e) {
 				System.out.print("* ERROR: Please enter a valid input *\nInput: ");
-				input.nextLine();
 				failCheck = true;
 			}
+            input.nextLine();
 		} while (failCheck);
 		return 0;
 	}
@@ -85,39 +85,38 @@ public class userInputs {
                 failCheck = false;
             } catch (Exception e) {
                 System.out.print("* ERROR: Please enter a valid input *\nInput: ");
-                input.nextLine();
                 failCheck = true;
             }
+            input.nextLine();
         } while (failCheck);
         return 0;
     }
 
     public String getUserInputSecurity(String securityFilePath) {
-        boolean failCheck = false;
-        do {
-            System.out.print("\n|Enter your username |\n" +
-                             "Input: ");
-            username = input.nextLine();
+        invalidProfLogin = true;
+        System.out.print("\n|Enter your username |\n" +
+                         "Input: ");
+        username = input.nextLine();
 
-            System.out.print("\n|Enter your password |\n" +
-                             "Input: ");
-            password = input.nextLine();
+        System.out.print("\n|Enter your password |\n" +
+                         "Input: ");
+        password = input.nextLine();
 
-            System.out.print("\n|Enter your profile ID# |\n" +
-                             "Input: ");
-            profID = input.nextLine();
+        System.out.print("\n|Enter your profile ID# |\n" +
+                         "Input: ");
+        profID = input.nextLine();
         
-            dS.verifyLogin(username, password, profID, securityFilePath);
-            if (dS.found == false) {
-                System.out.println("\n* ERROR: Your username, password, or profile ID# was wrong. Please try again *");
+        dS.verifyLogin(username, password, profID, securityFilePath);
+        if (dS.found == false) {
+            System.out.println("\n* ERROR: Your username, password, or profile ID# was wrong. Please try again *");
+            try {Thread.sleep(1500);} catch (InterruptedException ex) {}
                 //System.out.println(" DEBUG:: username = |" + username + "|\n" +
                 //                   " DEBUG:: password = |" + password + "|\n" +
                 //                   " DEBUG:: profID = |" + profID + "|\n");
-                failCheck = true;
-            } else {
-                failCheck = false;
-            }
-        } while (failCheck); 
+            invalidProfLogin = true;
+        } else {
+            invalidProfLogin = false;
+        }
         return userSecurity;
     }
 
@@ -142,9 +141,9 @@ public class userInputs {
                 failCheck = false;
             } catch (Exception e) {
                 System.out.print("* ERROR: Please enter a valid input *\nInput: ");
-                input.nextLine();
                 failCheck = true;
             }
+        input.nextLine();
         } while (failCheck);
         return char1;
     }
